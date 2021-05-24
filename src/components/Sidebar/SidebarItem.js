@@ -6,10 +6,8 @@ import {
   AccordionIcon,
   AccordionPanel,
 } from '@chakra-ui/accordion';
-import { Box } from '@chakra-ui/layout';
-import { Text } from '@chakra-ui/layout';
-import { Divider } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/button';
+import NextLink from 'next/link';
+import { Box, Link, Divider } from '@chakra-ui/layout';
 
 const SidebarItem = ({ label, child, href }) => {
   return (
@@ -31,10 +29,12 @@ const SidebarItem = ({ label, child, href }) => {
               flexDirection="column"
               alignItems="flex-start"
             >
-              {child.map(({ label }, i) => (
-                <Button variant="link" py={2} px={4} key={i}>
-                  {label}
-                </Button>
+              {child.map(({ label, href: subHref }, i) => (
+                <NextLink href={subHref} key={i}>
+                  <Link py={2} px={4}>
+                    {label}
+                  </Link>
+                </NextLink>
               ))}
             </Box>
           </AccordionPanel>
@@ -43,7 +43,9 @@ const SidebarItem = ({ label, child, href }) => {
         <>
           <Divider />
           <Box py={2} px={4}>
-            <Text>{label}</Text>
+            <NextLink href={href}>
+              <Link>{label}</Link>
+            </NextLink>
           </Box>
         </>
       )}

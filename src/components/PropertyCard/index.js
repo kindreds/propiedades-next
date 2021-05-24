@@ -3,8 +3,14 @@ import PropTypes from 'prop-types';
 import { Image } from '@chakra-ui/image';
 import { Avatar } from '@chakra-ui/avatar';
 import { Box, Text, Divider, Flex, Stack } from '@chakra-ui/layout';
+import { Badge } from '@chakra-ui/layout';
+import { HStack } from '@chakra-ui/layout';
+import { IconButton } from '@chakra-ui/button';
+import { BsHeart } from 'react-icons/bs';
 
-const PropertyCard = ({ i }) => {
+const PropertyCard = ({ i, fullW }) => {
+  const w = { base: '290px', ms: '300px', xl: '350px' };
+
   return (
     <Box w="100%">
       <Box
@@ -16,17 +22,32 @@ const PropertyCard = ({ i }) => {
         borderWidth={1}
         borderRadius="lg"
         borderColor="gray.300"
-        maxW={{ base: '290px', ms: '300px', xl: '350px' }}
+        maxW={fullW ? { base: '100%', ms: '95%' } : w}
       >
-        <Image src="./casa1.jpg" borderRadius="lg" objectFit="contain" />
+        <Box pos="relative">
+          <Image src="./casa1.jpg" borderRadius="lg" objectFit="contain" />
+          <HStack pos="absolute" top={2} left={2} w="100%">
+            <Badge colorScheme="green">Nueva</Badge>
+            <Badge colorScheme="blue">Venta</Badge>
+          </HStack>
+          <IconButton
+            right={2}
+            bottom={2}
+            opacity={0.7}
+            size="sm"
+            pos="absolute"
+            icon={<BsHeart />}
+            _hover={{ opacity: 1, color: 'red.600' }}
+          />
+        </Box>
         <Box py={4}>
           <Box mb={4}>
             <Text fontSize="sm">Casa {i}</Text>
-            <Text fontWeight="700" mb="2px">
-              Breña
-            </Text>
+            <Text fontSize="sm">Breña</Text>
+            <Text fontWeight="700">S/ 200.000,00</Text>
             <Text fontSize="sm">Av. Coronel Portillo #1088.</Text>
           </Box>
+
           <Stack direction="row">
             <Text fontSize="sm">Cuartos: 4</Text>
             <Text fontSize="sm">Baños: 4</Text>
@@ -50,6 +71,7 @@ const PropertyCard = ({ i }) => {
 
 PropertyCard.propTypes = {
   i: PropTypes.number,
+  fullW: PropTypes.bool,
 };
 
 export default PropertyCard;

@@ -7,27 +7,23 @@ import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import Section from '../components/Section';
-import Sidebar from '../components/Sidebar';
 import SliderCard from '../components/SliderCard';
 import PropertyCard from '../components/PropertyCard';
 import GridProperty from '../components/GridProperty';
 import TestimonialsCard from '../components/TestimonialsCard';
 import { Container, Flex, Text, Heading, Box } from '@chakra-ui/layout';
 
-import { useDisclosure } from '@chakra-ui/hooks';
 import { testimonials, whyChooseUs } from '../data';
 
 const Index = () => {
-  const { isOpen, onToggle } = useDisclosure();
-
   return (
     <Box>
       <Head>
         <title>Inmobiliara</title>
       </Head>
 
-      <Navbar onToggle={onToggle} />
-      <Sidebar isOpen={isOpen} onToggle={onToggle} />
+      <Navbar />
+
       <Hero />
       <Box bg="gray.200">
         <Container maxW="container.xl" mx="auto" py="50px">

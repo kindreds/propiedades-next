@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import PropTypes from 'prop-types';
 import {
   Box,
   Text,
@@ -24,7 +24,7 @@ import {
 
 import { SearchIcon } from '@chakra-ui/icons';
 
-const AdvanceSearch = () => {
+const AdvanceSearch = ({ isDrawer }) => {
   const [desde, setDesde] = useState('0.00');
   const [hasta, setHasta] = useState('200.000.00');
   const [distance, setDistance] = useState(14);
@@ -34,17 +34,23 @@ const AdvanceSearch = () => {
 
   return (
     <Stack
-      px={8}
-      py={6}
-      mr={6}
-      top={10}
+      mr={4}
       bg="white"
-      shadow="lg"
-      pos="sticky"
-      rounded="lg"
-      maxH="760px"
+      py={6}
+      px={isDrawer ? 0 : 6}
+      w={isDrawer ? '100%' : null}
+      maxH={isDrawer ? null : '760px'}
+      shadow={isDrawer ? 'none' : 'lg'}
+      rounded={isDrawer ? 'none' : 'lg'}
+      display={isDrawer ? 'flex' : { base: 'none', lg: 'flex' }}
     >
-      <Text fontWeight="bold">Busqueda Avanzada</Text>
+      <Text
+        fontWeight="bold"
+        mb={isDrawer ? 4 : 0}
+        textAlign={isDrawer ? 'center' : 'left'}
+      >
+        Busqueda Avanzada
+      </Text>
       <InputGroup>
         <Input fontSize="sm" size="lg" placeholder="Palabra clave" />
         <InputRightElement>
@@ -132,6 +138,10 @@ const AdvanceSearch = () => {
       </Flex>
     </Stack>
   );
+};
+
+AdvanceSearch.propTypes = {
+  isDrawer: PropTypes.bool,
 };
 
 export default AdvanceSearch;

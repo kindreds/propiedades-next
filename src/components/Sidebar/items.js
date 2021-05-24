@@ -1,7 +1,7 @@
 export const NAV_ITEMS = [
   {
     label: 'Inicio',
-    href: '#',
+    href: '/',
   },
   {
     label: 'Propiedades',
@@ -9,32 +9,32 @@ export const NAV_ITEMS = [
       {
         label: 'Propiedades 1',
         subLabel: 'Find your dream design job',
-        href: '#',
+        href: '/propiedades',
       },
       {
         label: 'Propiedades 2',
         subLabel: 'An exclusive list for contract work',
-        href: '#',
+        href: '/propiedades',
       },
     ],
   },
   {
     label: 'Acerca de nosotros',
-    href: '#',
+    href: '/',
   },
   {
     label: 'Contacto',
-    href: '#',
+    href: '/',
     child: [
       {
         label: 'Contacto 1',
         subLabel: 'Trending Design to inspire you',
-        href: '#',
+        href: '/',
       },
       {
         label: 'Contacto 2',
         subLabel: 'Up-and-coming Designers',
-        href: '#',
+        href: '/',
       },
     ],
   },
