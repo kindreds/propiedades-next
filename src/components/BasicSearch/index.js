@@ -1,8 +1,9 @@
 import React from 'react';
+import NextLink from 'next/link';
 import { Input } from '@chakra-ui/input';
-import { Button } from '@chakra-ui/button';
 import { Select } from '@chakra-ui/select';
-import { Stack, Flex } from '@chakra-ui/layout';
+import { Stack, Flex, Link } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/button';
 // import PropTypes from 'prop-types'
 
 const BasicSearch = () => {
@@ -48,9 +49,11 @@ const BasicSearch = () => {
           ))}
       </Select>
       <Flex justify="center">
-        <Button size="lg" colorScheme="red">
-          Buscar
-        </Button>
+        <NextLink href="/propiedades">
+          <Button as={Link} size="lg" colorScheme="red">
+            Buscar
+          </Button>
+        </NextLink>
       </Flex>
     </Stack>
   );

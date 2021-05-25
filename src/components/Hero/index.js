@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@chakra-ui/button';
 import { Text, Flex, Box, Heading } from '@chakra-ui/layout';
 
@@ -6,6 +6,8 @@ import BasicSearch from '../BasicSearch';
 // import PropTypes from 'prop-types'
 
 const Hero = () => {
+  const [isActive, setIsActive] = useState(0);
+
   return (
     <Box
       minH={{ xl: '100vh' }}
@@ -34,14 +36,21 @@ const Hero = () => {
           </Text>
           <Flex justify={{ base: 'space-evenly', sm: 'center' }} mb="6">
             <Button
-              mx={{ base: '0', sm: '12px' }}
               minW="28"
-              colorScheme="red"
               size="lg"
+              mx={{ base: '0', sm: '12px' }}
+              onClick={() => setIsActive(1)}
+              colorScheme={isActive === 1 ? 'red' : 'gray'}
             >
               Alquiler
             </Button>
-            <Button mx={{ base: '0', sm: '12px' }} minW="28" size="lg">
+            <Button
+              minW="28"
+              size="lg"
+              mx={{ base: '0', sm: '12px' }}
+              onClick={() => setIsActive(0)}
+              colorScheme={isActive === 0 ? 'red' : 'gray'}
+            >
               Venta
             </Button>
           </Flex>
