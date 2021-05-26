@@ -1,5 +1,5 @@
 import '@fontsource/montserrat';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 import Card from '../components/Card';
@@ -14,8 +14,16 @@ import TestimonialsCard from '../components/TestimonialsCard';
 import { Container, Flex, Text, Heading, Box } from '@chakra-ui/layout';
 
 import { testimonials, whyChooseUs } from '../data';
+import { useInView } from 'react-intersection-observer';
 
 const Index = () => {
+  const [hasView, setHasView] = useState(false);
+  const { ref, inView } = useInView({ rootMargin: '100px' });
+
+  useEffect(() => {
+    if (inView) return setHasView(true);
+  }, [inView]);
+
   return (
     <Box>
       <Head>
@@ -48,7 +56,7 @@ const Index = () => {
           </SliderCard>
         </Container>
       </Box>
-      <Container maxW="container.xl" py="50px">
+      <Container ref={ref} maxW="container.xl" py="50px">
         <Heading
           mb="2"
           textAlign="center"
@@ -59,7 +67,7 @@ const Index = () => {
         <Text textAlign="center">
           em ipsum dolor sit amet, consectetur adipiscing elit.
         </Text>
-        <GridProperty />
+        {hasView && <GridProperty />}
       </Container>
       <Box bg="gray.200">
         <Container maxW="container.xl" py="50px">
@@ -74,11 +82,13 @@ const Index = () => {
             em ipsum dolor sit amet, consectetur adipiscing elit.
           </Text>
           <Section>
-            <Flex justify="space-evenly" wrap="wrap">
-              {whyChooseUs.map((item, i) => (
-                <Card key={i} {...item} bg="white" mb={{ base: 6, lg: 0 }} />
-              ))}
-            </Flex>
+            {hasView && (
+              <Flex justify="space-evenly" wrap="wrap">
+                {whyChooseUs.map((item, i) => (
+                  <Card key={i} {...item} bg="white" mb={{ base: 6, lg: 0 }} />
+                ))}
+              </Flex>
+            )}
           </Section>
         </Container>
       </Box>
@@ -96,13 +106,15 @@ const Index = () => {
           </Text>
           <Section>
             <Flex justify="space-evenly">
-              <SliderCard>
-                {testimonials.map((item, i) => (
-                  <Box w="100%" key={i}>
-                    <TestimonialsCard key={i} {...item} />
-                  </Box>
-                ))}
-              </SliderCard>
+              {hasView && (
+                <SliderCard>
+                  {testimonials.map((item, i) => (
+                    <Box w="100%" key={i}>
+                      <TestimonialsCard key={i} {...item} />
+                    </Box>
+                  ))}
+                </SliderCard>
+              )}
             </Flex>
           </Section>
         </Container>

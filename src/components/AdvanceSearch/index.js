@@ -52,13 +52,18 @@ const AdvanceSearch = ({ isDrawer }) => {
         Busqueda Avanzada
       </Text>
       <InputGroup>
-        <Input fontSize="sm" size="lg" placeholder="Palabra clave" />
+        <Input size="lg" fontSize="sm" placeholder="Palabra clave" />
         <InputRightElement>
           <SearchIcon color="gray.500" />
         </InputRightElement>
       </InputGroup>
       <InputGroup>
-        <Input fontSize="sm" size="lg" placeholder="Ubicacion" />
+        <Input
+          fontWeight="light"
+          fontSize="sm"
+          size="lg"
+          placeholder="Ubicacion"
+        />
         <InputRightElement>
           <SearchIcon color="gray.500" />
         </InputRightElement>

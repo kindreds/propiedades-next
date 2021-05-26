@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image } from '@chakra-ui/image';
-import { Avatar } from '@chakra-ui/avatar';
-import { Box, Text, Divider, Flex, Stack } from '@chakra-ui/layout';
-import { Badge } from '@chakra-ui/layout';
-import { HStack } from '@chakra-ui/layout';
-import { IconButton } from '@chakra-ui/button';
 import { BsHeart } from 'react-icons/bs';
+import { Avatar } from '@chakra-ui/avatar';
+import { IconButton } from '@chakra-ui/button';
+import {
+  Box,
+  Text,
+  Divider,
+  Flex,
+  Stack,
+  Badge,
+  HStack,
+} from '@chakra-ui/layout';
+import { Image } from '@chakra-ui/image';
 
 const PropertyCard = ({ i, fullW }) => {
   const w = { base: '290px', ms: '300px', xl: '350px' };
@@ -25,7 +31,7 @@ const PropertyCard = ({ i, fullW }) => {
         maxW={fullW ? { base: '100%', ms: '95%' } : w}
       >
         <Box pos="relative">
-          <Image src="./casa1.jpg" borderRadius="lg" objectFit="contain" />
+          <Image borderRadius="lg" objectFit="contain" src="/casa1_cp.webp" />
           <HStack pos="absolute" top={2} left={2} w="100%">
             <Badge colorScheme="green">Nueva</Badge>
             <Badge colorScheme="blue">Venta</Badge>

@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <Box
       minH={{ xl: '100vh' }}
-      bgImage="url(./hero.jpg)"
+      bgImage="url(./hero_cp.webp)"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
     >

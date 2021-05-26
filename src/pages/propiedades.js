@@ -1,50 +1,49 @@
 import React from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
-
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Image,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Tooltip,
-  useDisclosure,
-} from '@chakra-ui/react';
 import { FaList } from 'react-icons/fa';
-import Navbar from '../components/Navbar';
 import { GoSettings } from 'react-icons/go';
 import { BsGridFill } from 'react-icons/bs';
 import { Button, IconButton } from '@chakra-ui/button';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
-  Heading,
   Box,
-  Container,
   Flex,
   Text,
-  SimpleGrid,
   Stack,
-  HStack,
-  Divider,
   Badge,
+  HStack,
+  Heading,
+  Divider,
+  Container,
+  SimpleGrid,
 } from '@chakra-ui/layout';
+import {
+  Menu,
+  Image,
+  Tooltip,
+  MenuItem,
+  MenuList,
+  Breadcrumb,
+  MenuButton,
+  useDisclosure,
+  BreadcrumbItem,
+  BreadcrumbLink,
+} from '@chakra-ui/react';
 
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import AdvanceSearch from '../components/AdvanceSearch';
 import PropertyCard from '../components/PropertyCard';
 import AdvanceSearchDrawer from '../components/AdvanceSearch/AdvanceSearchDrawer';
-import Footer from '../components/Footer';
 
 const Propiedades = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <Box pos="relative" bg="gray.200" minH="100vh">
+    <Box fontWeight="light" pos="relative" bg="gray.200" minH="100vh">
       <Head>
-        <title>Inmobiliara</title>
+        <title>Propiedades</title>
       </Head>
 
       <Navbar dark={true} />

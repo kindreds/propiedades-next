@@ -43,7 +43,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'./ciudad2H.jpg'} />
+          <Image rounded="lg" w="100%" h="100%" src={'/ciudad2H_cp.webp'} />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 1
@@ -56,7 +56,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'./ciudad1W.jpg'} />
+          <Image rounded="lg" w="100%" h="100%" src={'/ciudad1W_cp.webp'} />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 2
@@ -70,7 +70,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'./ciudad3H.jpg'} />
+          <Image rounded="lg" w="100%" h="100%" src={'/ciudad3H_cp.webp'} />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 3
@@ -83,7 +83,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'./ciudad4W.jpg'} />
+          <Image rounded="lg" w="100%" h="100%" src={'/ciudad4W_cp.webp'} />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 4
