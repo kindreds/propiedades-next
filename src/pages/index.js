@@ -11,15 +11,18 @@ import { Container, Text, Heading, Box } from '@chakra-ui/layout';
 const opts = { ssr: false };
 
 const GridProperty = dynamic(() => import('../components/GridProperty'), opts);
-const Testimonios = dynamic(() => {
-  import('../components/Section/Testimonios');
-}, opts);
-const PropiedadesDesc = dynamic(() => {
-  import('../components/Section/PropiedadesDesc');
-}, opts);
-const PorQueElegirnos = dynamic(() => {
-  import('../components/Section/PorQueElegirnos');
-}, opts);
+const Testimonios = dynamic(
+  () => import('../components/Section/Testimonios'),
+  opts
+);
+const PropiedadesDesc = dynamic(
+  () => import('../components/Section/PropiedadesDesc'),
+  opts
+);
+const PorQueElegirnos = dynamic(
+  () => import('../components/Section/PorQueElegirnos'),
+  opts
+);
 
 const Index = () => {
   return (
