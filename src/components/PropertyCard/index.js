@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Image from 'next/image';
 import PropTypes from 'prop-types';
-import { BsHeart } from 'react-icons/bs';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { Avatar } from '@chakra-ui/avatar';
 import { IconButton } from '@chakra-ui/button';
 import {
@@ -12,9 +13,9 @@ import {
   Badge,
   HStack,
 } from '@chakra-ui/layout';
-import { Image } from '@chakra-ui/image';
 
 const PropertyCard = ({ i, fullW }) => {
+  const [isLike, setIsLike] = useState(false);
   const w = { base: '290px', ms: '300px', xl: '350px' };
 
   return (
@@ -31,18 +32,22 @@ const PropertyCard = ({ i, fullW }) => {
         maxW={fullW ? { base: '100%', ms: '95%' } : w}
       >
         <Box pos="relative">
-          <Image borderRadius="lg" objectFit="contain" src="/casa1_cp.webp" />
+          <Box w={{ base: 280, ms: 290, xl: 340 }} h={{ base: 200 }}>
+            <Image src="/casa1_cp.webp" layout="fill" />
+          </Box>
           <HStack pos="absolute" top={2} left={2} w="100%">
             <Badge colorScheme="green">Nueva</Badge>
             <Badge colorScheme="blue">Venta</Badge>
           </HStack>
           <IconButton
+            size="sm"
             right={2}
             bottom={2}
-            opacity={0.7}
-            size="sm"
             pos="absolute"
-            icon={<BsHeart />}
+            icon={isLike ? <BsHeartFill /> : <BsHeart />}
+            opacity={isLike ? 1 : 0.7}
+            color={isLike ? 'red.600' : ''}
+            onClick={() => setIsLike(!isLike)}
             _hover={{ opacity: 1, color: 'red.600' }}
           />
         </Box>

@@ -67,7 +67,7 @@ const Index = () => {
         <Text textAlign="center">
           em ipsum dolor sit amet, consectetur adipiscing elit.
         </Text>
-        {hasView && <GridProperty />}
+        <GridProperty />
       </Container>
       <Box bg="gray.200">
         <Container maxW="container.xl" py="50px">

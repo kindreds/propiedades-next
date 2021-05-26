@@ -1,9 +1,7 @@
 import React from 'react';
 // import PropType from 'prop-types';
-import { Image } from '@chakra-ui/image';
-import { Grid, GridItem, Box } from '@chakra-ui/layout';
-import { Text } from '@chakra-ui/layout';
-import { Flex } from '@chakra-ui/layout';
+import Image from 'next/image';
+import { Grid, GridItem, Box, Flex, Text } from '@chakra-ui/layout';
 
 const Overlay = () => (
   <Box
@@ -43,7 +41,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'/ciudad2H_cp.webp'} />
+          <Image src="/ciudad2H_cp.webp" layout="fill" />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 1
@@ -56,7 +54,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'/ciudad1W_cp.webp'} />
+          <Image layout="fill" src={'/ciudad1W_cp.webp'} />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 2
@@ -70,7 +68,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'/ciudad3H_cp.webp'} />
+          <Image layout="fill" src={'/ciudad3H_cp.webp'} />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 3
@@ -83,7 +81,7 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image rounded="lg" w="100%" h="100%" src={'/ciudad4W_cp.webp'} />
+          <Image layout="fill" src={'/ciudad4W_cp.webp'} />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 4
