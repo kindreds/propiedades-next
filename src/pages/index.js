@@ -1,29 +1,27 @@
 import '@fontsource/montserrat';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 
-import Card from '../components/Card';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import Section from '../components/Section';
-import SliderCard from '../components/SliderCard';
-import PropertyCard from '../components/PropertyCard';
-import GridProperty from '../components/GridProperty';
-import TestimonialsCard from '../components/TestimonialsCard';
-import { Container, Flex, Text, Heading, Box } from '@chakra-ui/layout';
+import { Container, Text, Heading, Box } from '@chakra-ui/layout';
 
-import { testimonials, whyChooseUs } from '../data';
-import { useInView } from 'react-intersection-observer';
+const opts = { ssr: false };
+
+const GridProperty = dynamic(() => import('../components/GridProperty'), opts);
+const Testimonios = dynamic(() => {
+  import('../components/Section/Testimonios');
+}, opts);
+const PropiedadesDesc = dynamic(() => {
+  import('../components/Section/PropiedadesDesc');
+}, opts);
+const PorQueElegirnos = dynamic(() => {
+  import('../components/Section/PorQueElegirnos');
+}, opts);
 
 const Index = () => {
-  const [hasView, setHasView] = useState(false);
-  const { ref, inView } = useInView({ rootMargin: '100px' });
-
-  useEffect(() => {
-    if (inView) return setHasView(true);
-  }, [inView]);
-
   return (
     <Box>
       <Head>
@@ -45,18 +43,10 @@ const Index = () => {
           <Text textAlign="center">
             Propiedades seleccionadas por nuestro equipo.
           </Text>
-          <SliderCard>
-            {Array(10)
-              .fill(null)
-              .map((_, i) => (
-                <Box w="100%" key={i}>
-                  <PropertyCard key={i} i={i} />
-                </Box>
-              ))}
-          </SliderCard>
+          <PropiedadesDesc />
         </Container>
       </Box>
-      <Container ref={ref} maxW="container.xl" py="50px">
+      <Container maxW="container.xl" py="50px">
         <Heading
           mb="2"
           textAlign="center"
@@ -81,15 +71,7 @@ const Index = () => {
           <Text textAlign="center">
             em ipsum dolor sit amet, consectetur adipiscing elit.
           </Text>
-          <Section>
-            {hasView && (
-              <Flex justify="space-evenly" wrap="wrap">
-                {whyChooseUs.map((item, i) => (
-                  <Card key={i} {...item} bg="white" mb={{ base: 6, lg: 0 }} />
-                ))}
-              </Flex>
-            )}
-          </Section>
+          <PorQueElegirnos />
         </Container>
       </Box>
       <Box>
@@ -104,19 +86,7 @@ const Index = () => {
           <Text textAlign="center">
             em ipsum dolor sit amet, consectetur adipiscing elit.
           </Text>
-          <Section>
-            <Flex justify="space-evenly">
-              {hasView && (
-                <SliderCard>
-                  {testimonials.map((item, i) => (
-                    <Box w="100%" key={i}>
-                      <TestimonialsCard key={i} {...item} />
-                    </Box>
-                  ))}
-                </SliderCard>
-              )}
-            </Flex>
-          </Section>
+          <Testimonios />
         </Container>
       </Box>
       <Footer />
