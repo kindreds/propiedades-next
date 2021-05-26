@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
-import { BsHeart, BsHeartFill } from 'react-icons/bs';
-import { Avatar } from '@chakra-ui/avatar';
 import { IconButton } from '@chakra-ui/button';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import {
   Box,
   Text,
-  Divider,
   Flex,
   Stack,
   Badge,
   HStack,
+  Divider,
 } from '@chakra-ui/layout';
+import { Avatar } from '../tools';
 
 const PropertyCard = ({ i, fullW }) => {
   const [isLike, setIsLike] = useState(false);
@@ -44,11 +44,11 @@ const PropertyCard = ({ i, fullW }) => {
             right={2}
             bottom={2}
             pos="absolute"
-            icon={isLike ? <BsHeartFill /> : <BsHeart />}
             opacity={isLike ? 1 : 0.7}
             color={isLike ? 'red.600' : ''}
             onClick={() => setIsLike(!isLike)}
             _hover={{ opacity: 1, color: 'red.600' }}
+            icon={isLike ? <BsHeartFill /> : <BsHeart />}
           />
         </Box>
         <Box py={4}>
@@ -68,7 +68,14 @@ const PropertyCard = ({ i, fullW }) => {
         <Divider />
         <Flex justify="space-between" alignItems="center" pt={2}>
           <Flex alignItems="center">
-            <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
+            <Box w={'50px'} h={'50px'}>
+              <Avatar
+                width={50}
+                height={50}
+                alt="Dan Abrahmov"
+                src="https://bit.ly/dan-abramov"
+              />
+            </Box>
             <Text ml={1} fontSize="sm">
               Dan Abrahmov
             </Text>
