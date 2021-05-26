@@ -1,19 +1,30 @@
 import React from 'react';
-import SliderCard from '../SliderCard';
-import PropertyCard from '../PropertyCard';
+// import PropTypes from 'prop-types'
+import { FixedSizeList as List } from 'react-window';
+// import SliderCard from '../SliderCard';
 import { Box } from '@chakra-ui/layout';
+import PropertyCard from '../PropertyCard';
+
+/* eslint-disable */
+const Column = ({ columnIndex, style }) => (
+  <Box style={style} w="100%">
+    <PropertyCard i={columnIndex} />
+  </Box>
+);
 
 const PropiedadesDesc = () => {
   return (
-    <SliderCard>
-      {Array(10)
-        .fill(null)
-        .map((_, i) => (
-          <Box w="100%" key={i}>
-            <PropertyCard key={i} i={i} />
-          </Box>
-        ))}
-    </SliderCard>
+    <Box py={10}>
+      <List
+        height={500}
+        itemCount={10}
+        itemSize={350}
+        layout="horizontal"
+        width={1200}
+      >
+        {Column}
+      </List>
+    </Box>
   );
 };
 

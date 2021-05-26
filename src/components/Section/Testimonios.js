@@ -1,24 +1,31 @@
 import React from 'react';
-import Section from '.';
-import SliderCard from '../SliderCard';
-import { Box, Flex } from '@chakra-ui/layout';
+import { Box } from '@chakra-ui/layout';
 import TestimonialsCard from '../TestimonialsCard';
+import { FixedSizeList as List } from 'react-window';
 
 import { testimonials } from '../../data';
 
 const Testimonios = () => {
   return (
-    <Section>
-      <Flex justify="space-evenly">
-        <SliderCard>
-          {testimonials.map((item, i) => (
-            <Box w="100%" key={i}>
+    <Box py={10}>
+      <List
+        height={400}
+        width={1200}
+        itemCount={testimonials.length}
+        itemSize={350}
+        layout="horizontal"
+        itemData={[...testimonials]}
+      >
+        {({ data, index, style }) => {
+          const item = data[index];
+          return (
+            <Box style={style} w="100%">
               <TestimonialsCard {...item} />
             </Box>
-          ))}
-        </SliderCard>
-      </Flex>
-    </Section>
+          );
+        }}
+      </List>
+    </Box>
   );
 };
 
