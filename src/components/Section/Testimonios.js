@@ -13,7 +13,7 @@ const Testimonios = () => {
         <SliderCard>
           {testimonials.map((item, i) => (
             <Box w="100%" key={i}>
-              <TestimonialsCard key={i} {...item} />
+              <TestimonialsCard {...item} />
             </Box>
           ))}
         </SliderCard>

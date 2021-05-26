@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Avatar } from '@chakra-ui/avatar';
 import { Box, Text } from '@chakra-ui/layout';
-import { AvatarBadge } from '@chakra-ui/avatar';
 
-const TestimonialsCard = ({ image, name, comment }) => {
+import { Avatar } from '../tools';
+
+const TestimonialsCard = ({ name, comment }) => {
   return (
     <Box display="flex" flexDirection="column" maxW="300px" mx="auto">
-      <Avatar mb={4} mx="auto" size="2xl" src={image} name={name}>
-        <AvatarBadge boxSize="1em" bg="green.500" />
-      </Avatar>
+      <Box mx="auto" maxW={100}>
+        <Avatar
+          mb={4}
+          alt={name}
+          width={100}
+          height={100}
+          src="https://bit.ly/dan-abramov"
+        />
+      </Box>
       <Text textAlign="center" mb={2}>
         {name}
       </Text>
