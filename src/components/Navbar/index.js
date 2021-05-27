@@ -18,7 +18,7 @@ const Navbar = ({ dark = false }) => {
   return (
     <>
       <Box
-        top="0"
+        top={0}
         w="100%"
         minH="60px"
         style={{ zIndex: 2 }}

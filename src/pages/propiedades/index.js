@@ -31,11 +31,11 @@ import {
   BreadcrumbLink,
 } from '@chakra-ui/react';
 
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import AdvanceSearch from '../components/AdvanceSearch';
-import PropertyCard from '../components/PropertyCard';
-import AdvanceSearchDrawer from '../components/AdvanceSearch/AdvanceSearchDrawer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import AdvanceSearch from '../../components/AdvanceSearch';
+import PropertyCard from '../../components/PropertyCard';
+import AdvanceSearchDrawer from '../../components/AdvanceSearch/AdvanceSearchDrawer';
 
 const Propiedades = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
