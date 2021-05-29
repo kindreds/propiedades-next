@@ -2,6 +2,7 @@ import React from 'react';
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
 
 import theme from '../theme';
+import 'react-slidy/lib/index.scss';
 /* eslint-disable */
 function MyApp({ Component, pageProps }) {
   return (

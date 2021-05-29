@@ -15,6 +15,7 @@ import {
   LinkBox,
 } from '@chakra-ui/layout';
 import { Avatar } from '../tools';
+import { StarIcon } from '@chakra-ui/icons';
 
 const PropertyCard = ({ i, fullW }) => {
   const [isLike, setIsLike] = useState(false);
@@ -62,11 +63,30 @@ const PropertyCard = ({ i, fullW }) => {
               <Text fontSize="sm">Av. Coronel Portillo #1088.</Text>
             </Box>
 
-            <Stack direction="row">
-              <Text fontSize="sm">Cuartos: 4</Text>
-              <Text fontSize="sm">Baños: 4</Text>
-              <Text fontSize="sm">M&sup2;: 72</Text>
-            </Stack>
+            <Box
+              color="gray.500"
+              fontWeight="semibold"
+              letterSpacing="wide"
+              fontSize="xs"
+              textTransform="uppercase"
+            >
+              {4} Cuartos &bull; {4} Baños
+            </Box>
+
+            <Box d="flex" alignItems="center">
+              {Array(5)
+                .fill('')
+                .map((_, i) => (
+                  <StarIcon
+                    fontSize="sm"
+                    key={i}
+                    color={i < 4 ? 'teal.500' : 'gray.300'}
+                  />
+                ))}
+              <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                {33} Opiniones
+              </Box>
+            </Box>
           </Box>
           <Divider />
           <Flex justify="space-between" alignItems="center" pt={2}>

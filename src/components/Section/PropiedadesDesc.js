@@ -1,55 +1,59 @@
-import React from 'react';
-// import PropTypes from 'prop-types'
-import { Box } from '@chakra-ui/layout';
+import React, { useState } from 'react';
+import ReactSlidy from 'react-slidy';
 import PropertyCard from '../PropertyCard';
-import { chakra } from '@chakra-ui/system';
-import { FixedSizeList } from 'react-window';
-import { useBreakpointValue } from '@chakra-ui/media-query';
-
-const props = [
-  'height',
-  'width',
-  'itemCount',
-  'itemSize',
-  'layout',
-  'children',
-];
-
-const List = chakra(FixedSizeList, {
-  shouldForwardProp: (prop) => props.includes(prop),
-});
+import { Box, Flex } from '@chakra-ui/layout';
+import { createStyles } from '../../helper/dotStyles';
+import Cpwe from '../PropertyCard/PropertyCardV2';
 
 const PropiedadesDesc = () => {
-  const width = useBreakpointValue({
-    base: 300,
-    ms: 400,
-    sm: 620,
-    md: 750,
-    lg: 1000,
-    xl: 1200,
-  });
+  const [actualSlide, setActualSlide] = useState(0);
 
-  const itemInView = width >= 1000 ? 3 : width >= 620 ? 2 : 1;
+  const updateSlide = ({ currentSlide }) => {
+    setActualSlide(currentSlide);
+  };
+
+  const SLIDES = Array(9).fill(null);
 
   return (
-    <>
-      <Box py={10}>
-        <List
-          mx="auto"
-          height={550}
-          itemCount={10}
-          itemSize={((100 / itemInView) * width) / 100}
-          layout="horizontal"
-          width={width ?? 300}
+    <Box maxW="1200px" my={5} mx="auto">
+      <ReactSlidy
+        numOfSlides={3}
+        showArrows={false}
+        keyboardNavigation
+        slide={actualSlide}
+        doAfterSlide={updateSlide}
+      >
+        {SLIDES.map((_, i) => (
+          <PropertyCard key={i} i={i + 1} />
+        ))}
+      </ReactSlidy>
+      <Flex flex={1} justify="center">
+        <button
+          style={createStyles(0 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 0 })}
         >
-          {({ style, index }) => (
-            <Box style={style} w="100%">
-              <PropertyCard i={index} />
-            </Box>
-          )}
-        </List>
-      </Box>
-    </>
+          &bull;
+        </button>
+        <button
+          style={createStyles(3 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 3 })}
+        >
+          &bull;
+        </button>
+        <button
+          style={createStyles(6 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 6 })}
+        >
+          &bull;
+        </button>
+        <button
+          style={createStyles(7 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 7 })}
+        >
+          &bull;
+        </button>
+      </Flex>
+    </Box>
   );
 };
 

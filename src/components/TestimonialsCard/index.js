@@ -6,8 +6,8 @@ import { Avatar } from '../tools';
 
 const TestimonialsCard = ({ name, comment }) => {
   return (
-    <Box display="flex" flexDirection="column" maxW="300px" mx="auto">
-      <Box mx="auto" maxW={100}>
+    <Box mx="auto" display="flex" flexDirection="column" w="80%" h="auto">
+      <Box pos="relative" mx="auto" maxW={100} mb={2}>
         <Avatar
           mb={4}
           alt={name}
@@ -15,11 +15,26 @@ const TestimonialsCard = ({ name, comment }) => {
           height={100}
           src="https://bit.ly/dan-abramov"
         />
+        <Box
+          w={8}
+          h={8}
+          bottom={0}
+          right={-1}
+          pos="absolute"
+          rounded="full"
+          borderWidth={5}
+          bg="whatsapp.400"
+          borderColor="white"
+        />
       </Box>
-      <Text textAlign="center" mb={2}>
-        {name}
-      </Text>
-      <Text fontSize="sm">{comment}</Text>
+      <Box>
+        <Text fontSize="md" whiteSpace="normal" textAlign="center" mb={2}>
+          {name}
+        </Text>
+        <Text fontSize="sm" whiteSpace="normal">
+          {comment}
+        </Text>
+      </Box>
     </Box>
   );
 };

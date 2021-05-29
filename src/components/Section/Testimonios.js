@@ -1,40 +1,58 @@
-import React from 'react';
-import { Box } from '@chakra-ui/layout';
-import TestimonialsCard from '../TestimonialsCard';
-import { FixedSizeList as List } from 'react-window';
+import React, { useState } from 'react';
+import ReactSlidy from 'react-slidy';
+import PropertyCard from '../PropertyCard';
+import { Box, Flex } from '@chakra-ui/layout';
 
 import { testimonials } from '../../data';
-import { useBreakpointValue } from '@chakra-ui/media-query';
+import { createStyles } from '../../helper/dotStyles';
+import TestimonialsCard from '../TestimonialsCard';
 
 const Testimonios = () => {
-  const width = useBreakpointValue({
-    base: 300,
-    ms: 400,
-    sm: 620,
-    md: 750,
-    lg: 1000,
-    xl: 1200,
-  });
+  const [actualSlide, setActualSlide] = useState(0);
 
-  const itemInView = width >= 1000 ? 3 : width >= 620 ? 2 : 1;
+  const updateSlide = ({ currentSlide }) => {
+    setActualSlide(currentSlide);
+  };
 
   return (
-    <Box py={10}>
-      <List
-        height={400}
-        layout="horizontal"
-        width={width ?? 300}
-        itemData={[...testimonials]}
-        itemCount={testimonials.length}
-        style={{ marginInline: 'auto' }}
-        itemSize={((100 / itemInView) * width) / 100}
+    <Box maxW="1200px" my={5} mx="auto">
+      <ReactSlidy
+        numOfSlides={3}
+        showArrows={false}
+        keyboardNavigation
+        slide={actualSlide}
+        doAfterSlide={updateSlide}
       >
-        {({ data, index, style }) => (
-          <Box style={style} w="100%" minW="300px">
-            <TestimonialsCard {...data[index]} />
-          </Box>
-        )}
-      </List>
+        {testimonials.map((item, i) => (
+          <TestimonialsCard key={i} {...item} />
+        ))}
+      </ReactSlidy>
+      <Flex flex={1} justify="center">
+        <button
+          style={createStyles(0 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 0 })}
+        >
+          &bull;
+        </button>
+        <button
+          style={createStyles(3 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 3 })}
+        >
+          &bull;
+        </button>
+        <button
+          style={createStyles(6 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 6 })}
+        >
+          &bull;
+        </button>
+        <button
+          style={createStyles(7 === actualSlide)}
+          onClick={() => updateSlide({ currentSlide: 7 })}
+        >
+          &bull;
+        </button>
+      </Flex>
     </Box>
   );
 };

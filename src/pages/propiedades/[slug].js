@@ -43,11 +43,13 @@ const Propiedad = () => {
           <Badge colorScheme="green">Nuevo</Badge>
           <Badge colorScheme="blue">Venta</Badge>
         </HStack>
-        <Heading fontSize="xl" mb={2}>
+        <Heading fontSize="xl" mb={1}>
           Departamento Diamante
         </Heading>
-        <Text fontWeight="100">Av. Coronel Portillo #1088.</Text>
-        <Text fontWeight="100">S/ 200.000,00</Text>
+        <Heading fontSize="lg">S/ 200.000,00</Heading>
+        <Text fontWeight="100" fontSize="sm">
+          Av. Coronel Portillo #1088.
+        </Text>
 
         <HStack py={2}>
           <IconButton

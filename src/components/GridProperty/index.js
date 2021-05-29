@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropType from 'prop-types';
-import Image from 'next/image';
 import { Grid, GridItem, Box, Flex, Text } from '@chakra-ui/layout';
+import { Image } from '../tools';
 
 const Overlay = () => (
   <Box
@@ -41,7 +41,12 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image src="/ciudad2H_cp.webp" layout="fill" />
+          <Image
+            cursor="pointer"
+            rounded="lg"
+            src="/ciudad2H_cp.webp"
+            layout="fill"
+          />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 1
@@ -54,7 +59,12 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image layout="fill" src={'/ciudad1W_cp.webp'} />
+          <Image
+            cursor="pointer"
+            rounded="lg"
+            layout="fill"
+            src={'/ciudad1W_cp.webp'}
+          />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 2
@@ -68,7 +78,12 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image layout="fill" src={'/ciudad3H_cp.webp'} />
+          <Image
+            cursor="pointer"
+            rounded="lg"
+            layout="fill"
+            src={'/ciudad3H_cp.webp'}
+          />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 3
@@ -81,7 +96,12 @@ const GridProperty = () => {
           _hover={{ transform: 'scale(1.01)' }}
         >
           <Overlay />
-          <Image layout="fill" src={'/ciudad4W_cp.webp'} />
+          <Image
+            cursor="pointer"
+            rounded="lg"
+            layout="fill"
+            src={'/ciudad4W_cp.webp'}
+          />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
               Ciudad 4
