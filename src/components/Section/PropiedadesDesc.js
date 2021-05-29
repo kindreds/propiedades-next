@@ -3,9 +3,17 @@ import ReactSlidy from 'react-slidy';
 import PropertyCard from '../PropertyCard';
 import { Box, Flex } from '@chakra-ui/layout';
 import { createStyles } from '../../helper/dotStyles';
-import Cpwe from '../PropertyCard/PropertyCardV2';
+import { useBreakpointValue } from '@chakra-ui/media-query';
 
 const PropiedadesDesc = () => {
+  const numOfSlides = useBreakpointValue({
+    base: 1,
+    ms: 1,
+    sm: 2,
+    md: 2,
+    lg: 3,
+    xl: 3,
+  });
   const [actualSlide, setActualSlide] = useState(0);
 
   const updateSlide = ({ currentSlide }) => {
@@ -17,7 +25,7 @@ const PropiedadesDesc = () => {
   return (
     <Box maxW="1200px" my={5} mx="auto">
       <ReactSlidy
-        numOfSlides={3}
+        numOfSlides={numOfSlides}
         showArrows={false}
         keyboardNavigation
         slide={actualSlide}

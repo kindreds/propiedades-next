@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import ReactSlidy from 'react-slidy';
-import PropertyCard from '../PropertyCard';
 import { Box, Flex } from '@chakra-ui/layout';
 
 import { testimonials } from '../../data';
 import { createStyles } from '../../helper/dotStyles';
 import TestimonialsCard from '../TestimonialsCard';
+import { useBreakpointValue } from '@chakra-ui/media-query';
 
 const Testimonios = () => {
+  const numOfSlides = useBreakpointValue({
+    base: 1,
+    ms: 1,
+    sm: 2,
+    md: 2,
+    lg: 3,
+    xl: 3,
+  });
+
   const [actualSlide, setActualSlide] = useState(0);
 
   const updateSlide = ({ currentSlide }) => {
@@ -17,7 +26,7 @@ const Testimonios = () => {
   return (
     <Box maxW="1200px" my={5} mx="auto">
       <ReactSlidy
-        numOfSlides={3}
+        numOfSlides={numOfSlides}
         showArrows={false}
         keyboardNavigation
         slide={actualSlide}
