@@ -11,7 +11,7 @@
     "@chakra-ui/react": "1.6.2",
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
-    "@fontsource/montserrat": "4.3.0",
+    "@fontsource/poppins": "^4.4.0",
     "framer-motion": "4.1.11",
     "next": "latest",
     "react": "^17.0.2",

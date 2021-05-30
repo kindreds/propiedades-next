@@ -3,12 +3,12 @@ import ReactSlidy from 'react-slidy';
 import { Box, Flex } from '@chakra-ui/layout';
 
 import { testimonials } from '../../data';
-import { createStyles } from '../../helper/dotStyles';
+import { createStyles, numOfDots } from '../../helper/dotStyles';
 import TestimonialsCard from '../TestimonialsCard';
 import { useBreakpointValue } from '@chakra-ui/media-query';
 
 const Testimonios = () => {
-  const numOfSlides = useBreakpointValue({
+  const numOfSlidesRaw = useBreakpointValue({
     base: 1,
     ms: 1,
     sm: 2,
@@ -22,6 +22,8 @@ const Testimonios = () => {
   const updateSlide = ({ currentSlide }) => {
     setActualSlide(currentSlide);
   };
+
+  const numOfSlides = numOfSlidesRaw ?? 3;
 
   return (
     <Box maxW="1200px" my={5} mx="auto">
@@ -37,30 +39,21 @@ const Testimonios = () => {
         ))}
       </ReactSlidy>
       <Flex flex={1} justify="center">
-        <button
-          style={createStyles(0 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 0 })}
-        >
-          &bull;
-        </button>
-        <button
-          style={createStyles(3 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 3 })}
-        >
-          &bull;
-        </button>
-        <button
-          style={createStyles(6 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 6 })}
-        >
-          &bull;
-        </button>
-        <button
-          style={createStyles(7 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 7 })}
-        >
-          &bull;
-        </button>
+        {Array(numOfDots({ length: testimonials.length, numOfSlides }))
+          .fill(null)
+          .map((_, i) => {
+            const pos = i === 0 ? 0 : i * numOfSlides;
+
+            return (
+              <button
+                key={i}
+                style={createStyles(pos === actualSlide)}
+                onClick={() => updateSlide({ currentSlide: pos })}
+              >
+                &bull;
+              </button>
+            );
+          })}
       </Flex>
     </Box>
   );

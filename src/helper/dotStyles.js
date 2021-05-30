@@ -6,3 +6,9 @@ export const createStyles = (isActive) => ({
   fontSize: '50px',
   marginInline: '5px',
 });
+
+export const numOfDots = ({ length, numOfSlides }) => {
+  const numRaw = length / numOfSlides;
+  const num = Number.isInteger(numRaw) ? numRaw : Math.floor(numRaw) + 1;
+  return num;
+};

@@ -8,5 +8,5 @@ export const Avatar = chakra(NextImage, {
 
 export const Image = chakra(NextImage, {
   shouldForwardProp: (prop) =>
-    ['width', 'height', 'src', 'alt', 'layout'].includes(prop),
+    ['width', 'height', 'src', 'alt', 'layout', 'onLoad'].includes(prop),
 });

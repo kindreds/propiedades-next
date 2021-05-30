@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactSlidy from 'react-slidy';
 import PropertyCard from '../PropertyCard';
 import { Box, Flex } from '@chakra-ui/layout';
-import { createStyles } from '../../helper/dotStyles';
 import { useBreakpointValue } from '@chakra-ui/media-query';
+import { createStyles, numOfDots } from '../../helper/dotStyles';
 
 const PropiedadesDesc = () => {
-  const numOfSlides = useBreakpointValue({
+  const [timer, setTimer] = useState(0);
+  const [actualSlide, setActualSlide] = useState(0);
+  const numOfSlidesRaw = useBreakpointValue({
     base: 1,
     ms: 1,
     sm: 2,
@@ -14,52 +16,65 @@ const PropiedadesDesc = () => {
     lg: 3,
     xl: 3,
   });
-  const [actualSlide, setActualSlide] = useState(0);
+
+  const SLIDES = Array(10).fill(null);
+  const numOfSlides = numOfSlidesRaw ?? 3;
+
+  useEffect(() => {
+    if (numOfSlidesRaw) setTimer(0);
+    return () => clearInterval(timer);
+  }, [numOfSlidesRaw]);
 
   const updateSlide = ({ currentSlide }) => {
     setActualSlide(currentSlide);
   };
 
-  const SLIDES = Array(9).fill(null);
+  const play = () => {
+    // return setInterval(() => {
+    //   setActualSlide((state) => {
+    //     if (state + 2 >= SLIDES.length) return 0;
+    //     return state + numOfSlides;
+    //   });
+    // }, 5000);
+  };
+
+  const reset = () => {
+    clearInterval(timer);
+  };
 
   return (
     <Box maxW="1200px" my={5} mx="auto">
       <ReactSlidy
-        numOfSlides={numOfSlides}
         showArrows={false}
         keyboardNavigation
         slide={actualSlide}
+        numOfSlides={numOfSlides}
         doAfterSlide={updateSlide}
       >
         {SLIDES.map((_, i) => (
-          <PropertyCard key={i} i={i + 1} />
+          <PropertyCard
+            key={i}
+            i={i + 1}
+            onMouseEnter={() => reset()}
+            onMouseLeave={() => setTimer(play())}
+          />
         ))}
       </ReactSlidy>
       <Flex flex={1} justify="center">
-        <button
-          style={createStyles(0 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 0 })}
-        >
-          &bull;
-        </button>
-        <button
-          style={createStyles(3 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 3 })}
-        >
-          &bull;
-        </button>
-        <button
-          style={createStyles(6 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 6 })}
-        >
-          &bull;
-        </button>
-        <button
-          style={createStyles(7 === actualSlide)}
-          onClick={() => updateSlide({ currentSlide: 7 })}
-        >
-          &bull;
-        </button>
+        {Array(numOfDots({ length: SLIDES.length, numOfSlides }))
+          .fill(null)
+          .map((_, i) => {
+            const pos = i === 0 ? 0 : i * numOfSlides;
+            return (
+              <button
+                key={i}
+                style={createStyles(pos === actualSlide)}
+                onClick={() => updateSlide({ currentSlide: pos })}
+              >
+                &bull;
+              </button>
+            );
+          })}
       </Flex>
     </Box>
   );

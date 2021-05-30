@@ -1,12 +1,12 @@
 import React from 'react';
 import NextLink from 'next/link';
 import PropTypes from 'prop-types';
-import { Button } from '@chakra-ui/button';
 import { Divider, Stack, Link } from '@chakra-ui/layout';
 
 const DesktopNav = ({ dark }) => {
   return (
     <Stack
+      align="center"
       spacing="40px"
       direction={'row'}
       display={{ base: 'none', xl: 'flex' }}
@@ -21,26 +21,18 @@ const DesktopNav = ({ dark }) => {
           Propiedades
         </Link>
       </NextLink>
-      <Button
-        p={1}
-        variant="link"
-        fontWeight="light"
-        _hover={{ opacity: 0.6 }}
-        color={dark ? 'gray.800' : 'white'}
-      >
-        Asesores
-      </Button>
-      <Button
-        p={1}
-        variant="link"
-        fontWeight="light"
-        _hover={{ opacity: 0.6 }}
-        color={dark ? 'gray.800' : 'white'}
-      >
-        Contactanos
-      </Button>
+      <NextLink href="/">
+        <Link color={dark ? 'gray.800' : 'white'} mr={2}>
+          Asesores
+        </Link>
+      </NextLink>
+      <NextLink href="/">
+        <Link color={dark ? 'gray.800' : 'white'} mr={2}>
+          Contactanos
+        </Link>
+      </NextLink>
 
-      <Divider orientation="vertical" h="21px" />
+      <Divider orientation="vertical" h="45px" />
     </Stack>
   );
 };

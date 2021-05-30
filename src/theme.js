@@ -15,8 +15,8 @@ const Button = {
 
 const fonts = {
   mono: `'Menlo', monospace`,
-  body: 'Montserrat',
-  heading: 'Montserrat',
+  body: 'Poppins',
+  heading: 'Poppins',
 };
 
 const breakpoints = createBreakpoints({
