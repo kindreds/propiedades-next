@@ -30,7 +30,8 @@ import {
   FormHelperText,
   AccordionPanel,
   AccordionButton,
-  Image as ImageChakra,
+  Img as ImageChakra,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { BiGitCompare, BiHeart, BiPrinter, BiShareAlt } from 'react-icons/bi';
 
@@ -38,7 +39,19 @@ import Navbar from '../../components/Navbar';
 import { Image } from '../../components/tools';
 
 const Propiedad = () => {
+  const numOfSlidesRaw = useBreakpointValue({
+    base: 1,
+    ms: 1,
+    sm: 2,
+    md: 2,
+    lg: 3,
+    xl: 3,
+  });
+
+  const numOfSlides = numOfSlidesRaw ?? 3;
+
   const imagesList = [
+    '/casa1_cp.webp',
     '/inhouse2_cp.webp',
     '/inhouse3_cp.webp',
     '/inhouse4_cp.webp',
@@ -50,17 +63,15 @@ const Propiedad = () => {
   return (
     <Box bg="gray.200" w="100%">
       <Navbar dark={true} />
-      <Box
-        pos="relative"
-        w="full"
-        pt="82px"
-        overflow="hidden"
-        minH={{ base: '300px' }}
-        maxH={{ base: '300px' }}
-      >
-        <ReactSlider showArrows infiniteLoop keyboardNavigation>
+      <Box w="full" pt="82px">
+        <ReactSlider
+          showArrows
+          infiniteLoop
+          keyboardNavigation
+          numOfSlides={numOfSlides}
+        >
           {imagesList.map((src, i) => (
-            <ImageChakra key={i} src={src} />
+            <ImageChakra key={i} src={src} objectPosition="50% 50%" />
           ))}
         </ReactSlider>
       </Box>
