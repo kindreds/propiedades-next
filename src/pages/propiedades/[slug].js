@@ -1,38 +1,74 @@
 import React from 'react';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {
   Box,
   Text,
   Badge,
   HStack,
   Heading,
-  Divider,
   Container,
+  Stack,
+  Flex,
+  Center,
 } from '@chakra-ui/layout';
-import { Tr, Th, Td, Table, Thead, Tbody } from '@chakra-ui/react';
-import Navbar from '../../components/Navbar';
-import { IconButton } from '@chakra-ui/button';
+import ReactSlider from 'react-slidy';
+import { StarIcon } from '@chakra-ui/icons';
+import { Button, IconButton } from '@chakra-ui/button';
+import {
+  Tr,
+  Td,
+  Table,
+  Tbody,
+  Input,
+  Avatar,
+  Textarea,
+  FormLabel,
+  Accordion,
+  FormControl,
+  AccordionItem,
+  AccordionIcon,
+  FormHelperText,
+  AccordionPanel,
+  AccordionButton,
+  Image as ImageChakra,
+} from '@chakra-ui/react';
 import { BiGitCompare, BiHeart, BiPrinter, BiShareAlt } from 'react-icons/bi';
-import { Tag } from '@chakra-ui/tag';
+
+import Navbar from '../../components/Navbar';
+import { Image } from '../../components/tools';
 
 const Propiedad = () => {
+  const imagesList = [
+    '/inhouse2_cp.webp',
+    '/inhouse3_cp.webp',
+    '/inhouse4_cp.webp',
+  ];
+  const MapWithNoSSR = dynamic(() => import('../../components/Map'), {
+    ssr: false,
+  });
+
   return (
     <Box bg="gray.200" w="100%">
       <Navbar dark={true} />
-      <Box pt="80px" w="100%" display="flex" justifyContent="center">
-        <Image
-          width={1200}
-          height={600}
-          objectFit="cover"
-          layout="intrinsic"
-          src="/casa1_cp.webp"
-        />
+      <Box
+        pos="relative"
+        w="full"
+        pt="82px"
+        overflow="hidden"
+        minH={{ base: '300px' }}
+        maxH={{ base: '300px' }}
+      >
+        <ReactSlider showArrows infiniteLoop keyboardNavigation>
+          {imagesList.map((src, i) => (
+            <ImageChakra key={i} src={src} />
+          ))}
+        </ReactSlider>
       </Box>
 
       <Container
         py={5}
         maxW={{
-          base: '95%',
+          base: '99%',
           sm: 'container.sm',
           md: 'container.md',
           lg: 'container.lg',
@@ -46,10 +82,24 @@ const Propiedad = () => {
         <Heading fontSize="xl" mb={1}>
           Departamento Diamante
         </Heading>
-        <Heading fontSize="lg">S/ 200.000,00</Heading>
-        <Text fontWeight="100" fontSize="sm">
+        <Text fontSize="lg">S/ 200.000,00</Text>
+        <Text fontSize="sm" color="gray.600">
           Av. Coronel Portillo #1088.
         </Text>
+        <Box d="flex" alignItems="center" mb={2}>
+          {Array(5)
+            .fill('')
+            .map((_, i) => (
+              <StarIcon
+                fontSize="sm"
+                key={i}
+                color={i < 4 ? 'teal.500' : 'gray.300'}
+              />
+            ))}
+          <Box as="span" ml="2" color="gray.600" fontSize="sm">
+            {33} Opiniones
+          </Box>
+        </Box>
 
         <HStack py={2}>
           <IconButton
@@ -65,19 +115,17 @@ const Propiedad = () => {
         </HStack>
 
         <Box mt={4} p={4} bg="white" rounded="lg" shadow="lg">
-          <HStack justify="center">
-            <Tag size="md" variant="solid" colorScheme="gray">
-              Cuartos: 4
-            </Tag>
-            <Tag size="md" variant="solid" colorScheme="gray">
-              Baños: 4
-            </Tag>
-            <Tag size="md" variant="solid" colorScheme="gray">
-              M&sup2;: 72
-            </Tag>
-          </HStack>
+          <Box
+            fontSize="sm"
+            color="gray.500"
+            letterSpacing="wide"
+            fontWeight="semibold"
+            textTransform="uppercase"
+          >
+            {4} Cuartos &bull; {4} Baños &bull; {72} M&sup2;
+          </Box>
 
-          <Heading letterSpacing={1} fontSize="xl" my={6}>
+          <Heading letterSpacing={1} fontSize="xl" my={4}>
             Reseña
           </Heading>
 
@@ -101,8 +149,6 @@ const Propiedad = () => {
             Park, the reservoir and The Metropolitan Museum. Elegant lobby and
             24 hours doorman. This is a pet-friendly building.
           </Text>
-
-          <Divider borderColor="gray.300" mt={6} />
 
           <Heading letterSpacing={1} fontSize="xl" mt={6} mb={4}>
             Detalles
@@ -140,6 +186,233 @@ const Propiedad = () => {
               </Tr>
             </Tbody>
           </Table>
+        </Box>
+
+        <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
+          <Heading letterSpacing={1} fontSize="lg" mb={2}>
+            Ubicación
+          </Heading>
+
+          <Text mb={2} fontSize="sm" color="gray.600">
+            Av. Coronel Portillo #1088.
+          </Text>
+
+          <Box h="250px" id="mapid">
+            <MapWithNoSSR />
+          </Box>
+        </Box>
+
+        <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
+          <Heading letterSpacing={1} fontSize="lg" mb={4}>
+            Mapa de los pisos
+          </Heading>
+
+          <Accordion allowToggle>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    <Text>Primer Piso</Text>
+                    <Box
+                      fontSize="sm"
+                      color="gray.500"
+                      letterSpacing="wide"
+                      fontWeight="semibold"
+                      textTransform="uppercase"
+                    >
+                      {1} Cuartos &bull; {1} Baños &bull; {72} M&sup2;
+                    </Box>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Box w="full">
+                  <Image src="/floor1.jpg" width="250px" height="250px" />
+                </Box>
+                <Text fontSize="sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </Text>
+              </AccordionPanel>
+            </AccordionItem>
+
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    <Text>Segundo Piso</Text>
+                    <Box
+                      fontSize="sm"
+                      color="gray.500"
+                      letterSpacing="wide"
+                      fontWeight="semibold"
+                      textTransform="uppercase"
+                    >
+                      {3} Cuartos &bull; {3} Baños &bull; {72} M&sup2;
+                    </Box>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Box w="full">
+                  <Image src="/floor2.jpg" width="250px" height="250px" />
+                </Box>
+                <Text fontSize="sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </Text>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </Box>
+
+        <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
+          <Heading letterSpacing={1} fontSize="lg" mb={4}>
+            Video de la propiedad
+          </Heading>
+
+          <iframe
+            src="https://www.youtube.com/embed/d67NNpbhMuk?autoplay=0&mute=0"
+            width="100%"
+            height="300"
+          />
+        </Box>
+
+        <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
+          <Heading letterSpacing={1} fontSize="lg" mb={1}>
+            12 Comentarios
+          </Heading>
+          <Box d="flex" alignItems="center" mb={5}>
+            {Array(5)
+              .fill('')
+              .map((_, i) => (
+                <StarIcon
+                  key={i}
+                  ml={1}
+                  fontSize="sm"
+                  color={i < 4 ? 'teal.500' : 'gray.300'}
+                />
+              ))}
+            <Box as="span" ml="2" color="gray.600" fontSize="sm">
+              {33} Opiniones
+            </Box>
+          </Box>
+
+          <Stack spacing={4}>
+            <Box>
+              <Flex align="center" mb={2}>
+                <Avatar size="lg" mr={5} />
+                <Box mb={2}>
+                  <Text fontWeight="semibold">Diana Cooper</Text>
+                  <Text fontSize="sm" color="gray.500">
+                    Marzo 12, 2021
+                  </Text>
+                  {Array(5)
+                    .fill('')
+                    .map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        fontSize="sm"
+                        color={i < 4 ? 'teal.500' : 'gray.300'}
+                      />
+                    ))}
+                </Box>
+              </Flex>
+              <Text fontSize="sm">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </Text>
+            </Box>
+            <Box>
+              <Flex align="center" mb={2}>
+                <Avatar size="lg" mr={5} />
+                <Box mb={2}>
+                  <Text fontWeight="semibold">Jonh Cooper</Text>
+                  <Text fontSize="sm" color="gray.500">
+                    Marzo 12, 2021
+                  </Text>
+                  {Array(3)
+                    .fill('')
+                    .map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        fontSize="sm"
+                        color={i < 4 ? 'teal.500' : 'gray.300'}
+                      />
+                    ))}
+                </Box>
+              </Flex>
+              <Text fontSize="sm">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </Text>
+            </Box>
+            <Box>
+              <Flex align="center" mb={2}>
+                <Avatar size="lg" mr={5} />
+                <Box mb={2}>
+                  <Text fontWeight="semibold">Daniel Cooper</Text>
+                  <Text fontSize="sm" color="gray.500">
+                    Marzo 12, 2021
+                  </Text>
+                  {Array(2)
+                    .fill('')
+                    .map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        fontSize="sm"
+                        color={i < 4 ? 'teal.500' : 'gray.300'}
+                      />
+                    ))}
+                </Box>
+              </Flex>
+              <Text fontSize="sm">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </Text>
+            </Box>
+          </Stack>
+        </Box>
+
+        <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
+          <Heading letterSpacing={1} fontSize="lg" mb={4}>
+            Compartenos tu comentario
+          </Heading>
+
+          <Stack spacing={4}>
+            <FormControl id="first-name" isRequired>
+              <FormLabel>Nombre</FormLabel>
+              <Input type="text" />
+            </FormControl>
+
+            <FormControl id="email" isRequired>
+              <FormLabel>Correo</FormLabel>
+              <Input type="email" />
+              <FormHelperText>
+                Nosotros nunca compartiremos tu correo.
+              </FormHelperText>
+            </FormControl>
+
+            <Textarea
+              size="sm"
+              resize="none"
+              placeholder="Escribe tu comentario"
+            />
+
+            <Button>Enviar</Button>
+          </Stack>
         </Box>
       </Container>
     </Box>

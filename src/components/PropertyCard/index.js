@@ -14,7 +14,7 @@ import { Link } from '@chakra-ui/layout';
 
 const PropertyCard = ({ i, fullW, ...props }) => {
   const [isLike, setIsLike] = useState(false);
-  const w = { base: '290px', ms: '300px', xl: '370px' };
+  const w = { base: '95%', xl: '370px' };
   const imagesList = ['/casa1_cp.webp', '/casa2_cp.webp', '/casa3_cp.webp'];
 
   return (
