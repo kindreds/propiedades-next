@@ -1,41 +1,42 @@
 import React from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
+import dynamic from 'next/dynamic';
 import { FaList } from 'react-icons/fa';
 import { GoSettings } from 'react-icons/go';
 import { BsGridFill } from 'react-icons/bs';
-import { Button, IconButton } from '@chakra-ui/button';
-import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { Tooltip } from '@chakra-ui/tooltip';
+import { IconButton } from '@chakra-ui/button';
+import { useDisclosure } from '@chakra-ui/hooks';
+import { ChevronRightIcon } from '@chakra-ui/icons';
+import { Box, Flex, Heading, Container } from '@chakra-ui/layout';
 import {
-  Box,
-  Flex,
-  Text,
-  Stack,
-  Badge,
-  HStack,
-  Heading,
-  Divider,
-  Container,
-  SimpleGrid,
-} from '@chakra-ui/layout';
-import {
-  Menu,
-  Image,
-  Tooltip,
-  MenuItem,
-  MenuList,
   Breadcrumb,
-  MenuButton,
-  useDisclosure,
   BreadcrumbItem,
   BreadcrumbLink,
-} from '@chakra-ui/react';
+} from '@chakra-ui/breadcrumb';
 
 import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import AdvanceSearch from '../../components/AdvanceSearch';
-import PropertyCard from '../../components/PropertyCard';
-import AdvanceSearchDrawer from '../../components/AdvanceSearch/AdvanceSearchDrawer';
+
+const o = { ssr: false };
+
+/* COMPONENTES */
+
+const Footer = dynamic(() => {
+  return import('../../components/Footer');
+}, o);
+const AdvanceSearch = dynamic(() => {
+  return import('../../components/AdvanceSearch');
+}, o);
+const LastProperties = dynamic(() => {
+  return import('../../components/LastProperties');
+}, o);
+const PropertiesResult = dynamic(() => {
+  return import('../../components/PropertiesResult');
+}, o);
+const AdvanceSearchDrawer = dynamic(() => {
+  return import('../../components/AdvanceSearch/AdvanceSearchDrawer');
+}, o);
 
 const Propiedades = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -96,152 +97,11 @@ const Propiedades = () => {
           </Tooltip>
         </Flex>
         <Flex>
-          <Box>
+          <div>
             <AdvanceSearch />
-            <Box
-              mt={8}
-              mr={4}
-              py={4}
-              px={6}
-              bg="white"
-              shadow={'lg'}
-              rounded={'lg'}
-              display={{ base: 'none', lg: 'block' }}
-            >
-              <Text mb={4} fontWeight="bold">
-                Últimas propiedades
-              </Text>
-              <Stack spacing={4} divider={<Divider />}>
-                <Flex pos="relative">
-                  <Image rounded="lg" w="80px" src="./casa1.jpg" alt="casa" />
-                  <Box ml={2}>
-                    <Text fontSize="sm">Casa 1</Text>
-                    <Text fontSize="sm" color="red.400">
-                      S/ 200,000.00
-                    </Text>
-                    <HStack>
-                      <Text fontSize="sm">Cuartos: 4</Text>
-                      <Text fontSize="sm">Baños: 4</Text>
-                      <Text fontSize="sm">M&sup2;: 72</Text>
-                    </HStack>
-                  </Box>
-                  <Badge pos="absolute" top={0} right={0} colorScheme="green">
-                    Nueva
-                  </Badge>
-                </Flex>
-                <Flex pos="relative">
-                  <Image rounded="lg" w="80px" src="./casa1.jpg" alt="casa" />
-                  <Box ml={2}>
-                    <Text fontSize="sm">Casa 1</Text>
-                    <Text fontSize="sm" color="red.400">
-                      S/ 200,000.00
-                    </Text>
-                    <HStack>
-                      <Text fontSize="sm">Cuartos: 4</Text>
-                      <Text fontSize="sm">Baños: 4</Text>
-                      <Text fontSize="sm">M&sup2;: 72</Text>
-                    </HStack>
-                  </Box>
-                  <Badge pos="absolute" top={0} right={0} colorScheme="green">
-                    Nueva
-                  </Badge>
-                </Flex>
-                <Flex>
-                  <Image rounded="lg" w="80px" src="./casa1.jpg" alt="casa" />
-                  <Box ml={2}>
-                    <Text fontSize="sm">Casa 1</Text>
-                    <Text fontSize="sm" color="red.400">
-                      S/ 200,000.00
-                    </Text>
-                    <HStack>
-                      <Text fontSize="sm">Cuartos: 4</Text>
-                      <Text fontSize="sm">Baños: 4</Text>
-                      <Text fontSize="sm">M&sup2;: 72</Text>
-                    </HStack>
-                  </Box>
-                </Flex>
-                <Flex>
-                  <Image rounded="lg" w="80px" src="./casa1.jpg" alt="casa" />
-                  <Box ml={2}>
-                    <Text fontSize="sm">Casa 1</Text>
-                    <Text fontSize="sm" color="red.400">
-                      S/ 200,000.00
-                    </Text>
-                    <HStack>
-                      <Text fontSize="sm">Cuartos: 4</Text>
-                      <Text fontSize="sm">Baños: 4</Text>
-                      <Text fontSize="sm">M&sup2;: 72</Text>
-                    </HStack>
-                  </Box>
-                </Flex>
-                <Flex>
-                  <Image rounded="lg" w="80px" src="./casa1.jpg" alt="casa" />
-                  <Box ml={2}>
-                    <Text fontSize="sm">Casa 1</Text>
-                    <Text fontSize="sm" color="red.400">
-                      S/ 200,000.00
-                    </Text>
-                    <HStack>
-                      <Text fontSize="sm">Cuartos: 4</Text>
-                      <Text fontSize="sm">Baños: 4</Text>
-                      <Text fontSize="sm">M&sup2;: 72</Text>
-                    </HStack>
-                  </Box>
-                </Flex>
-              </Stack>
-            </Box>
-          </Box>
-          <Box flex={1}>
-            <Flex
-              p={{ base: 2, xl: 4 }}
-              mb={6}
-              bg="white"
-              shadow="lg"
-              maxH="70px"
-              rounded="lg"
-              align="center"
-              justify="space-between"
-            >
-              <Text
-                fontWeight="bold"
-                letterSpacing="wide"
-                ml={{ base: 2, xl: 6 }}
-                fontSize={{ base: 'small' }}
-                textAlign={{ base: 'center' }}
-              >
-                10 RESULTADOS
-              </Text>
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  fontSize={{ base: 'sm' }}
-                  rightIcon={<ChevronDownIcon />}
-                >
-                  Ordenar
-                </MenuButton>
-                <MenuList>
-                  <MenuItem fontSize={{ base: 'sm' }}>Nuevos</MenuItem>
-                  <MenuItem fontSize={{ base: 'sm' }}>Antiguos</MenuItem>
-                  <MenuItem fontSize={{ base: 'sm' }}>Menor precio</MenuItem>
-                  <MenuItem fontSize={{ base: 'sm' }}>Mayor precio</MenuItem>
-                </MenuList>
-              </Menu>
-            </Flex>
-
-            <SimpleGrid
-              gap={4}
-              templateColumns={{
-                base: '1fr',
-                sm: 'repeat(2, 1fr)',
-              }}
-            >
-              {Array(10)
-                .fill(null)
-                .map((_, i) => (
-                  <PropertyCard fullW key={i} i={i} />
-                ))}
-            </SimpleGrid>
-          </Box>
+            <LastProperties />
+          </div>
+          <PropertiesResult />
         </Flex>
       </Container>
       <Footer />
