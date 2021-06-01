@@ -9,10 +9,10 @@ import {
   Container,
   Stack,
   Flex,
-  Center,
 } from '@chakra-ui/layout';
 import ReactSlider from 'react-slidy';
 import { StarIcon } from '@chakra-ui/icons';
+import { GoSettings } from 'react-icons/go';
 import { Button, IconButton } from '@chakra-ui/button';
 import {
   Tr,
@@ -32,13 +32,20 @@ import {
   AccordionButton,
   Img as ImageChakra,
   useBreakpointValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { BiGitCompare, BiHeart, BiPrinter, BiShareAlt } from 'react-icons/bi';
 
 import Navbar from '../../components/Navbar';
 import { Image } from '../../components/tools';
+import Contact from '../../components/Contact';
+
+const MapWithNoSSR = dynamic(() => import('../../components/Map'), {
+  ssr: false,
+});
 
 const Propiedad = () => {
+  const { isOpen, onClose, onOpen } = useDisclosure();
   const numOfSlidesRaw = useBreakpointValue({
     base: 1,
     ms: 1,
@@ -56,9 +63,6 @@ const Propiedad = () => {
     '/inhouse3_cp.webp',
     '/inhouse4_cp.webp',
   ];
-  const MapWithNoSSR = dynamic(() => import('../../components/Map'), {
-    ssr: false,
-  });
 
   return (
     <Box bg="gray.200" w="100%">
@@ -136,7 +140,7 @@ const Propiedad = () => {
             {4} Cuartos &bull; {4} Baños &bull; {72} M&sup2;
           </Box>
 
-          <Heading letterSpacing={1} fontSize="xl" my={4}>
+          <Heading letterSpacing={1} fontSize="xl" my={4} fontWeight="semibold">
             Reseña
           </Heading>
 
@@ -161,7 +165,13 @@ const Propiedad = () => {
             24 hours doorman. This is a pet-friendly building.
           </Text>
 
-          <Heading letterSpacing={1} fontSize="xl" mt={6} mb={4}>
+          <Heading
+            letterSpacing={1}
+            fontSize="xl"
+            mt={6}
+            mb={4}
+            fontWeight="semibold"
+          >
             Detalles
           </Heading>
 
@@ -200,7 +210,7 @@ const Propiedad = () => {
         </Box>
 
         <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
-          <Heading letterSpacing={1} fontSize="lg" mb={2}>
+          <Heading letterSpacing={1} fontSize="lg" mb={2} fontWeight="semibold">
             Ubicación
           </Heading>
 
@@ -214,7 +224,7 @@ const Propiedad = () => {
         </Box>
 
         <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
-          <Heading letterSpacing={1} fontSize="lg" mb={4}>
+          <Heading letterSpacing={1} fontSize="lg" mb={4} fontWeight="semibold">
             Mapa de los pisos
           </Heading>
 
@@ -296,7 +306,7 @@ const Propiedad = () => {
         </Box>
 
         <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
-          <Heading letterSpacing={1} fontSize="lg" mb={1}>
+          <Heading letterSpacing={1} fontSize="lg" mb={1} fontWeight="semibold">
             12 Comentarios
           </Heading>
           <Box d="flex" alignItems="center" mb={5}>
@@ -398,7 +408,7 @@ const Propiedad = () => {
         </Box>
 
         <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
-          <Heading letterSpacing={1} fontSize="lg" mb={4}>
+          <Heading letterSpacing={1} fontSize="lg" mb={4} fontWeight="semibold">
             Compartenos tu comentario
           </Heading>
 
@@ -426,6 +436,18 @@ const Propiedad = () => {
           </Stack>
         </Box>
       </Container>
+      <Contact isOpen={isOpen} onClose={onClose} />
+      <IconButton
+        size="lg"
+        right={4}
+        bottom={4}
+        pos="fixed"
+        rounded="full"
+        colorScheme="red"
+        onClick={() => onOpen()}
+        icon={<GoSettings fontSize="30px" />}
+        display={{ base: 'flex', lg: 'none' }}
+      />
     </Box>
   );
 };
