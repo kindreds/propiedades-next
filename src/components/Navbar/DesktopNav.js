@@ -21,12 +21,12 @@ const DesktopNav = ({ dark }) => {
           Propiedades
         </Link>
       </NextLink>
-      <NextLink href="/">
+      <NextLink href="/asesores">
         <Link color={dark ? 'gray.800' : 'white'} mr={2}>
           Asesores
         </Link>
       </NextLink>
-      <NextLink href="/">
+      <NextLink href="/contacto">
         <Link color={dark ? 'gray.800' : 'white'} mr={2}>
           Contactanos
         </Link>

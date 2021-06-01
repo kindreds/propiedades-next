@@ -78,16 +78,20 @@ const PropertyCard = ({ i, fullW, ...props }) => {
       </Box>
       <Box p={3}>
         <Box mb={4}>
-          <Text
-            as="h4"
-            isTruncated
-            maxW="400px"
-            fontSize="md"
-            lineHeight="tight"
-            fontWeight="semibold"
-          >
-            Casa moderna en el centro de la ciudad, con vista al mar y ....
-          </Text>
+          <NextLink href={`/propiedades/${i}`}>
+            <Link>
+              <Text
+                as="h4"
+                isTruncated
+                maxW="400px"
+                fontSize="md"
+                lineHeight="tight"
+                fontWeight="semibold"
+              >
+                Casa moderna en el centro de la ciudad, con vista al mar y ....
+              </Text>
+            </Link>
+          </NextLink>
           <Text fontSize="sm" color="gray.600">
             Breña: {i}
           </Text>
@@ -124,7 +128,7 @@ const PropertyCard = ({ i, fullW, ...props }) => {
           </Box>
         </Box>
         <NextLink href={`/propiedades/${i}`}>
-          <Link fontSize="sm" colorScheme="teal">
+          <Link fontSize="sm" color="blue.500" textDecorationLine="underline">
             Ver mas
           </Link>
         </NextLink>

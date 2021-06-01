@@ -14,12 +14,11 @@ import {
 } from '@chakra-ui/layout';
 import ReactSlider from 'react-slidy';
 import { Input } from '@chakra-ui/input';
-import { GoSettings } from 'react-icons/go';
 import { Textarea } from '@chakra-ui/textarea';
 import { useDisclosure } from '@chakra-ui/hooks';
-import { Image, Img as ImageChakra } from '@chakra-ui/image';
 import { Button, IconButton } from '@chakra-ui/button';
 import { useBreakpointValue } from '@chakra-ui/media-query';
+import { Image, Img as ImageChakra } from '@chakra-ui/image';
 import { Icon, StarIcon, PhoneIcon, AtSignIcon } from '@chakra-ui/icons';
 import { BiGitCompare, BiHeart, BiPrinter, BiShareAlt } from 'react-icons/bi';
 import {
@@ -29,8 +28,9 @@ import {
 } from '@chakra-ui/form-control';
 
 import Navbar from '../../components/Navbar';
-import { useInView } from 'react-intersection-observer';
 import { RiWhatsappFill } from 'react-icons/ri';
+import { useInView } from 'react-intersection-observer';
+import { nativeShare } from '../../helper/nativeShare';
 
 /* Componentes */
 
@@ -69,22 +69,6 @@ const Propiedad = () => {
     lg: 3,
     xl: 3,
   });
-
-  const nativeShare = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: 'WebShare API Demo',
-          url: 'http://localhost:1234/propiedades/1',
-        })
-        .then(() => {
-          console.log('Thanks for sharing!');
-        })
-        .catch(console.error);
-    } else {
-      console.log('error');
-    }
-  };
 
   const numOfSlides = numOfSlidesRaw ?? 3;
 
@@ -250,7 +234,7 @@ const Propiedad = () => {
             display={{ base: 'none', lg: 'block' }}
             top={{ base: '108px', xl: 5 }}
           >
-            <Box mb={4} pos="relative">
+            <Box mb={4}>
               <Image
                 h={64}
                 w="full"
@@ -317,28 +301,6 @@ const Propiedad = () => {
                 Enviar mensaje privado
               </Button>
             </Box>
-
-            {/* <Stack spacing={4} pb={4} px={4}>
-              <Heading as="h2" fontSize="md" fontWeight="medium">
-                Enviar mensaje a Victoria
-              </Heading>
-
-              <Input fontSize="sm" placeholder="Ingresa tu nombre" />
-              <Input fontSize="sm" placeholder="Ingresa tu correo" />
-              <Input fontSize="sm" placeholder="Ingresa tu telefono" />
-
-              <Textarea
-                resize="none"
-                fontSize="sm"
-                placeholder="Ingresa tu mensaje a Victoria"
-              />
-
-              <Flex borderTopWidth="1px" pt={2.5} justifyContent="space-around">
-                <Button w="full" colorScheme="blue">
-                  Enviar
-                </Button>
-              </Flex>
-            </Stack> */}
           </Box>
         </SimpleGrid>
       </Container>
@@ -349,10 +311,10 @@ const Propiedad = () => {
         bottom={4}
         pos="fixed"
         rounded="full"
-        colorScheme="red"
+        colorScheme="whatsapp"
         onClick={() => onOpen()}
-        icon={<GoSettings fontSize="30px" />}
-        display={{ base: 'flex', lg: 'none' }}
+        icon={<RiWhatsappFill fontSize="30px" />}
+        display={{ base: 'flex', xl: 'none' }}
       />
     </Box>
   );

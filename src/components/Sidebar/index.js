@@ -14,6 +14,9 @@ import { NAV_ITEMS } from './items';
 import SidebarItem from './SidebarItem';
 import { Heading } from '@chakra-ui/layout';
 import { Accordion } from '@chakra-ui/accordion';
+import { Logo } from '../SVGS';
+import NextLink from 'next/link';
+import { Link } from '@chakra-ui/layout';
 
 const Sidebar = ({ isOpen, onToggle }) => {
   return (
@@ -26,14 +29,18 @@ const Sidebar = ({ isOpen, onToggle }) => {
         </DrawerHeader>
 
         <DrawerBody>
-          <Accordion allowToggle>
-            {NAV_ITEMS.map((item, i) => (
-              <SidebarItem key={i} {...item} />
-            ))}
-          </Accordion>
+          {NAV_ITEMS.map((item, i) => (
+            <SidebarItem key={i} {...item} />
+          ))}
         </DrawerBody>
 
-        <DrawerFooter>LOGO</DrawerFooter>
+        <DrawerFooter mb={6}>
+          <NextLink href="/">
+            <Link>
+              <Logo isDark />
+            </Link>
+          </NextLink>
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

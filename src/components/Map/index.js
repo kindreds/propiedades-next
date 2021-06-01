@@ -9,7 +9,7 @@ const Map = () => {
   return (
     <MapContainer
       center={[-12.115194, -77.013199]}
-      zoom={14}
+      zoom={5}
       scrollWheelZoom={false}
       style={{ height: '100%', width: '100%' }}
     >
