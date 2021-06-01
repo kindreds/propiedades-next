@@ -48,6 +48,7 @@ const Propiedades = () => {
       </Head>
 
       <Navbar dark={true} />
+
       <Container
         pb={10}
         maxW={{
@@ -115,7 +116,7 @@ const Propiedades = () => {
         colorScheme="red"
         onClick={() => onOpen()}
         icon={<GoSettings fontSize="30px" />}
-        display={{ base: 'flex', lg: 'none' }}
+        display={{ base: 'flex', xl: 'none' }}
       />
     </Box>
   );

@@ -42,7 +42,7 @@ const AdvanceSearch = ({ isDrawer }) => {
       maxH={isDrawer ? null : '760px'}
       shadow={isDrawer ? 'none' : 'lg'}
       rounded={isDrawer ? 'none' : 'lg'}
-      display={isDrawer ? 'flex' : { base: 'none', lg: 'flex' }}
+      display={isDrawer ? 'flex' : { base: 'none', xl: 'flex' }}
     >
       <Text
         fontWeight="bold"

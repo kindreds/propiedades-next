@@ -20,7 +20,7 @@ const LastProperties = () => {
       bg="white"
       shadow={'lg'}
       rounded={'lg'}
-      display={{ base: 'none', lg: 'block' }}
+      display={{ base: 'none', xl: 'block' }}
     >
       <Text mb={4} fontWeight="bold">
         Últimas propiedades

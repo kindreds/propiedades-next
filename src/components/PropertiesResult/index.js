@@ -9,7 +9,7 @@ const PropertyCard = dynamic(() => import('../PropertyCard'));
 
 const PropertiesResult = () => {
   return (
-    <Box flex={1}>
+    <Box flex={1} d="flex" flexDir="column" justifyContent="center">
       <Flex
         p={{ base: 2, xl: 4 }}
         mb={6}
@@ -48,9 +48,11 @@ const PropertiesResult = () => {
 
       <SimpleGrid
         gap={4}
+        mx="auto"
+        boxSizing="border-box"
         templateColumns={{
-          base: '1fr',
-          sm: 'repeat(2, 1fr)',
+          base: 'minmax(0, 1fr)',
+          sm: 'repeat(2, minmax(0, 1fr))',
         }}
       >
         {Array(10)

@@ -8,16 +8,19 @@ import {
   HStack,
   Heading,
   Container,
+  Flex,
+  SimpleGrid,
+  Link,
 } from '@chakra-ui/layout';
 import ReactSlider from 'react-slidy';
 import { Input } from '@chakra-ui/input';
 import { GoSettings } from 'react-icons/go';
-import { StarIcon } from '@chakra-ui/icons';
 import { Textarea } from '@chakra-ui/textarea';
 import { useDisclosure } from '@chakra-ui/hooks';
-import { Img as ImageChakra } from '@chakra-ui/image';
+import { Image, Img as ImageChakra } from '@chakra-ui/image';
 import { Button, IconButton } from '@chakra-ui/button';
 import { useBreakpointValue } from '@chakra-ui/media-query';
+import { Icon, StarIcon, PhoneIcon, AtSignIcon } from '@chakra-ui/icons';
 import { BiGitCompare, BiHeart, BiPrinter, BiShareAlt } from 'react-icons/bi';
 import {
   FormLabel,
@@ -27,6 +30,7 @@ import {
 
 import Navbar from '../../components/Navbar';
 import { useInView } from 'react-intersection-observer';
+import { RiWhatsappFill } from 'react-icons/ri';
 
 /* Componentes */
 
@@ -36,7 +40,7 @@ const ProDetails = dynamic(() => import('../../components/ProDetails'), {
 const FloorMap = dynamic(() => import('../../components/FloorMap'), {
   ssr: false,
 });
-const VideoProperti = dynamic(() => import('../../components/FloorMap'), {
+const VideoProperti = dynamic(() => import('../../components/VideoProperti'), {
   ssr: false,
 });
 const CommentArea = dynamic(() => import('../../components/CommentArea'), {
@@ -66,13 +70,31 @@ const Propiedad = () => {
     xl: 3,
   });
 
+  const nativeShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: 'WebShare API Demo',
+          url: 'http://localhost:1234/propiedades/1',
+        })
+        .then(() => {
+          console.log('Thanks for sharing!');
+        })
+        .catch(console.error);
+    } else {
+      console.log('error');
+    }
+  };
+
   const numOfSlides = numOfSlidesRaw ?? 3;
 
   const imagesList = [
-    '/casa1_cp.webp',
-    '/inhouse2_cp.webp',
-    '/inhouse3_cp.webp',
-    '/inhouse4_cp.webp',
+    '/inhouse_1_cp.webp',
+    '/inhouse_2_cp.webp',
+    '/inhouse_3_cp.webp',
+    '/inhouse_4_cp.webp',
+    '/inhouse_5_cp.webp',
+    '/inhouse_6_cp.webp',
   ];
 
   return (
@@ -134,70 +156,191 @@ const Propiedad = () => {
           />
           <IconButton colorScheme="teal" icon={<BiHeart fontSize="20px" />} />
           <IconButton
+            onClick={nativeShare}
             colorScheme="teal"
             icon={<BiShareAlt fontSize="20px" />}
           />
           <IconButton colorScheme="teal" icon={<BiPrinter fontSize="20px" />} />
         </HStack>
 
-        <ProDetails />
-
-        <Box
-          ref={mapNode}
-          mt={4}
-          px={4}
-          py={6}
-          bg="white"
-          rounded="lg"
-          shadow="lg"
+        <SimpleGrid
+          gap={6}
+          templateColumns={{ base: 'minmax(0, 1fr)', lg: '2fr 1fr' }}
         >
-          <Heading letterSpacing={1} fontSize="lg" mb={2} fontWeight="semibold">
-            Ubicación
-          </Heading>
+          <Box>
+            <ProDetails />
 
-          <Text mb={2} fontSize="sm" color="gray.600">
-            Av. Coronel Portillo #1088.
-          </Text>
+            <Box
+              mt={4}
+              px={4}
+              py={6}
+              bg="white"
+              shadow="lg"
+              rounded="lg"
+              ref={mapNode}
+            >
+              <Heading
+                mb={2}
+                fontSize="lg"
+                letterSpacing={1}
+                fontWeight="semibold"
+              >
+                Ubicación
+              </Heading>
 
-          {mapInView && (
-            <Box h="250px" id="mapid">
-              <MapWithNoSSR />
+              <Text mb={2} fontSize="sm" color="gray.600">
+                Av. Coronel Portillo #1088.
+              </Text>
+
+              {mapInView && (
+                <Box h="250px" id="mapid">
+                  <MapWithNoSSR />
+                </Box>
+              )}
             </Box>
-          )}
-        </Box>
-        <FloorMap />
-        <div ref={videoNode}>{videoInView && <VideoProperti />}</div>
+            <FloorMap />
+            <div ref={videoNode}>{videoInView && <VideoProperti />}</div>
 
-        <CommentArea />
+            <CommentArea />
 
-        <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
-          <Heading letterSpacing={1} fontSize="lg" mb={4} fontWeight="semibold">
-            Compartenos tu comentario
-          </Heading>
+            <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
+              <Heading
+                letterSpacing={1}
+                fontSize="lg"
+                mb={4}
+                fontWeight="semibold"
+              >
+                Compartenos tu comentario
+              </Heading>
 
-          <Stack spacing={4}>
-            <FormControl id="first-name" isRequired>
-              <FormLabel>Nombre</FormLabel>
-              <Input type="text" />
-            </FormControl>
+              <Stack spacing={4}>
+                <FormControl id="first-name" isRequired>
+                  <FormLabel>Nombre</FormLabel>
+                  <Input type="text" />
+                </FormControl>
 
-            <FormControl id="email" isRequired>
-              <FormLabel>Correo</FormLabel>
-              <Input type="email" />
-              <FormHelperText>
-                Nosotros nunca compartiremos tu correo.
-              </FormHelperText>
-            </FormControl>
+                <FormControl id="email" isRequired>
+                  <FormLabel>Correo</FormLabel>
+                  <Input type="email" />
+                  <FormHelperText>
+                    Nosotros nunca compartiremos tu correo.
+                  </FormHelperText>
+                </FormControl>
 
-            <Textarea
-              size="sm"
-              resize="none"
-              placeholder="Escribe tu comentario"
-            />
+                <Textarea
+                  size="sm"
+                  resize="none"
+                  placeholder="Escribe tu comentario"
+                />
 
-            <Button>Enviar</Button>
-          </Stack>
-        </Box>
+                <Button>Enviar</Button>
+              </Stack>
+            </Box>
+          </Box>
+
+          <Box
+            mt={4}
+            bg="white"
+            shadow="lg"
+            maxH="485px"
+            rounded="lg"
+            pos="sticky"
+            overflowY="auto"
+            overflow="hidden"
+            display={{ base: 'none', lg: 'block' }}
+            top={{ base: '108px', xl: 5 }}
+          >
+            <Box mb={4} pos="relative">
+              <Image
+                h={64}
+                w="full"
+                fit="cover"
+                alt="avatar"
+                objectPosition="center"
+                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+              />
+
+              <Flex alignItems="center" p={4} mb={4} bg="gray.800">
+                <Heading
+                  as="h1"
+                  fontSize="lg"
+                  color="white"
+                  fontWeight="semibold"
+                >
+                  Victoria Diaz (Asesor)
+                </Heading>
+              </Flex>
+
+              <Flex px={4} alignItems="center" mb={2} color="gray.900">
+                <Icon
+                  h={6}
+                  w={6}
+                  mr={1}
+                  as={RiWhatsappFill}
+                  fill="whatsapp.500"
+                />
+                <Link
+                  px={2}
+                  color="blue.600"
+                  fontWeight="light"
+                  href="https://wa.me/+51999999999"
+                >
+                  999 999 999
+                </Link>
+              </Flex>
+              <Flex px={4} alignItems="center" mb={2} color="gray.900">
+                <Icon as={PhoneIcon} h={5} w={5} mr={2} />
+                <Link
+                  px={2}
+                  color="blue.600"
+                  fontWeight="light"
+                  href="tel:+51999999999"
+                >
+                  999 999 999
+                </Link>
+              </Flex>
+              <Flex px={4} alignItems="center" mb={2} color="gray.900">
+                <Icon as={AtSignIcon} h={5} w={5} mr={2} />
+
+                <Link
+                  href="mailto:vdiaz@example.com"
+                  px={2}
+                  fontWeight="light"
+                  color="blue.600"
+                >
+                  vdiaz@example.com
+                </Link>
+              </Flex>
+            </Box>
+            <Box px={4}>
+              <Button w="full" colorScheme="blue">
+                Enviar mensaje privado
+              </Button>
+            </Box>
+
+            {/* <Stack spacing={4} pb={4} px={4}>
+              <Heading as="h2" fontSize="md" fontWeight="medium">
+                Enviar mensaje a Victoria
+              </Heading>
+
+              <Input fontSize="sm" placeholder="Ingresa tu nombre" />
+              <Input fontSize="sm" placeholder="Ingresa tu correo" />
+              <Input fontSize="sm" placeholder="Ingresa tu telefono" />
+
+              <Textarea
+                resize="none"
+                fontSize="sm"
+                placeholder="Ingresa tu mensaje a Victoria"
+              />
+
+              <Flex borderTopWidth="1px" pt={2.5} justifyContent="space-around">
+                <Button w="full" colorScheme="blue">
+                  Enviar
+                </Button>
+              </Flex>
+            </Stack> */}
+          </Box>
+        </SimpleGrid>
       </Container>
       {isOpen && <Contact isOpen={isOpen} onClose={onClose} />}
       <IconButton

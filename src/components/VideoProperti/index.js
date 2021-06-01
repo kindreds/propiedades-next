@@ -4,7 +4,7 @@ import { Box, Heading } from '@chakra-ui/layout';
 const VideoProperti = () => {
   return (
     <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
-      <Heading letterSpacing={1} fontSize="lg" mb={4}>
+      <Heading letterSpacing={1} fontSize="lg" mb={4} fontWeight="semibold">
         Video de la propiedad
       </Heading>
 

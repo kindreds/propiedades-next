@@ -22,7 +22,6 @@ const PropertyCard = ({ i, fullW, ...props }) => {
       {...props}
       mb={10}
       as="article"
-      w="100%"
       mx="auto"
       bg="white"
       shadow="md"
