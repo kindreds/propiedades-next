@@ -12,6 +12,7 @@ import {
   Badge,
   SimpleGrid,
   HStack,
+  IconButton,
 } from '@chakra-ui/react';
 import { AiFillInstagram } from 'react-icons/ai';
 import { FaFacebookF, FaLinkedin } from 'react-icons/fa';
@@ -53,7 +54,7 @@ const AsesorCard = ({ props }) => {
           </Heading>
         </Flex>
 
-        <Flex px={4} alignItems="center" mb={2} color="gray.900">
+        {/* <Flex px={4} alignItems="center" mb={2} color="gray.900">
           <Icon h={6} w={6} mr={1} as={RiWhatsappFill} fill="whatsapp.500" />
           <Link
             px={2}
@@ -86,14 +87,9 @@ const AsesorCard = ({ props }) => {
           >
             vdiaz@example.com
           </Link>
-        </Flex>
+        </Flex> */}
 
-        <SimpleGrid
-          mx={6}
-          pt={3}
-          borderTopWidth="1px"
-          templateColumns="minmax(0, 1fr) 130px"
-        >
+        <SimpleGrid mx={6} templateColumns="minmax(0, 1fr) 130px">
           <HStack>
             <Icon
               fontSize="lg"
@@ -136,6 +132,36 @@ const AsesorCard = ({ props }) => {
           </NextLink>
         </SimpleGrid>
       </Box>
+      <SimpleGrid borderTopWidth="1px" templateColumns="repeat(3, 1fr)">
+        <IconButton
+          as="a"
+          target="_blank"
+          rel="​noopener noreferrer"
+          href="https://wa.me/+51999999999"
+          rounded="none"
+          color="gray.500"
+          _hover={{ color: 'whatsapp.500' }}
+          icon={<RiWhatsappFill fontSize={25} />}
+        />
+        <IconButton
+          as="a"
+          href="tel:+51999999999"
+          rounded="none"
+          color="gray.500"
+          borderLeftWidth="1px"
+          _hover={{ color: 'gray.700' }}
+          icon={<PhoneIcon fontSize={20} />}
+        />
+        <IconButton
+          as="a"
+          rounded="none"
+          color="gray.500"
+          borderLeftWidth="1px"
+          _hover={{ color: 'gray.700' }}
+          href="mailto:vdiaz@example.com"
+          icon={<AtSignIcon fontSize={20} />}
+        />
+      </SimpleGrid>
     </Box>
   );
 };

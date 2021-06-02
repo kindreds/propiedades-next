@@ -15,13 +15,12 @@ const AsesoresList = () => {
         mb={6}
         bg="white"
         shadow="lg"
-        maxH="70px"
         rounded="lg"
         align="center"
         p={{ base: 2, xl: 4 }}
-        gap={6}
+        gap={{ base: 2, md: 6 }}
         justify="space-between"
-        templateColumns="minmax(0, 2fr) 150px"
+        templateColumns={{ base: 'minmax(0, 1fr)', sm: 'minmax(0, 2fr) 150px' }}
       >
         <InputGroup>
           <Input placeholder="Buscar asesor" />
