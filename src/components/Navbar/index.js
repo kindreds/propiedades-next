@@ -73,6 +73,7 @@ const Navbar = ({ dark = false }) => {
                 <Icon
                   w={5}
                   h={5}
+                  opacity={0}
                   as={FaUserAlt}
                   color={{ base: 'gray.700', xl: 'white' }}
                 />
