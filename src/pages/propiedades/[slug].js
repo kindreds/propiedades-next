@@ -19,7 +19,13 @@ import { useDisclosure } from '@chakra-ui/hooks';
 import { Button, IconButton } from '@chakra-ui/button';
 import { useBreakpointValue } from '@chakra-ui/media-query';
 import { Image, Img as ImageChakra } from '@chakra-ui/image';
-import { Icon, StarIcon, PhoneIcon, AtSignIcon } from '@chakra-ui/icons';
+import {
+  Icon,
+  StarIcon,
+  PhoneIcon,
+  AtSignIcon,
+  CheckIcon,
+} from '@chakra-ui/icons';
 import { BiGitCompare, BiHeart, BiPrinter, BiShareAlt } from 'react-icons/bi';
 import {
   FormLabel,
@@ -118,6 +124,9 @@ const Propiedad = () => {
         <Text fontSize="sm" color="gray.600">
           Av. Coronel Portillo #1088.
         </Text>
+        <Text fontSize="sm" color="gray.600">
+          Lima - Lima - San Isidro.
+        </Text>
         <Box d="flex" alignItems="center" mb={2}>
           {Array(5)
             .fill('')
@@ -134,11 +143,11 @@ const Propiedad = () => {
         </Box>
 
         <HStack py={2}>
-          <IconButton
+          {/* <IconButton
             colorScheme="teal"
             icon={<BiGitCompare fontSize="20px" />}
           />
-          <IconButton colorScheme="teal" icon={<BiHeart fontSize="20px" />} />
+          <IconButton colorScheme="teal" icon={<BiHeart fontSize="20px" />} /> */}
           <IconButton
             onClick={nativeShare}
             colorScheme="teal"
@@ -153,6 +162,62 @@ const Propiedad = () => {
         >
           <Box>
             <ProDetails />
+
+            <Box mt={4} px={4} py={6} bg="white" shadow="lg" rounded="lg">
+              <Heading
+                mb={4}
+                fontSize="lg"
+                letterSpacing={1}
+                fontWeight="semibold"
+              >
+                Ambientes
+              </Heading>
+
+              <SimpleGrid
+                ml={4}
+                templateColumns={{
+                  base: 'repeat(2, 1fr)',
+                  md: 'repeat(4, 1fr)',
+                }}
+              >
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Ático</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Lavaplatos</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Chimenea</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Jardin</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Gimnasio</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Techos Altos</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Microonda</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Patio</Text>
+                </Flex>
+                <Flex aling="center">
+                  <Icon mr={2} as={CheckIcon} color="red.400" />
+                  <Text>Piscina</Text>
+                </Flex>
+              </SimpleGrid>
+            </Box>
 
             <Box
               mt={4}
@@ -311,6 +376,7 @@ const Propiedad = () => {
         bottom={4}
         pos="fixed"
         rounded="full"
+        style={{ zIndex: 2 }}
         colorScheme="whatsapp"
         onClick={() => onOpen()}
         icon={<RiWhatsappFill fontSize="30px" />}

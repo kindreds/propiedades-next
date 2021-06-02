@@ -60,6 +60,10 @@ const ProDetails = () => {
             <Td fontWeight="500">5x20x15</Td>
           </Tr>
           <Tr>
+            <Td>Area contruida</Td>
+            <Td fontWeight="500">300 m2</Td>
+          </Tr>
+          <Tr>
             <Td>Cuartos</Td>
             <Td fontWeight="500">4</Td>
           </Tr>

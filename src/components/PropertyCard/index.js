@@ -51,6 +51,7 @@ const PropertyCard = ({ i, fullW, ...props }) => {
         </HStack>
         <Tooltip hasArrow label="Dar me gusta" placement="bottom">
           <IconButton
+            display="none"
             size="sm"
             right={12}
             bottom={2}
@@ -64,6 +65,7 @@ const PropertyCard = ({ i, fullW, ...props }) => {
         </Tooltip>
         <Tooltip hasArrow label="Comparar" placement="bottom">
           <IconButton
+            display="none"
             size="sm"
             right={2}
             bottom={2}
@@ -97,6 +99,9 @@ const PropertyCard = ({ i, fullW, ...props }) => {
           </Text>
           <Text fontSize="sm" color="gray.600">
             Av. Coronel Portillo #1088.
+          </Text>
+          <Text fontSize="sm" color="gray.600">
+            Lima - Lima - San Isidro
           </Text>
           <Text fontSize="md" color="gray.800" fontWeight="semibold">
             S/ 200.000,00

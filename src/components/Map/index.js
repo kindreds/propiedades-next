@@ -8,10 +8,10 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 const Map = () => {
   return (
     <MapContainer
-      center={[-12.115194, -77.013199]}
-      zoom={5}
+      zoom={16}
       scrollWheelZoom={false}
-      style={{ height: '100%', width: '100%' }}
+      center={[-12.115194, -77.013199]}
+      style={{ height: '100%', width: '100%', zIndex: 1 }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

@@ -79,10 +79,11 @@ const Navbar = ({ dark = false }) => {
               }
             />
             <Stack
-              direction="row"
-              spacing="20px"
               align="center"
-              display={{ base: 'none', xl: 'flex' }}
+              spacing="20px"
+              direction="row"
+              display={{ base: 'none' }}
+              // display={{ base: 'none', xl: 'flex' }}
             >
               <Button variant="link" colorScheme="red">
                 Iniciar sesión

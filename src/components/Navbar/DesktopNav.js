@@ -32,7 +32,7 @@ const DesktopNav = ({ dark }) => {
         </Link>
       </NextLink>
 
-      <Divider orientation="vertical" h="45px" />
+      {/* <Divider orientation="vertical" h="45px" /> */}
     </Stack>
   );
 };
