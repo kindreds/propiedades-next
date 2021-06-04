@@ -1,18 +1,26 @@
 import React from 'react';
-import { Box, Heading } from '@chakra-ui/layout';
+import { AspectRatio, Box, Heading } from '@chakra-ui/layout';
 
 const VideoProperti = () => {
   return (
-    <Box mt={4} px={4} py={6} bg="white" rounded="lg" shadow="lg">
-      <Heading letterSpacing={1} fontSize="lg" mb={4} fontWeight="semibold">
+    <Box mt={4} bg="white" rounded="lg" shadow="lg" overflow="hidden">
+      <Heading
+        px={4}
+        py={6}
+        fontSize="lg"
+        letterSpacing={1}
+        fontWeight="semibold"
+      >
         Video de la propiedad
       </Heading>
 
-      <iframe
-        src="https://www.youtube.com/embed/d67NNpbhMuk?autoplay=0&mute=0"
-        width="100%"
-        height="300"
-      />
+      <AspectRatio w="full" ratio={16 / 9}>
+        <iframe
+          src="https://www.youtube.com/embed/d67NNpbhMuk"
+          title="Propiedad"
+          allowFullScreen
+        />
+      </AspectRatio>
     </Box>
   );
 };

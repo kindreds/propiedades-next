@@ -18,8 +18,8 @@ import { Box, Flex, Heading, Container } from '@chakra-ui/layout';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import Asesores from '../components/AsesoresList';
-import AdvanceSearch from '../components/AdvanceSearch';
 import LastProperties from '../components/LastProperties';
+import AdvanceSearchAsesor from '../components/AdvanceSearch/AdvanceSearchAsesor';
 
 const asesores = () => {
   const { onOpen } = useDisclosure();
@@ -51,16 +51,12 @@ const asesores = () => {
         >
           <BreadcrumbItem>
             <NextLink href="/">
-              <BreadcrumbLink fontWeight="light" href="#">
-                Inicio
-              </BreadcrumbLink>
+              <BreadcrumbLink fontWeight="light">Inicio</BreadcrumbLink>
             </NextLink>
           </BreadcrumbItem>
 
           <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink fontWeight="light" href="#">
-              Asesores
-            </BreadcrumbLink>
+            <BreadcrumbLink fontWeight="light">Asesores</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
 
@@ -84,7 +80,8 @@ const asesores = () => {
 
         <Flex>
           <div>
-            <AdvanceSearch />
+            {/* <AdvanceSearch /> */}
+            <AdvanceSearchAsesor />
             <LastProperties />
           </div>
           <Asesores />

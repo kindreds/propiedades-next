@@ -1,40 +1,42 @@
 import React from 'react';
 import NextLink from 'next/link';
+import PropTypes from 'prop-types';
 import { RiWhatsappFill } from 'react-icons/ri';
-import { PhoneIcon, AtSignIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import {
+  StarIcon,
+  PhoneIcon,
+  AtSignIcon,
+  ChevronRightIcon,
+} from '@chakra-ui/icons';
 import {
   Box,
-  Image,
-  Flex,
   Icon,
-  Heading,
   Link,
-  Badge,
+  Image,
+  Heading,
   SimpleGrid,
-  HStack,
   IconButton,
+  Text,
 } from '@chakra-ui/react';
-import { AiFillInstagram } from 'react-icons/ai';
-import { FaFacebookF, FaLinkedin } from 'react-icons/fa';
 
-const AsesorCard = ({ props }) => {
+const AsesorCard = ({ simple, drawer, ...props }) => {
   return (
     <Box
       {...props}
       w="full"
-      mb={10}
+      mb={simple ? 2 : 10}
       as="article"
       mx="auto"
       bg="white"
-      shadow="md"
-      borderWidth={1}
-      borderRadius="lg"
+      shadow={!drawer && 'md'}
+      borderWidth={!drawer && 1}
+      borderRadius={!drawer && 'lg'}
       overflow="hidden"
       borderColor="gray.300"
       transition="all 0.3s ease"
-      _hover={{ shadow: 'xl' }}
+      _hover={{ shadow: !drawer ? 'xl' : 'none' }}
     >
-      <Box pos="relative" mb={4}>
+      <Box>
         <Image
           h={64}
           w="full"
@@ -44,84 +46,26 @@ const AsesorCard = ({ props }) => {
           src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
         />
 
-        <Badge pos="absolute" top={2} left={2} colorScheme="green">
-          2 propiedades
-        </Badge>
-
-        <Flex alignItems="center" p={4} mb={4} bg="gray.800">
-          <Heading as="h1" fontSize="lg" color="white" fontWeight="semibold">
+        <Box alignItems="center" p={4}>
+          <Heading as="h1" fontSize="lg" fontWeight="semibold" mb={2}>
             Victoria Diaz (Asesor)
           </Heading>
-        </Flex>
-
-        {/* <Flex px={4} alignItems="center" mb={2} color="gray.900">
-          <Icon h={6} w={6} mr={1} as={RiWhatsappFill} fill="whatsapp.500" />
-          <Link
-            px={2}
-            color="blue.600"
-            fontWeight="light"
-            href="https://wa.me/+51999999999"
-          >
-            999 999 999
-          </Link>
-        </Flex>
-        <Flex px={4} alignItems="center" mb={2} color="gray.900">
-          <Icon as={PhoneIcon} h={5} w={5} mr={2} />
-          <Link
-            px={2}
-            color="blue.600"
-            fontWeight="light"
-            href="tel:+51999999999"
-          >
-            999 999 999
-          </Link>
-        </Flex>
-        <Flex px={4} alignItems="center" mb={2} color="gray.900">
-          <Icon as={AtSignIcon} h={5} w={5} mr={2} />
-
-          <Link
-            href="mailto:vdiaz@example.com"
-            px={2}
-            fontWeight="light"
-            color="blue.600"
-          >
-            vdiaz@example.com
-          </Link>
-        </Flex> */}
-
-        <SimpleGrid mx={6} templateColumns="minmax(0, 1fr) 130px">
-          <HStack>
-            <Icon
-              fontSize="lg"
-              opacity={0.5}
-              cursor="pointer"
-              as={FaFacebookF}
-              _hover={{ opacity: 1 }}
-              transition="opacity 0.3s ease"
-            />
-            <Icon
-              fontSize="lg"
-              opacity={0.5}
-              cursor="pointer"
-              as={AiFillInstagram}
-              _hover={{ opacity: 1 }}
-              transition="opacity 0.3s ease"
-            />
-            <Icon
-              fontSize="lg"
-              opacity={0.5}
-              cursor="pointer"
-              as={FaLinkedin}
-              _hover={{ opacity: 1 }}
-              transition="opacity 0.3s ease"
-            />
-          </HStack>
-
+          <Text>13 Propiedades</Text>
+          <Box d="flex" alignItems="center">
+            {Array(5)
+              .fill('')
+              .map((_, i) => (
+                <StarIcon key={i} color={i < 5 ? 'teal.500' : 'gray.300'} />
+              ))}
+            <Box as="span" ml="2" color="gray.600">
+              {12} Opiniones
+            </Box>
+          </Box>
           <NextLink href="/propiedades">
             <Link
+              mt={2}
               d="flex"
               w="full"
-              fontSize="sm"
               color="blue.500"
               colorScheme="blue"
               alignItems="center"
@@ -130,10 +74,15 @@ const AsesorCard = ({ props }) => {
               <Icon as={ChevronRightIcon} />
             </Link>
           </NextLink>
-        </SimpleGrid>
+        </Box>
       </Box>
-      <SimpleGrid borderTopWidth="1px" templateColumns="repeat(3, 1fr)">
+      <SimpleGrid
+        borderTopWidth="1px"
+        borderBottomWidth={drawer && '1px'}
+        templateColumns="repeat(3, 1fr)"
+      >
         <IconButton
+          variant={drawer && ''}
           as="a"
           target="_blank"
           rel="​noopener noreferrer"
@@ -144,6 +93,7 @@ const AsesorCard = ({ props }) => {
           icon={<RiWhatsappFill fontSize={25} />}
         />
         <IconButton
+          variant={drawer && 'ghost'}
           as="a"
           href="tel:+51999999999"
           rounded="none"
@@ -153,6 +103,7 @@ const AsesorCard = ({ props }) => {
           icon={<PhoneIcon fontSize={20} />}
         />
         <IconButton
+          variant={drawer && 'ghost'}
           as="a"
           rounded="none"
           color="gray.500"
@@ -164,6 +115,11 @@ const AsesorCard = ({ props }) => {
       </SimpleGrid>
     </Box>
   );
+};
+
+AsesorCard.propTypes = {
+  simple: PropTypes.bool,
+  drawer: PropTypes.bool,
 };
 
 export default AsesorCard;
