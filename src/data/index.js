@@ -5,21 +5,21 @@ import { RiHomeHeartLine } from 'react-icons/ri';
 export const whyChooseUs = [
   {
     image: FaPeopleCarry,
-    title: 'Titulo 1',
+    title: 'Unify your payments stack',
     content:
-      'Aliquam dictum elit vitae mauris facilisis at dictum vitae mauris  urna dignissim donec vel lectus vel felis.',
+      'Manage all your online and offline sales in one place with a single integration, simplifying reporting and reconciliation. Terminal works seamlessly with Payments, Connect, and Billing.',
   },
   {
     image: RiHomeHeartLine,
-    title: 'Titulo 2',
+    title: 'Own your in-store experience',
     content:
-      'Aliquam dictum elit vitae mauris facilisis at dictum vitae mauris  urna dignissim donec vel lectus vel felis.',
+      'Manage all your online and offline sales in one place with a single integration, simplifying reporting and reconciliation. Terminal works seamlessly with Payments, Connect, and Billing.',
   },
   {
     image: GiProfit,
-    title: 'Titulo 3',
+    title: 'Grow your platform’s revenue',
     content:
-      'Aliquam dictum elit vitae mauris facilisis at dictum vitae mauris  urna dignissim donec vel lectus vel felis.',
+      'Manage all your online and offline sales in one place with a single integration, simplifying reporting and reconciliation. Terminal works seamlessly with Payments, Connect, and Billing.',
   },
 ];
 

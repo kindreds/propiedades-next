@@ -37,15 +37,23 @@ const GridProperty = () => {
         <GridItem
           rowSpan={2}
           pos="relative"
-          transition="transform 0.25s ease"
-          _hover={{ transform: 'scale(1.01)' }}
+          className="overlay"
+          overflow="hidden"
         >
           <Overlay />
           <Image
-            cursor="pointer"
             rounded="lg"
-            src="/ciudad2H_cp.webp"
             layout="fill"
+            cursor="pointer"
+            src="/ciudad2H_cp.webp"
+            filter="grayscale(0.5)"
+            transition="all 0.3s ease"
+            sx={{
+              '.overlay:hover &': {
+                filter: 'grayscale(0)',
+                transform: 'scale(1.2) rotate(-10deg)',
+              },
+            }}
           />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
@@ -53,17 +61,21 @@ const GridProperty = () => {
             </Text>
           </Flex>
         </GridItem>
-        <GridItem
-          pos="relative"
-          transition="transform 0.25s ease"
-          _hover={{ transform: 'scale(1.01)' }}
-        >
+        <GridItem pos="relative" className="overlay" overflow="hidden">
           <Overlay />
           <Image
             cursor="pointer"
             rounded="lg"
             layout="fill"
             src={'/ciudad1W_cp.webp'}
+            filter="grayscale(0.5)"
+            transition="all 0.3s ease"
+            sx={{
+              '.overlay:hover &': {
+                filter: 'grayscale(0)',
+                transform: 'scale(1.2) rotate(-10deg)',
+              },
+            }}
           />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
@@ -74,8 +86,8 @@ const GridProperty = () => {
         <GridItem
           pos="relative"
           rowSpan={2}
-          transition="transform 0.25s ease"
-          _hover={{ transform: 'scale(1.01)' }}
+          className="overlay"
+          overflow="hidden"
         >
           <Overlay />
           <Image
@@ -83,6 +95,14 @@ const GridProperty = () => {
             rounded="lg"
             layout="fill"
             src={'/ciudad3H_cp.webp'}
+            filter="grayscale(0.5)"
+            transition="all 0.3s ease"
+            sx={{
+              '.overlay:hover &': {
+                filter: 'grayscale(0)',
+                transform: 'scale(1.2) rotate(-10deg)',
+              },
+            }}
           />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">
@@ -90,17 +110,21 @@ const GridProperty = () => {
             </Text>
           </Flex>
         </GridItem>
-        <GridItem
-          pos="relative"
-          transition="transform 0.25s ease"
-          _hover={{ transform: 'scale(1.01)' }}
-        >
+        <GridItem pos="relative" className="overlay" overflow="hidden">
           <Overlay />
           <Image
             cursor="pointer"
             rounded="lg"
             layout="fill"
             src={'/ciudad4W_cp.webp'}
+            filter="grayscale(0.5)"
+            transition="all 0.3s ease"
+            sx={{
+              '.overlay:hover &': {
+                filter: 'grayscale(0)',
+                transform: 'scale(1.2) rotate(-10deg)',
+              },
+            }}
           />
           <Flex pos="absolute" bottom={6} w="100%" justify="center">
             <Text color="#fff" fontSize="xl">

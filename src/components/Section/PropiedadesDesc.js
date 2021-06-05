@@ -43,7 +43,7 @@ const PropiedadesDesc = () => {
   };
 
   return (
-    <Box maxW="1200px" my={5} mx="auto">
+    <Box maxW="1200px" mt={5} mx="auto">
       <ReactSlidy
         showArrows={false}
         keyboardNavigation

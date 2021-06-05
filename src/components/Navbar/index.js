@@ -23,7 +23,7 @@ const Navbar = ({ dark = false }) => {
         top={0}
         w="100%"
         minH="60px"
-        style={{ zIndex: 2 }}
+        style={{ zIndex: 4 }}
         pos={{ base: 'fixed', xl: 'absolute' }}
         shadow={{ base: 'lg', xl: dark ? 'lg' : 'none' }}
         bg={{ base: 'white', xl: dark ? 'white' : 'transparent' }}

@@ -3,37 +3,101 @@ import PropTypes from 'prop-types';
 import { Box, Text } from '@chakra-ui/layout';
 
 import { Avatar } from '../tools';
+import { StarIcon } from '@chakra-ui/icons';
 
 const TestimonialsCard = ({ name, comment }) => {
   return (
-    <Box mx="auto" display="flex" flexDirection="column" w="80%" h="auto">
-      <Box pos="relative" mx="auto" maxW={100} mb={2}>
+    <Box
+      w="90%"
+      mx="auto"
+      display="flex"
+      className="card"
+      flexDirection="column"
+    >
+      <Box
+        mb={1}
+        mx="auto"
+        maxW={200}
+        pos="relative"
+        transform="translateY(50px)"
+        transition="all 0.3s ease"
+        sx={{
+          '.card:hover &': {
+            mb: 0,
+            maxW: 150,
+            transform: 'translateY(0)',
+          },
+        }}
+      >
         <Avatar
-          mb={4}
           alt={name}
-          width={100}
-          height={100}
+          width={200}
+          height={200}
           src="https://bit.ly/dan-abramov"
         />
-        <Box
-          w={8}
-          h={8}
-          bottom={0}
-          right={-1}
-          pos="absolute"
-          rounded="full"
-          borderWidth={5}
-          bg="whatsapp.400"
-          borderColor="white"
-        />
       </Box>
-      <Box>
-        <Text fontSize="md" whiteSpace="normal" textAlign="center" mb={2}>
+      <Box
+        p={6}
+        transition="all 0.3s ease"
+        transform="translateY(40px)"
+        sx={{
+          '.card:hover &': {
+            transform: 'translateY(0)',
+          },
+        }}
+      >
+        <Text
+          mb={4}
+          textAlign="center"
+          fontWeight="semibold"
+          fontSize={{ base: 'lg', md: 'xl' }}
+          lineHeight={{ base: 'shorter', md: 'none' }}
+          letterSpacing={{ base: 'normal', md: 'tight' }}
+        >
           {name}
         </Text>
-        <Text fontSize="sm" whiteSpace="normal">
-          {comment}
-        </Text>
+        <Box d="flex" alignItems="center" justifyContent="center" mb={4}>
+          {Array(5)
+            .fill('')
+            .map((_, i) => (
+              <StarIcon
+                key={i}
+                mr={1}
+                fontSize="xl"
+                color={i < 4 ? 'teal.500' : 'gray.300'}
+              />
+            ))}
+        </Box>
+        <Box
+          h={5}
+          opacity={0}
+          pos="relative"
+          transition="height 0.3s ease"
+          sx={{
+            '.card:hover &': {
+              opacity: 1,
+              height: '200px',
+            },
+          }}
+        >
+          <Text fontSize="sm" whiteSpace="normal">
+            {comment}
+          </Text>
+          <Box
+            w="full"
+            h="full"
+            bg="white"
+            bottom={0}
+            pos="absolute"
+            transition="height 0.5s ease"
+            sx={{
+              '.card:hover &': {
+                height: 0,
+                opacity: 0,
+              },
+            }}
+          />
+        </Box>
       </Box>
     </Box>
   );

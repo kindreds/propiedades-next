@@ -168,7 +168,7 @@ const PropertiHeader = ({ socialRef }) => {
 };
 
 PropertiHeader.propTypes = {
-  socialRef: PropTypes.node.isRequired,
+  socialRef: PropTypes.object.isRequired,
 };
 
 export default PropertiHeader;

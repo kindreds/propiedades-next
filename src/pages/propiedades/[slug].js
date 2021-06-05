@@ -50,14 +50,12 @@ const Map = dynamic(() => import('../../components/Map'), {
 });
 
 const Propiedad = () => {
-  const { ref: socialRef, inView: SocialInView } = useInView({
-    rootMargin: '100px',
-  });
+  const { ref: socialRef, inView: SocialInView } = useInView();
   const { ref: mapNode, inView: mapInView } = useInView({
-    rootMargin: '100px',
+    rootMargin: '200px',
   });
   const { ref: videoNode, inView: videoInView } = useInView({
-    rootMargin: '100px',
+    rootMargin: '200px',
   });
 
   const [actualSlide, setActualSlide] = useState(0);

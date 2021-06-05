@@ -4,8 +4,10 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
 import Hero from '../components/Hero';
+import { Image } from '@chakra-ui/image';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import { keyframes } from '@chakra-ui/react';
 import { Container, Text, Heading, Box } from '@chakra-ui/layout';
 
 const opts = { ssr: false };
@@ -24,6 +26,20 @@ const PorQueElegirnos = dynamic(
   opts
 );
 
+const Wave = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
+
+const animation = `${Wave} 5s infinite ease-in-out`;
+
 const Index = () => {
   return (
     <Box>
@@ -34,12 +50,16 @@ const Index = () => {
       <Navbar />
 
       <Hero />
-      <Box bg="gray.200">
+      <Box bg="#D2EAFF" pos="relative" overflow="hidden">
         <Container maxW="container.xl" mx="auto" py="50px">
           <Heading
-            mb="2"
+            as="h3"
+            mb={2}
             textAlign="center"
-            fontSize={{ base: '2xl', sm: '3xl' }}
+            fontWeight="semibold"
+            fontSize={{ base: '2xl', md: '4xl' }}
+            lineHeight={{ base: 'shorter', md: 'none' }}
+            letterSpacing={{ base: 'normal', md: 'tight' }}
           >
             Propiedades destacada
           </Heading>
@@ -51,9 +71,13 @@ const Index = () => {
       </Box>
       <Container maxW="container.xl" py="50px">
         <Heading
-          mb="2"
+          as="h3"
+          mb={2}
           textAlign="center"
-          fontSize={{ base: '2xl', sm: '3xl' }}
+          fontWeight="semibold"
+          fontSize={{ base: '2xl', md: '4xl' }}
+          lineHeight={{ base: 'shorter', md: 'none' }}
+          letterSpacing={{ base: 'normal', md: 'tight' }}
         >
           Podras buscar propiedades en estas ciudades.
         </Heading>
@@ -62,12 +86,16 @@ const Index = () => {
         </Text>
         <GridProperty />
       </Container>
-      <Box bg="gray.200">
+      <Box pos="relative" bg="#D2EAFF" overflow="hidden">
         <Container maxW="container.xl" py="50px">
           <Heading
-            mb="2"
+            as="h3"
+            mb={2}
             textAlign="center"
-            fontSize={{ base: '2xl', sm: '3xl' }}
+            fontWeight="semibold"
+            fontSize={{ base: '2xl', md: '4xl' }}
+            lineHeight={{ base: 'shorter', md: 'none' }}
+            letterSpacing={{ base: 'normal', md: 'tight' }}
           >
             Por que elegirnos.
           </Heading>
@@ -76,13 +104,49 @@ const Index = () => {
           </Text>
           <PorQueElegirnos />
         </Container>
+        <Image
+          left={{ base: -10, md: -5, xl: -2 }}
+          bottom={{ base: -10, md: -5, xl: -2 }}
+          pos="absolute"
+          animation={animation}
+          src="/left_bottom_01.png"
+          sx={{ zIndex: 2, animationDelay: '1s' }}
+        />
+        <Image
+          left={{ base: -10, md: -5, xl: -2 }}
+          bottom={{ base: -10, md: -5, xl: -2 }}
+          pos="absolute"
+          sx={{ zIndex: 1 }}
+          animation={animation}
+          src="/left_bottom_02.png"
+        />
+        <Image
+          right={{ base: '-90%', md: -5, xl: -2 }}
+          bottom={{ base: '-90%', md: -5, xl: -2 }}
+          pos="absolute"
+          animation={animation}
+          src="/right_bottom_01.png"
+          sx={{ zIndex: 2, animationDelay: '1s' }}
+        />
+        <Image
+          right={{ base: '-90%', md: -5, xl: -2 }}
+          bottom={{ base: '-90%', md: -5, xl: -2 }}
+          pos="absolute"
+          sx={{ zIndex: 1 }}
+          animation={animation}
+          src="/right_bottom_02.png"
+        />
       </Box>
       <Box>
         <Container maxW="container.xl" py="50px">
           <Heading
-            mb="2"
+            as="h3"
+            mb={2}
             textAlign="center"
-            fontSize={{ base: '2xl', sm: '3xl' }}
+            fontWeight="semibold"
+            fontSize={{ base: '2xl', md: '4xl' }}
+            lineHeight={{ base: 'shorter', md: 'none' }}
+            letterSpacing={{ base: 'normal', md: 'tight' }}
           >
             Testimonios
           </Heading>

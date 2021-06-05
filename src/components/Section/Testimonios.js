@@ -26,7 +26,7 @@ const Testimonios = () => {
   const numOfSlides = numOfSlidesRaw ?? 3;
 
   return (
-    <Box maxW="1200px" my={5} mx="auto">
+    <Box maxW="1200px" mt={5} mx="auto">
       <ReactSlidy
         numOfSlides={numOfSlides}
         showArrows={false}
