@@ -11,10 +11,16 @@ import { BiPrinter, BiShareAlt } from 'react-icons/bi';
 import { IconButton } from '@chakra-ui/button';
 import { useInView } from 'react-intersection-observer';
 import { useBreakpointValue } from '@chakra-ui/media-query';
-import { Box, Stack, HStack, Container, SimpleGrid } from '@chakra-ui/layout';
+import {
+  Box,
+  Stack,
+  HStack,
+  Container,
+  SimpleGrid,
+  Heading,
+} from '@chakra-ui/layout';
 import {
   FaFacebookF,
-  FaFacebookMessenger,
   FaLinkedinIn,
   FaTwitter,
   FaWhatsapp,
@@ -27,6 +33,7 @@ import CommentForm from '../../components/CommentArea/CommentForm';
 
 import { nativeShare } from '../../helper/nativeShare';
 import Icon from '@chakra-ui/icon';
+import PropiedadesDesc from '../../components/Section/PropiedadesDesc';
 
 /* Componentes */
 
@@ -39,9 +46,6 @@ const FloorMap = dynamic(() => import('../../components/FloorMap'), {
 const VideoProperti = dynamic(() => import('../../components/VideoProperti'), {
   ssr: false,
 });
-// const CommentArea = dynamic(() => import('../../components/CommentArea'), {
-//   ssr: false,
-// });
 const Contact = dynamic(() => import('../../components/Contact'), {
   ssr: false,
 });
@@ -50,20 +54,9 @@ const Map = dynamic(() => import('../../components/Map'), {
 });
 
 const Propiedad = () => {
-  const { ref: socialRef, inView: SocialInView } = useInView();
-  const { ref: mapNode, inView: mapInView } = useInView({
-    rootMargin: '200px',
-  });
-  const { ref: videoNode, inView: videoInView } = useInView({
-    rootMargin: '200px',
-  });
-
   const [actualSlide, setActualSlide] = useState(0);
-
-  const updateSlide = ({ currentSlide }) => {
-    setActualSlide(currentSlide);
-  };
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const { ref: socialRef, inView: SocialInView } = useInView();
   const numOfSlidesRaw = useBreakpointValue({
     base: 1,
     ms: 1,
@@ -72,6 +65,15 @@ const Propiedad = () => {
     lg: 2,
     xl: 3,
   });
+
+  const updateSlide = ({ currentSlide }) => {
+    setActualSlide(currentSlide);
+  };
+
+  const ScrollToContact = () => {
+    const el = document.getElementById('asesor_msg');
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const numOfSlides = numOfSlidesRaw ?? 3;
 
@@ -130,22 +132,53 @@ const Propiedad = () => {
           maxW={{
             base: '99%',
             sm: 'container.sm',
-            md: 'container.md',
-            lg: 'container.lg',
+            md: '90%',
+            lg: 'container.xl',
             xl: 'container.xl',
           }}
         >
           <SimpleGrid
             gap={6}
-            templateColumns={{ base: 'minmax(0, 1fr)', lg: '2fr 1fr' }}
+            templateColumns={{
+              base: 'minmax(0, 1fr)',
+              lg: 'minmax(0, 1fr) 350px',
+            }}
           >
             <Box>
-              <PropertiHeader socialRef={socialRef} />
+              <PropertiHeader
+                socialRef={socialRef}
+                ScrollToContact={ScrollToContact}
+              />
               <ProDetails />
               <FloorMap />
-              <div ref={mapNode}>{mapInView && <Map />}</div>
-              <div ref={videoNode}>{videoInView && <VideoProperti />}</div>
-              <CommentForm />
+              <div>
+                <Map />
+              </div>
+              <VideoProperti />
+              <Box mt={10}>
+                <Heading
+                  mb={2}
+                  fontSize="lg"
+                  letterSpacing={1}
+                  fontWeight="semibold"
+                >
+                  Propiedades Similares
+                </Heading>
+                <PropiedadesDesc
+                  maxW="816px"
+                  breakpoints={{
+                    base: 1,
+                    ms: 1,
+                    sm: 2,
+                    md: 2,
+                    lg: 2,
+                    xl: 2,
+                  }}
+                />
+              </Box>
+              <div id="asesor_msg">
+                <CommentForm />
+              </div>
             </Box>
             <Box display={{ base: 'none', lg: 'block' }}>
               <Box pos="sticky" top={{ base: '100px', xl: 4 }}>
@@ -157,6 +190,7 @@ const Propiedad = () => {
                       variant="outline"
                       colorScheme="teal"
                       icon={<BsChatFill />}
+                      onClick={ScrollToContact}
                       display={{ base: 'none', lg: 'flex' }}
                     />
                     <IconButton

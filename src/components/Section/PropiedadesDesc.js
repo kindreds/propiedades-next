@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import ReactSlidy from 'react-slidy';
 import PropertyCard from '../PropertyCard';
 import { Box, Flex } from '@chakra-ui/layout';
 import { useBreakpointValue } from '@chakra-ui/media-query';
 import { createStyles, numOfDots } from '../../helper/dotStyles';
 
-const PropiedadesDesc = () => {
+const initialState = {
+  base: 1,
+  ms: 1,
+  sm: 2,
+  md: 2,
+  lg: 3,
+  xl: 3,
+};
+
+const PropiedadesDesc = ({ breakpoints = initialState, maxW = '1200px' }) => {
   const [timer, setTimer] = useState(0);
   const [actualSlide, setActualSlide] = useState(0);
-  const numOfSlidesRaw = useBreakpointValue({
-    base: 1,
-    ms: 1,
-    sm: 2,
-    md: 2,
-    lg: 3,
-    xl: 3,
-  });
+  const numOfSlidesRaw = useBreakpointValue(breakpoints);
 
   const SLIDES = Array(10).fill(null);
   const numOfSlides = numOfSlidesRaw ?? 3;
@@ -43,7 +46,7 @@ const PropiedadesDesc = () => {
   };
 
   return (
-    <Box maxW="1200px" mt={5} mx="auto">
+    <Box maxW={maxW} mt={5} mx="auto">
       <ReactSlidy
         showArrows={false}
         keyboardNavigation
@@ -78,6 +81,11 @@ const PropiedadesDesc = () => {
       </Flex>
     </Box>
   );
+};
+
+PropiedadesDesc.propTypes = {
+  maxW: PropTypes.string,
+  breakpoints: PropTypes.object,
 };
 
 export default PropiedadesDesc;

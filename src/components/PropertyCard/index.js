@@ -20,7 +20,7 @@ const PropertyCard = ({ i, fullW, ...props }) => {
   return (
     <Box
       {...props}
-      mb={10}
+      mb={5}
       as="article"
       mx="auto"
       bg="white"

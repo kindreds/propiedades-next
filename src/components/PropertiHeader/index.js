@@ -29,7 +29,7 @@ import { BiPrinter, BiShareAlt } from 'react-icons/bi';
 
 import { nativeShare } from '../../helper/nativeShare';
 
-const PropertiHeader = ({ socialRef }) => {
+const PropertiHeader = ({ socialRef, ScrollToContact }) => {
   return (
     <SimpleGrid
       templateColumns={{ base: 'minmax(0, 1fr)', ms: 'repeat(2, 1fr)' }}
@@ -62,7 +62,12 @@ const PropertiHeader = ({ socialRef }) => {
             {33} Opiniones
           </Box>
         </Box>
-        <Button variant="outline" colorScheme="teal" leftIcon={<BsChatFill />}>
+        <Button
+          variant="outline"
+          colorScheme="teal"
+          onClick={ScrollToContact}
+          leftIcon={<BsChatFill />}
+        >
           Solicitar información
         </Button>
       </Box>
@@ -168,7 +173,8 @@ const PropertiHeader = ({ socialRef }) => {
 };
 
 PropertiHeader.propTypes = {
-  socialRef: PropTypes.object.isRequired,
+  socialRef: PropTypes.func.isRequired,
+  ScrollToContact: PropTypes.func.isRequired,
 };
 
 export default PropertiHeader;
