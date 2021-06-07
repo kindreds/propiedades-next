@@ -41,7 +41,7 @@ const CommentForm = () => {
           <Textarea resize="none" placeholder="Escribe tu mensaje al asesor" />
         </FormControl>
       </Stack>
-      <Flex flex={1} justify="flex-end" mt={5}>
+      <Flex flex={1} mt={5}>
         <Button colorScheme="teal">Enviar</Button>
       </Flex>
     </Box>
