@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Container,
@@ -6,7 +6,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
-} from '@chakra-ui/layout';
+} from "@chakra-ui/layout";
 import {
   Button,
   Flex,
@@ -14,11 +14,9 @@ import {
   Input,
   Textarea,
   VisuallyHidden,
-} from '@chakra-ui/react';
-import { MdLocationOn } from 'react-icons/md';
-import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
-
-import Navbar from '../components/Navbar';
+} from "@chakra-ui/react";
+import { MdLocationOn } from "react-icons/md";
+import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 
 const contacto = () => {
   return (
@@ -30,30 +28,28 @@ const contacto = () => {
       alignItems="center"
       justifyContent="center"
     >
-      <Navbar dark={true} />
-
       <Container
         py={5}
         d="flex"
         alignItems="center"
         justifyContent="center"
         maxW={{
-          base: '99%',
-          sm: 'container.sm',
-          md: 'container.md',
-          lg: 'container.lg',
-          xl: 'container.xl',
+          base: "99%",
+          sm: "container.sm",
+          md: "container.md",
+          lg: "container.lg",
+          xl: "container.xl",
         }}
       >
         {/* <KuttyHero /> */}
-        <Box mt={{ base: '100px' }}>
+        <Box mt={{ base: "100px" }}>
           <Heading
             as="h1"
             mb={4}
             fontWeight="bold"
-            fontSize={{ base: '3xl', md: '4xl' }}
-            lineHeight={{ base: 'shorter', md: 'none' }}
-            letterSpacing={{ base: 'normal', md: 'tight' }}
+            fontSize={{ base: "3xl", md: "4xl" }}
+            lineHeight={{ base: "shorter", md: "none" }}
+            letterSpacing={{ base: "normal", md: "tight" }}
           >
             Deseas contactar con nosotros?
           </Heading>
@@ -62,7 +58,7 @@ const contacto = () => {
             color="gray.600"
             letterSpacing="wider"
             mb={{ base: 10, md: 4 }}
-            fontSize={{ base: 'lg', md: 'xl' }}
+            fontSize={{ base: "lg", md: "xl" }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
             voluptatibus maiores fugit pariatur, ipsam sequi accusantium
@@ -73,8 +69,8 @@ const contacto = () => {
           <SimpleGrid
             mt={4}
             templateColumns={{
-              base: 'minmax(0, 1fr)',
-              xl: 'repeat(2, minmax(0, 1fr))',
+              base: "minmax(0, 1fr)",
+              xl: "repeat(2, minmax(0, 1fr))",
             }}
           >
             <Stack bg="red.500" shadow="lg" rounded="lg" p={6}>
@@ -82,9 +78,9 @@ const contacto = () => {
                 as="h3"
                 mb={2}
                 fontWeight="semibold"
-                fontSize={{ base: '2xl', md: '2xl' }}
-                lineHeight={{ base: 'shorter', md: 'none' }}
-                letterSpacing={{ base: 'normal', md: 'tight' }}
+                fontSize={{ base: "2xl", md: "2xl" }}
+                lineHeight={{ base: "shorter", md: "none" }}
+                letterSpacing={{ base: "normal", md: "tight" }}
               >
                 Información de contacto
               </Heading>
@@ -103,7 +99,7 @@ const contacto = () => {
                   as={MdLocationOn}
                 />
                 <Text
-                  letterSpacing={{ base: 'normal', md: 'tight' }}
+                  letterSpacing={{ base: "normal", md: "tight" }}
                   color="gray.100"
                 >
                   Av Rockvile, #1098, mz 1, lt2.
@@ -118,7 +114,7 @@ const contacto = () => {
                   as={PhoneIcon}
                 />
                 <Text
-                  letterSpacing={{ base: 'normal', md: 'tight' }}
+                  letterSpacing={{ base: "normal", md: "tight" }}
                   color="gray.100"
                 >
                   Correo: correo@example.com
@@ -133,7 +129,7 @@ const contacto = () => {
                   as={EmailIcon}
                 />
                 <Text
-                  letterSpacing={{ base: 'normal', md: 'tight' }}
+                  letterSpacing={{ base: "normal", md: "tight" }}
                   color="gray.100"
                 >
                   Telefono: correo@example.com
@@ -146,9 +142,9 @@ const contacto = () => {
                 as="h3"
                 mb={2}
                 fontWeight="semibold"
-                fontSize={{ base: '2xl', md: '2xl' }}
-                lineHeight={{ base: 'shorter', md: 'none' }}
-                letterSpacing={{ base: 'normal', md: 'tight' }}
+                fontSize={{ base: "2xl", md: "2xl" }}
+                lineHeight={{ base: "shorter", md: "none" }}
+                letterSpacing={{ base: "normal", md: "tight" }}
               >
                 Queremos tu opinion
               </Heading>
@@ -156,8 +152,8 @@ const contacto = () => {
               <SimpleGrid
                 gap={4}
                 templateColumns={{
-                  base: 'minmax(0, 1fr)',
-                  sm: 'repeat(2, 1fr)',
+                  base: "minmax(0, 1fr)",
+                  sm: "repeat(2, 1fr)",
                 }}
               >
                 <Flex>
@@ -191,6 +187,10 @@ const contacto = () => {
       </Container>
     </Box>
   );
+};
+
+contacto.getInitialProps = () => {
+  return { dark: true };
 };
 
 export default contacto;

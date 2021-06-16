@@ -1,28 +1,28 @@
-import '@fontsource/poppins';
-import React from 'react';
-import Head from 'next/head';
-import dynamic from 'next/dynamic';
+import "@fontsource/poppins";
+import React from "react";
+import Head from "next/head";
+import dynamic from "next/dynamic";
 
-import Hero from '../components/Hero';
-import { Image } from '@chakra-ui/image';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import { keyframes } from '@chakra-ui/react';
-import { Container, Text, Heading, Box } from '@chakra-ui/layout';
+import Hero from "../components/Hero";
+import { Image } from "@chakra-ui/image";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { keyframes } from "@chakra-ui/react";
+import { Container, Text, Heading, Box } from "@chakra-ui/layout";
 
 const opts = { ssr: false };
 
-const GridProperty = dynamic(() => import('../components/GridProperty'), opts);
+const GridProperty = dynamic(() => import("../components/GridProperty"), opts);
 const Testimonios = dynamic(
-  () => import('../components/Section/Testimonios'),
+  () => import("../components/Section/Testimonios"),
   opts
 );
 const PropiedadesDesc = dynamic(
-  () => import('../components/Section/PropiedadesDesc'),
+  () => import("../components/Section/PropiedadesDesc"),
   opts
 );
 const PorQueElegirnos = dynamic(
-  () => import('../components/Section/PorQueElegirnos'),
+  () => import("../components/Section/PorQueElegirnos"),
   opts
 );
 
@@ -47,8 +47,6 @@ const Index = () => {
         <title>Inmobiliara</title>
       </Head>
 
-      <Navbar />
-
       <Hero />
       <Box bg="#D2EAFF" pos="relative" overflow="hidden">
         <Container maxW="container.xl" mx="auto" py="50px">
@@ -57,9 +55,9 @@ const Index = () => {
             mb={2}
             textAlign="center"
             fontWeight="semibold"
-            fontSize={{ base: '2xl', md: '4xl' }}
-            lineHeight={{ base: 'shorter', md: 'none' }}
-            letterSpacing={{ base: 'normal', md: 'tight' }}
+            fontSize={{ base: "2xl", md: "4xl" }}
+            lineHeight={{ base: "shorter", md: "none" }}
+            letterSpacing={{ base: "normal", md: "tight" }}
           >
             Propiedades destacada
           </Heading>
@@ -75,9 +73,9 @@ const Index = () => {
           mb={2}
           textAlign="center"
           fontWeight="semibold"
-          fontSize={{ base: '2xl', md: '4xl' }}
-          lineHeight={{ base: 'shorter', md: 'none' }}
-          letterSpacing={{ base: 'normal', md: 'tight' }}
+          fontSize={{ base: "2xl", md: "4xl" }}
+          lineHeight={{ base: "shorter", md: "none" }}
+          letterSpacing={{ base: "normal", md: "tight" }}
         >
           Podras buscar propiedades en estas ciudades.
         </Heading>
@@ -93,9 +91,9 @@ const Index = () => {
             mb={2}
             textAlign="center"
             fontWeight="semibold"
-            fontSize={{ base: '2xl', md: '4xl' }}
-            lineHeight={{ base: 'shorter', md: 'none' }}
-            letterSpacing={{ base: 'normal', md: 'tight' }}
+            fontSize={{ base: "2xl", md: "4xl" }}
+            lineHeight={{ base: "shorter", md: "none" }}
+            letterSpacing={{ base: "normal", md: "tight" }}
           >
             Por que elegirnos.
           </Heading>
@@ -110,7 +108,7 @@ const Index = () => {
           pos="absolute"
           animation={animation}
           src="/left_bottom_01.png"
-          sx={{ zIndex: 2, animationDelay: '1s' }}
+          sx={{ zIndex: 2, animationDelay: "1s" }}
         />
         <Image
           left={{ base: -10, md: -5, xl: -2 }}
@@ -121,16 +119,16 @@ const Index = () => {
           src="/left_bottom_02.png"
         />
         <Image
-          right={{ base: '-90%', md: -5, xl: -2 }}
-          bottom={{ base: '-90%', md: -5, xl: -2 }}
+          right={{ base: "-90%", md: -5, xl: -2 }}
+          bottom={{ base: "-90%", md: -5, xl: -2 }}
           pos="absolute"
           animation={animation}
           src="/right_bottom_01.png"
-          sx={{ zIndex: 2, animationDelay: '1s' }}
+          sx={{ zIndex: 2, animationDelay: "1s" }}
         />
         <Image
-          right={{ base: '-90%', md: -5, xl: -2 }}
-          bottom={{ base: '-90%', md: -5, xl: -2 }}
+          right={{ base: "-90%", md: -5, xl: -2 }}
+          bottom={{ base: "-90%", md: -5, xl: -2 }}
           pos="absolute"
           sx={{ zIndex: 1 }}
           animation={animation}
@@ -144,9 +142,9 @@ const Index = () => {
             mb={2}
             textAlign="center"
             fontWeight="semibold"
-            fontSize={{ base: '2xl', md: '4xl' }}
-            lineHeight={{ base: 'shorter', md: 'none' }}
-            letterSpacing={{ base: 'normal', md: 'tight' }}
+            fontSize={{ base: "2xl", md: "4xl" }}
+            lineHeight={{ base: "shorter", md: "none" }}
+            letterSpacing={{ base: "normal", md: "tight" }}
           >
             Testimonios
           </Heading>

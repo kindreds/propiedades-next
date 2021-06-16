@@ -1,13 +1,13 @@
-import React from 'react';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
-import { RiWhatsappFill } from 'react-icons/ri';
+import React from "react";
+import NextLink from "next/link";
+import PropTypes from "prop-types";
+import { RiWhatsappFill } from "react-icons/ri";
 import {
   StarIcon,
   PhoneIcon,
   AtSignIcon,
   ChevronRightIcon,
-} from '@chakra-ui/icons';
+} from "@chakra-ui/icons";
 import {
   Box,
   Icon,
@@ -17,24 +17,23 @@ import {
   SimpleGrid,
   IconButton,
   Text,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 const AsesorCard = ({ simple, drawer, ...props }) => {
   return (
     <Box
       {...props}
-      w="full"
-      mb={simple ? 2 : 10}
-      as="article"
       mx="auto"
       bg="white"
-      shadow={!drawer && 'md'}
-      borderWidth={!drawer && 1}
-      borderRadius={!drawer && 'lg'}
+      as="article"
       overflow="hidden"
+      mb={simple ? 2 : 10}
       borderColor="gray.300"
+      shadow={!drawer && "md"}
+      borderWidth={!drawer && 1}
       transition="all 0.3s ease"
-      _hover={{ shadow: !drawer ? 'xl' : 'none' }}
+      borderRadius={!drawer && "lg"}
+      _hover={{ shadow: !drawer ? "xl" : "none" }}
     >
       <Box>
         <Image
@@ -53,9 +52,9 @@ const AsesorCard = ({ simple, drawer, ...props }) => {
           <Text>13 Propiedades</Text>
           <Box d="flex" alignItems="center">
             {Array(5)
-              .fill('')
+              .fill("")
               .map((_, i) => (
-                <StarIcon key={i} color={i < 5 ? 'teal.500' : 'gray.300'} />
+                <StarIcon key={i} color={i < 5 ? "teal.500" : "gray.300"} />
               ))}
             <Box as="span" ml="2" color="gray.600">
               {12} Opiniones
@@ -78,37 +77,37 @@ const AsesorCard = ({ simple, drawer, ...props }) => {
       </Box>
       <SimpleGrid
         borderTopWidth="1px"
-        borderBottomWidth={drawer && '1px'}
+        borderBottomWidth={drawer && "1px"}
         templateColumns="repeat(3, 1fr)"
       >
         <IconButton
-          variant={drawer && ''}
+          variant={drawer && ""}
           as="a"
           target="_blank"
           rel="​noopener noreferrer"
           href="https://wa.me/+51999999999"
           rounded="none"
           color="gray.500"
-          _hover={{ color: 'whatsapp.500' }}
+          _hover={{ color: "whatsapp.500" }}
           icon={<RiWhatsappFill fontSize={25} />}
         />
         <IconButton
-          variant={drawer && 'ghost'}
+          variant={drawer && "ghost"}
           as="a"
           href="tel:+51999999999"
           rounded="none"
           color="gray.500"
           borderLeftWidth="1px"
-          _hover={{ color: 'gray.700' }}
+          _hover={{ color: "gray.700" }}
           icon={<PhoneIcon fontSize={20} />}
         />
         <IconButton
-          variant={drawer && 'ghost'}
+          variant={drawer && "ghost"}
           as="a"
           rounded="none"
           color="gray.500"
           borderLeftWidth="1px"
-          _hover={{ color: 'gray.700' }}
+          _hover={{ color: "gray.700" }}
           href="mailto:vdiaz@example.com"
           icon={<AtSignIcon fontSize={20} />}
         />

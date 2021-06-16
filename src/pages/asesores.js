@@ -1,25 +1,24 @@
-import React from 'react';
-import Head from 'next/head';
-import NextLink from 'next/link';
-import { FaList } from 'react-icons/fa';
-import { BsGridFill } from 'react-icons/bs';
-import { Tooltip } from '@chakra-ui/tooltip';
-import { IconButton } from '@chakra-ui/button';
+import React from "react";
+import Head from "next/head";
+import NextLink from "next/link";
+import { FaList } from "react-icons/fa";
+import { BsGridFill } from "react-icons/bs";
+import { Tooltip } from "@chakra-ui/tooltip";
+import { IconButton } from "@chakra-ui/button";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-} from '@chakra-ui/breadcrumb';
-import { GoSettings } from 'react-icons/go';
-import { useDisclosure } from '@chakra-ui/hooks';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Flex, Heading, Container } from '@chakra-ui/layout';
+} from "@chakra-ui/breadcrumb";
+import { GoSettings } from "react-icons/go";
+import { useDisclosure } from "@chakra-ui/hooks";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { Box, Flex, Heading, Container } from "@chakra-ui/layout";
 
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import Asesores from '../components/AsesoresList';
-import LastProperties from '../components/LastProperties';
-import AdvanceSearchAsesor from '../components/AdvanceSearch/AdvanceSearchAsesor';
+import Footer from "../components/Footer";
+import Asesores from "../components/AsesoresList";
+import LastProperties from "../components/LastProperties";
+import AdvanceSearchAsesor from "../components/AdvanceSearch/AdvanceSearchAsesor";
 
 const asesores = () => {
   const { onOpen } = useDisclosure();
@@ -30,23 +29,21 @@ const asesores = () => {
         <title>Asesores</title>
       </Head>
 
-      <Navbar dark={true} />
-
       <Container
         pb={10}
         maxW={{
-          base: '95%',
-          sm: 'container.sm',
-          md: 'container.md',
-          lg: 'container.lg',
-          xl: 'container.xl',
+          base: "95%",
+          sm: "container.sm",
+          md: "container.md",
+          lg: "container.lg",
+          xl: "container.xl",
         }}
-        pt={{ base: '100px', xl: '120px' }}
+        pt={{ base: 10 }}
       >
         <Breadcrumb
           mb={5}
           spacing="8px"
-          display={{ base: 'none', lg: 'block' }}
+          display={{ base: "none", lg: "block" }}
           separator={<ChevronRightIcon color="gray.500" />}
         >
           <BreadcrumbItem>
@@ -61,7 +58,7 @@ const asesores = () => {
         </Breadcrumb>
 
         <Flex mb={5} align="center">
-          <Heading fontSize={{ base: '2xl', sm: '3xl' }} flex={1}>
+          <Heading fontSize={{ base: "2xl", sm: "3xl" }} flex={1}>
             Asesores
           </Heading>
           <Tooltip
@@ -98,10 +95,14 @@ const asesores = () => {
         colorScheme="red"
         onClick={() => onOpen()}
         icon={<GoSettings fontSize="30px" />}
-        display={{ base: 'flex', xl: 'none' }}
+        display={{ base: "flex", xl: "none" }}
       />
     </Box>
   );
+};
+
+asesores.getInitialProps = () => {
+  return { dark: true };
 };
 
 export default asesores;

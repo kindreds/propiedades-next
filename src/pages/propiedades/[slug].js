@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import ReactSlider from 'react-slidy';
-import { BsChatFill } from 'react-icons/bs';
-import { GoPrimitiveDot } from 'react-icons/go';
-import { Tooltip } from '@chakra-ui/tooltip';
-import { RiWhatsappFill } from 'react-icons/ri';
-import { useDisclosure } from '@chakra-ui/hooks';
-import { Img as ImageChakra } from '@chakra-ui/image';
-import { BiPrinter, BiShareAlt } from 'react-icons/bi';
-import { IconButton } from '@chakra-ui/button';
-import { useInView } from 'react-intersection-observer';
-import { useBreakpointValue } from '@chakra-ui/media-query';
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import ReactSlider from "react-slidy";
+import { BsChatFill } from "react-icons/bs";
+import { GoPrimitiveDot } from "react-icons/go";
+import { Tooltip } from "@chakra-ui/tooltip";
+import { RiWhatsappFill } from "react-icons/ri";
+import { useDisclosure } from "@chakra-ui/hooks";
+import { Img as ImageChakra } from "@chakra-ui/image";
+import { BiPrinter, BiShareAlt } from "react-icons/bi";
+import { IconButton } from "@chakra-ui/button";
+import { useInView } from "react-intersection-observer";
+import { useBreakpointValue } from "@chakra-ui/media-query";
 import {
   Box,
   Stack,
@@ -18,38 +18,38 @@ import {
   Container,
   SimpleGrid,
   Heading,
-} from '@chakra-ui/layout';
+} from "@chakra-ui/layout";
 import {
   FaFacebookF,
   FaLinkedinIn,
   FaTwitter,
   FaWhatsapp,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 
-import Navbar from '../../components/Navbar';
-import AsesorCard from '../../components/AsesorCard';
-import PropertiHeader from '../../components/PropertiHeader';
-import CommentForm from '../../components/CommentArea/CommentForm';
+import Navbar from "../../components/Navbar";
+import AsesorCard from "../../components/AsesorCard";
+import PropertiHeader from "../../components/PropertiHeader";
+import CommentForm from "../../components/CommentArea/CommentForm";
 
-import { nativeShare } from '../../helper/nativeShare';
-import Icon from '@chakra-ui/icon';
-import PropiedadesDesc from '../../components/Section/PropiedadesDesc';
+import { nativeShare } from "../../helper/nativeShare";
+import Icon from "@chakra-ui/icon";
+import PropiedadesDesc from "../../components/Section/PropiedadesDesc";
 
 /* Componentes */
 
-const ProDetails = dynamic(() => import('../../components/ProDetails'), {
+const ProDetails = dynamic(() => import("../../components/ProDetails"), {
   ssr: false,
 });
-const FloorMap = dynamic(() => import('../../components/FloorMap'), {
+const FloorMap = dynamic(() => import("../../components/FloorMap"), {
   ssr: false,
 });
-const VideoProperti = dynamic(() => import('../../components/VideoProperti'), {
+const VideoProperti = dynamic(() => import("../../components/VideoProperti"), {
   ssr: false,
 });
-const Contact = dynamic(() => import('../../components/Contact'), {
+const Contact = dynamic(() => import("../../components/Contact"), {
   ssr: false,
 });
-const Map = dynamic(() => import('../../components/Map'), {
+const Map = dynamic(() => import("../../components/Map"), {
   ssr: false,
 });
 
@@ -71,26 +71,25 @@ const Propiedad = () => {
   };
 
   const ScrollToContact = () => {
-    const el = document.getElementById('asesor_msg');
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const el = document.getElementById("asesor_msg");
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const numOfSlides = numOfSlidesRaw ?? 3;
 
   const imagesList = [
-    '/inhouse_1_cp.webp',
-    '/inhouse_2_cp.webp',
-    '/inhouse_3_cp.webp',
-    '/inhouse_4_cp.webp',
-    '/inhouse_5_cp.webp',
-    '/inhouse_6_cp.webp',
+    "/inhouse_1_cp.webp",
+    "/inhouse_2_cp.webp",
+    "/inhouse_3_cp.webp",
+    "/inhouse_4_cp.webp",
+    "/inhouse_5_cp.webp",
+    "/inhouse_6_cp.webp",
   ];
 
   return (
     <>
       <Box bg="gray.200" w="100%">
-        <Navbar dark={true} />
-        <Box w="full" pt="82px">
+        <Box w="full">
           <ReactSlider
             showArrows
             infiniteLoop
@@ -117,7 +116,7 @@ const Propiedad = () => {
                   key={index}
                   rounded="full"
                   variant="unstyled"
-                  sx={{ outline: 'none', border: 'none' }}
+                  sx={{ outline: "none", border: "none" }}
                   opacity={index === actualSlide ? 1 : 0.3}
                   icon={<Icon as={GoPrimitiveDot} fontSize="25px" mt="auto" />}
                   onClick={() => updateSlide({ currentSlide: index })}
@@ -130,18 +129,18 @@ const Propiedad = () => {
         <Container
           pb={5}
           maxW={{
-            base: '99%',
-            sm: 'container.sm',
-            md: '90%',
-            lg: 'container.xl',
-            xl: 'container.xl',
+            base: "99%",
+            sm: "container.sm",
+            md: "90%",
+            lg: "container.xl",
+            xl: "container.xl",
           }}
         >
           <SimpleGrid
             gap={6}
             templateColumns={{
-              base: 'minmax(0, 1fr)',
-              lg: 'minmax(0, 1fr) 350px',
+              base: "minmax(0, 1fr)",
+              lg: "minmax(0, 1fr) 350px",
             }}
           >
             <Box>
@@ -180,8 +179,8 @@ const Propiedad = () => {
                 <CommentForm />
               </div>
             </Box>
-            <Box display={{ base: 'none', lg: 'block' }}>
-              <Box pos="sticky" top={{ base: '100px', xl: 4 }}>
+            <Box display={{ base: "none", lg: "block" }}>
+              <Box pos="sticky" top={{ base: "100px" }}>
                 <AsesorCard simple />
                 {!SocialInView && (
                   <HStack sx={{ zIndex: 4 }}>
@@ -191,26 +190,26 @@ const Propiedad = () => {
                       colorScheme="teal"
                       icon={<BsChatFill />}
                       onClick={ScrollToContact}
-                      display={{ base: 'none', lg: 'flex' }}
+                      display={{ base: "none", lg: "flex" }}
                     />
                     <IconButton
                       size="lg"
                       colorScheme="teal"
                       onClick={nativeShare}
                       icon={<BiShareAlt fontSize="20px" />}
-                      display={{ base: 'flex', lg: 'none' }}
+                      display={{ base: "flex", lg: "none" }}
                     />
                     <IconButton
                       size="lg"
                       colorScheme="teal"
                       icon={<BiPrinter fontSize="20px" />}
-                      display={{ base: 'flex', lg: 'none' }}
+                      display={{ base: "flex", lg: "none" }}
                     />
                     <Tooltip label="Compartir en facebook">
                       <IconButton
                         size="lg"
                         colorScheme="facebook"
-                        display={{ base: 'none', lg: 'flex' }}
+                        display={{ base: "none", lg: "flex" }}
                         icon={<FaFacebookF fontSize="25px" />}
                       />
                     </Tooltip>
@@ -218,7 +217,7 @@ const Propiedad = () => {
                       <IconButton
                         size="lg"
                         colorScheme="whatsapp"
-                        display={{ base: 'none', lg: 'flex' }}
+                        display={{ base: "none", lg: "flex" }}
                         icon={<FaWhatsapp fontSize="25px" />}
                       />
                     </Tooltip>
@@ -226,7 +225,7 @@ const Propiedad = () => {
                       <IconButton
                         size="lg"
                         colorScheme="twitter"
-                        display={{ base: 'none', lg: 'flex' }}
+                        display={{ base: "none", lg: "flex" }}
                         icon={<FaTwitter fontSize="25px" />}
                       />
                     </Tooltip>
@@ -234,7 +233,7 @@ const Propiedad = () => {
                       <IconButton
                         size="lg"
                         colorScheme="twitter"
-                        display={{ base: 'none', lg: 'flex' }}
+                        display={{ base: "none", lg: "flex" }}
                         icon={<FaLinkedinIn fontSize="25px" />}
                       />
                     </Tooltip>
@@ -254,7 +253,7 @@ const Propiedad = () => {
             colorScheme="teal"
             onClick={nativeShare}
             icon={<BiShareAlt fontSize="25px" />}
-            display={{ base: !SocialInView ? 'flex' : 'none', lg: 'none' }}
+            display={{ base: !SocialInView ? "flex" : "none", lg: "none" }}
           />
           <IconButton
             size="lg"
@@ -262,12 +261,16 @@ const Propiedad = () => {
             colorScheme="whatsapp"
             onClick={() => onOpen()}
             icon={<RiWhatsappFill fontSize="30px" />}
-            display={{ base: 'flex', lg: 'none' }}
+            display={{ base: "flex", lg: "none" }}
           />
         </Stack>
       </Box>
     </>
   );
+};
+
+Propiedad.getInitialProps = () => {
+  return { dark: true };
 };
 
 export default Propiedad;

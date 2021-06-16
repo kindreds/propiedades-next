@@ -1,18 +1,22 @@
 export const NAV_ITEMS = [
   {
-    label: 'Inicio',
-    href: '/',
+    label: "Inicio",
+    href: "/",
   },
   {
-    label: 'Propiedades',
-    href: '/propiedades',
+    label: "Propiedades",
+    href: "/propiedades",
   },
   {
-    label: 'Asesores',
-    href: '/asesores',
+    label: "Asesores",
+    href: "/asesores",
   },
   {
-    label: 'Contacto',
-    href: '/contacto',
+    label: "Sé un asesor",
+    href: "/solicitud-asesor",
+  },
+  {
+    label: "Contacto",
+    href: "/contacto",
   },
 ];
