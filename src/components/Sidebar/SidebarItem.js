@@ -1,21 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   AccordionItem,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
-} from '@chakra-ui/accordion';
-import NextLink from 'next/link';
-import { Box, Link, Divider } from '@chakra-ui/layout';
+} from "@chakra-ui/accordion";
+import NextLink from "next/link";
+import { Box, Link, Divider } from "@chakra-ui/layout";
 
-const SidebarItem = ({ label, href }) => {
+const SidebarItem = ({ label, href, onToggle }) => {
   return (
     <>
       <Divider />
       <Box py={4} px={4}>
         <NextLink href={href}>
-          <Link>{label}</Link>
+          <Link onClick={onToggle}>{label}</Link>
         </NextLink>
       </Box>
     </>
@@ -25,6 +25,7 @@ const SidebarItem = ({ label, href }) => {
 SidebarItem.propTypes = {
   href: PropTypes.string,
   label: PropTypes.string,
+  onToggle: PropTypes.func,
   child: PropTypes.arrayOf(PropTypes.object),
 };
 

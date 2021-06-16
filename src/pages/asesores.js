@@ -11,7 +11,6 @@ import {
   BreadcrumbLink,
 } from "@chakra-ui/breadcrumb";
 import { GoSettings } from "react-icons/go";
-import { useDisclosure } from "@chakra-ui/hooks";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Flex, Heading, Container } from "@chakra-ui/layout";
 
@@ -21,8 +20,6 @@ import LastProperties from "../components/LastProperties";
 import AdvanceSearchAsesor from "../components/AdvanceSearch/AdvanceSearchAsesor";
 
 const asesores = () => {
-  const { onOpen } = useDisclosure();
-
   return (
     <Box pos="relative" bg="gray.200" minH="100vh">
       <Head>
@@ -77,7 +74,6 @@ const asesores = () => {
 
         <Flex>
           <div>
-            {/* <AdvanceSearch /> */}
             <AdvanceSearchAsesor />
             <LastProperties />
           </div>
@@ -85,18 +81,6 @@ const asesores = () => {
         </Flex>
       </Container>
       <Footer />
-
-      <IconButton
-        size="lg"
-        right={4}
-        bottom={4}
-        pos="fixed"
-        rounded="full"
-        colorScheme="red"
-        onClick={() => onOpen()}
-        icon={<GoSettings fontSize="30px" />}
-        display={{ base: "flex", xl: "none" }}
-      />
     </Box>
   );
 };

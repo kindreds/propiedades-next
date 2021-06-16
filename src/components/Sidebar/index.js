@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   Drawer,
   DrawerBody,
@@ -8,15 +8,14 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-} from '@chakra-ui/modal';
+} from "@chakra-ui/modal";
 
-import { NAV_ITEMS } from './items';
-import SidebarItem from './SidebarItem';
-import { Heading } from '@chakra-ui/layout';
-import { Accordion } from '@chakra-ui/accordion';
-import { Logo } from '../SVGS';
-import NextLink from 'next/link';
-import { Link } from '@chakra-ui/layout';
+import { NAV_ITEMS } from "./items";
+import SidebarItem from "./SidebarItem";
+import { Heading } from "@chakra-ui/layout";
+import { Logo } from "../SVGS";
+import NextLink from "next/link";
+import { Link } from "@chakra-ui/layout";
 
 const Sidebar = ({ isOpen, onToggle }) => {
   return (
@@ -30,7 +29,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
 
         <DrawerBody>
           {NAV_ITEMS.map((item, i) => (
-            <SidebarItem key={i} {...item} />
+            <SidebarItem key={i} onToggle={onToggle} {...item} />
           ))}
         </DrawerBody>
 
