@@ -1,14 +1,14 @@
-import React from 'react';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
-import ReactSlider from 'react-slidy';
-import { Box, Link } from '@chakra-ui/layout';
+import React from "react";
+import NextLink from "next/link";
+import PropTypes from "prop-types";
+import ReactSlider from "react-slidy";
+import { Box, Link } from "@chakra-ui/layout";
 
-import { Image } from '../tools';
+import Image from "next/image";
 
 const SliderImage = ({ images = [], ...props }) => {
   return (
-    <ReactSlider showArrows infiniteLoop keyboardNavigation>
+    <ReactSlider showArrows infiniteLoop>
       {images.map((url, i) => (
         <Box key={i} {...props}>
           <NextLink href="/propiedades/1">

@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 // import PropType from 'prop-types';
-import { Grid, GridItem, Box, Flex, Text } from '@chakra-ui/layout';
-import { Image } from '../tools';
+import { Grid, GridItem, Box, Flex, Text } from "@chakra-ui/layout";
+import { Image } from "../tools";
+import { motion } from "framer-motion";
 
 const Overlay = () => (
   <Box
@@ -22,23 +23,27 @@ const GridProperty = () => {
         gap={{ base: 3, xl: 6 }}
         justifyContent="center"
         templateColumns={{
-          base: '320px',
-          ms: 'repeat(2, 1fr)',
-          sm: 'repeat(2, 1fr)',
-          md: 'repeat(3, 1fr)',
+          base: "320px",
+          ms: "repeat(2, 1fr)",
+          sm: "repeat(2, 1fr)",
+          md: "repeat(3, 1fr)",
         }}
         templateRows={{
-          base: 'repeat(4, 250px)',
-          ms: 'repeat(3, 250px)',
-          sm: 'repeat(3, 250px)',
-          md: 'repeat(2, 250px)',
+          base: "repeat(4, 250px)",
+          ms: "repeat(3, 250px)",
+          sm: "repeat(3, 250px)",
+          md: "repeat(2, 250px)",
         }}
       >
         <GridItem
           rowSpan={2}
           pos="relative"
-          className="overlay"
+          as={motion.div}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          initial={{ x: -200, opacity: 0 }}
           overflow="hidden"
+          className="overlay"
         >
           <Overlay />
           <Image
@@ -49,9 +54,9 @@ const GridProperty = () => {
             filter="grayscale(0.5)"
             transition="all 0.3s ease"
             sx={{
-              '.overlay:hover &': {
-                filter: 'grayscale(0)',
-                transform: 'scale(1.2) rotate(-10deg)',
+              ".overlay:hover &": {
+                filter: "grayscale(0)",
+                transform: "scale(1.2) rotate(-10deg)",
               },
             }}
           />
@@ -61,19 +66,27 @@ const GridProperty = () => {
             </Text>
           </Flex>
         </GridItem>
-        <GridItem pos="relative" className="overlay" overflow="hidden">
+        <GridItem
+          as={motion.div}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          initial={{ y: -200, opacity: 0 }}
+          pos="relative"
+          className="overlay"
+          overflow="hidden"
+        >
           <Overlay />
           <Image
             cursor="pointer"
             rounded="lg"
             layout="fill"
-            src={'/ciudad1W_cp.webp'}
+            src={"/ciudad1W_cp.webp"}
             filter="grayscale(0.5)"
             transition="all 0.3s ease"
             sx={{
-              '.overlay:hover &': {
-                filter: 'grayscale(0)',
-                transform: 'scale(1.2) rotate(-10deg)',
+              ".overlay:hover &": {
+                filter: "grayscale(0)",
+                transform: "scale(1.2) rotate(-10deg)",
               },
             }}
           />
@@ -84,23 +97,27 @@ const GridProperty = () => {
           </Flex>
         </GridItem>
         <GridItem
-          pos="relative"
           rowSpan={2}
-          className="overlay"
+          pos="relative"
+          as={motion.div}
           overflow="hidden"
+          className="overlay"
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          initial={{ x: 200, opacity: 0 }}
         >
           <Overlay />
           <Image
             cursor="pointer"
             rounded="lg"
             layout="fill"
-            src={'/ciudad3H_cp.webp'}
+            src={"/ciudad3H_cp.webp"}
             filter="grayscale(0.5)"
             transition="all 0.3s ease"
             sx={{
-              '.overlay:hover &': {
-                filter: 'grayscale(0)',
-                transform: 'scale(1.2) rotate(-10deg)',
+              ".overlay:hover &": {
+                filter: "grayscale(0)",
+                transform: "scale(1.2) rotate(-10deg)",
               },
             }}
           />
@@ -110,19 +127,27 @@ const GridProperty = () => {
             </Text>
           </Flex>
         </GridItem>
-        <GridItem pos="relative" className="overlay" overflow="hidden">
+        <GridItem
+          as={motion.div}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          initial={{ y: 200, opacity: 0 }}
+          pos="relative"
+          className="overlay"
+          overflow="hidden"
+        >
           <Overlay />
           <Image
             cursor="pointer"
             rounded="lg"
             layout="fill"
-            src={'/ciudad4W_cp.webp'}
+            src={"/ciudad4W_cp.webp"}
             filter="grayscale(0.5)"
             transition="all 0.3s ease"
             sx={{
-              '.overlay:hover &': {
-                filter: 'grayscale(0)',
-                transform: 'scale(1.2) rotate(-10deg)',
+              ".overlay:hover &": {
+                filter: "grayscale(0)",
+                transform: "scale(1.2) rotate(-10deg)",
               },
             }}
           />

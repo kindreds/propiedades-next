@@ -1,17 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Flex, Stack, Button, Select, Text } from '@chakra-ui/react';
+import React from "react";
+import PropTypes from "prop-types";
+import { Select } from "@chakra-ui/select";
+import { Button } from "@chakra-ui/button";
+import { Flex, Stack, Text } from "@chakra-ui/layout";
 
 const AdvanceSearchAsesor = () => {
   return (
     <Stack
       mr={4}
-      bg="white"
       py={6}
       px={6}
-      shadow={'lg'}
-      rounded={'lg'}
-      display={{ base: 'none', xl: 'flex' }}
+      bg="white"
+      shadow={"lg"}
+      rounded={"lg"}
+      display={{ base: "none", xl: "flex" }}
     >
       <Text fontWeight="bold" mb={2}>
         Busqueda Avanzada

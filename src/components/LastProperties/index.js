@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 import {
   Badge,
   Box,
@@ -8,7 +8,7 @@ import {
   HStack,
   Stack,
   Text,
-} from '@chakra-ui/layout';
+} from "@chakra-ui/layout";
 
 const LastProperties = () => {
   return (
@@ -18,9 +18,9 @@ const LastProperties = () => {
       py={4}
       px={6}
       bg="white"
-      shadow={'lg'}
-      rounded={'lg'}
-      display={{ base: 'none', xl: 'block' }}
+      shadow={"lg"}
+      rounded={"lg"}
+      display={{ base: "none", xl: "block" }}
     >
       <Text mb={4} fontWeight="bold">
         Últimas propiedades

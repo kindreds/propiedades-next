@@ -35,6 +35,7 @@ const Navbar = ({ dark = false }) => {
         minH="60px"
         style={{ zIndex: 4 }}
         pos={{ base: "sticky" }}
+        transition="background 0.3s ease"
         shadow={{ base: "lg", xl: dark ? "lg" : "none" }}
         bg={{ base: "white", xl: dark ? "white" : "transparent" }}
       >

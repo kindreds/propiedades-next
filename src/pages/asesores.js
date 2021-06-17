@@ -18,10 +18,19 @@ import Footer from "../components/Footer";
 import Asesores from "../components/AsesoresList";
 import LastProperties from "../components/LastProperties";
 import AdvanceSearchAsesor from "../components/AdvanceSearch/AdvanceSearchAsesor";
+import { motion } from "framer-motion";
 
 const asesores = () => {
   return (
-    <Box pos="relative" bg="gray.200" minH="100vh">
+    <Box
+      as={motion.div}
+      exit={{ opacity: 0 }}
+      initial="initial"
+      animate="animate"
+      pos="relative"
+      bg="gray.200"
+      minH="100vh"
+    >
       <Head>
         <title>Asesores</title>
       </Head>

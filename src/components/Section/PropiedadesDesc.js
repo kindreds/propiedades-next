@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import ReactSlidy from 'react-slidy';
-import PropertyCard from '../PropertyCard';
-import { Box, Flex } from '@chakra-ui/layout';
-import { useBreakpointValue } from '@chakra-ui/media-query';
-import { createStyles, numOfDots } from '../../helper/dotStyles';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import ReactSlidy from "react-slidy";
+import PropertyCard from "../PropertyCard";
+import { Box, Flex } from "@chakra-ui/layout";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { createStyles, numOfDots } from "../../helper/dotStyles";
+import { motion } from "framer-motion";
 
 const initialState = {
   base: 1,
@@ -15,7 +16,7 @@ const initialState = {
   xl: 3,
 };
 
-const PropiedadesDesc = ({ breakpoints = initialState, maxW = '1200px' }) => {
+const PropiedadesDesc = ({ breakpoints = initialState, maxW = "1200px" }) => {
   const [timer, setTimer] = useState(0);
   const [actualSlide, setActualSlide] = useState(0);
   const numOfSlidesRaw = useBreakpointValue(breakpoints);
@@ -46,7 +47,7 @@ const PropiedadesDesc = ({ breakpoints = initialState, maxW = '1200px' }) => {
   };
 
   return (
-    <Box maxW={maxW} mt={5} mx="auto">
+    <Box exit={{ opacity: 0 }} mt={5} mx="auto" maxW={maxW}>
       <ReactSlidy
         showArrows={false}
         keyboardNavigation

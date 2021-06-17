@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@chakra-ui/button";
 import { Text, Flex, Box, Heading } from "@chakra-ui/layout";
+import { motion } from "framer-motion";
 
 import BasicSearch from "../BasicSearch";
-// import PropTypes from 'prop-types'
 
 const Hero = () => {
   // TODO: animacion texto
   // TODO: Animacion boders
   // TODO: slider de testimonios uno por uno y que se que centrado el del centro
-  const [offsetY, setOffsetY] = useState(0);
   const [isActive, setIsActive] = useState(0);
-
-  const handlerScroll = () => setOffsetY(window.pageYOffset);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handlerScroll);
-    return () => window.removeEventListener("scroll", handlerScroll);
-  }, []);
 
   return (
     <Box minH={{ xl: "100vh" }} overflow="hidden" mt="-82px">
@@ -25,7 +17,7 @@ const Hero = () => {
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         bgImage="url(./hero_cp.webp)"
-        style={{ transform: `translateY(${offsetY * 0.3}px)` }}
+        // style={{ transform: `translateY(${offsetY * 0.3}px)` }}
       >
         <Flex
           minH={{ xl: "100vh" }}
@@ -33,25 +25,35 @@ const Hero = () => {
           mt={{ base: "76px", xl: "0px" }}
           align={{ base: "flex-start", xl: "center" }}
         >
-          <Box
-            pt="50px"
-            pb="20px"
-            maxW={{ base: "90%" }}
-            mx="auto"
-            sx={{
-              transform: `translateY(-${offsetY}px)`,
-              scrollBehavior: "smooth",
-            }}
-          >
-            <Heading
-              mb="2"
-              color="white"
-              textAlign={"center"}
-              fontSize={{ base: "2xl", sm: "4xl", xl: "6xl" }}
-              fontWeight={{ base: "bold" }}
+          <Box pt="50px" pb="20px" maxW={{ base: "90%" }} mx="auto">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {
+                  scale: 0.8,
+                  opacity: 0,
+                },
+                visible: {
+                  scale: 1,
+                  opacity: 1,
+                  transition: {
+                    delay: 0.4,
+                  },
+                },
+              }}
             >
-              Busca tu casa soñada
-            </Heading>
+              <Heading
+                mb="2"
+                color="white"
+                textAlign={"center"}
+                fontWeight={{ base: "bold" }}
+                fontSize={{ base: "2xl", sm: "4xl", xl: "6xl" }}
+              >
+                Busca tu casa soñada
+              </Heading>
+            </motion.div>
+
             <Text textAlign={"center"} mb="8" color="white">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </Text>

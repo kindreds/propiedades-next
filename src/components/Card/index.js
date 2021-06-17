@@ -2,10 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 // import { Avatar } from '@chakra-ui/avatar';
 import { Text, Box, Heading } from "@chakra-ui/layout";
+import { fadeInUp } from "../../motions/fadeInUp";
+import { motion } from "framer-motion";
 
 const Card = ({ image: Image, title, content, ...props }) => {
   return (
     <Box
+      as={motion.div}
+      variants={fadeInUp}
       w={{ base: "90%", sm: "380px" }}
       shadow="lg"
       rounded="lg"
