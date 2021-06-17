@@ -151,9 +151,7 @@ const Propiedad = () => {
               />
               <ProDetails />
               <FloorMap />
-              <div>
-                <Map />
-              </div>
+              <Map />
               <VideoProperti />
               <Box mt={10}>
                 <Heading
