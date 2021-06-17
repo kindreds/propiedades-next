@@ -1,11 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Box, Text } from '@chakra-ui/layout';
+import React from "react";
+import PropTypes from "prop-types";
+import { Box, Text } from "@chakra-ui/layout";
 
-import { Avatar } from '../tools';
-import { StarIcon } from '@chakra-ui/icons';
+import { Avatar } from "../tools";
+import { StarIcon } from "@chakra-ui/icons";
 
-const TestimonialsCard = ({ name, comment }) => {
+const TestimonialsCard = ({ name, comment, actualSlide, i }) => {
+  const isActive = actualSlide + 1 === i;
+
   return (
     <Box
       w="90%"
@@ -21,13 +23,13 @@ const TestimonialsCard = ({ name, comment }) => {
         pos="relative"
         transform="translateY(50px)"
         transition="all 0.3s ease"
-        sx={{
-          '.card:hover &': {
+        sx={
+          isActive && {
             mb: 0,
             maxW: 150,
-            transform: 'translateY(0)',
-          },
-        }}
+            transform: "translateY(0)",
+          }
+        }
       >
         <Avatar
           alt={name}
@@ -40,31 +42,31 @@ const TestimonialsCard = ({ name, comment }) => {
         p={6}
         transition="all 0.3s ease"
         transform="translateY(40px)"
-        sx={{
-          '.card:hover &': {
-            transform: 'translateY(0)',
-          },
-        }}
+        sx={
+          isActive && {
+            transform: "translateY(0)",
+          }
+        }
       >
         <Text
           mb={4}
           textAlign="center"
           fontWeight="semibold"
-          fontSize={{ base: 'lg', md: 'xl' }}
-          lineHeight={{ base: 'shorter', md: 'none' }}
-          letterSpacing={{ base: 'normal', md: 'tight' }}
+          fontSize={{ base: "lg", md: "xl" }}
+          lineHeight={{ base: "shorter", md: "none" }}
+          letterSpacing={{ base: "normal", md: "tight" }}
         >
-          {name}
+          {name} {i + 1}
         </Text>
         <Box d="flex" alignItems="center" justifyContent="center" mb={4}>
           {Array(5)
-            .fill('')
+            .fill("")
             .map((_, i) => (
               <StarIcon
                 key={i}
                 mr={1}
                 fontSize="xl"
-                color={i < 4 ? 'teal.500' : 'gray.300'}
+                color={i < 4 ? "teal.500" : "gray.300"}
               />
             ))}
         </Box>
@@ -73,12 +75,12 @@ const TestimonialsCard = ({ name, comment }) => {
           opacity={0}
           pos="relative"
           transition="height 0.3s ease"
-          sx={{
-            '.card:hover &': {
+          sx={
+            isActive && {
               opacity: 1,
-              height: '200px',
-            },
-          }}
+              height: "100px",
+            }
+          }
         >
           <Text fontSize="sm" whiteSpace="normal">
             {comment}
@@ -90,12 +92,12 @@ const TestimonialsCard = ({ name, comment }) => {
             bottom={0}
             pos="absolute"
             transition="height 0.5s ease"
-            sx={{
-              '.card:hover &': {
+            sx={
+              isActive && {
                 height: 0,
                 opacity: 0,
-              },
-            }}
+              }
+            }
           />
         </Box>
       </Box>

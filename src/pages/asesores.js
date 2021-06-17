@@ -18,79 +18,95 @@ import Footer from "../components/Footer";
 import Asesores from "../components/AsesoresList";
 import LastProperties from "../components/LastProperties";
 import AdvanceSearchAsesor from "../components/AdvanceSearch/AdvanceSearchAsesor";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 
 const asesores = () => {
   return (
-    <Box
-      as={motion.div}
-      exit={{ opacity: 0 }}
-      initial="initial"
-      animate="animate"
-      pos="relative"
-      bg="gray.200"
-      minH="100vh"
-    >
-      <Head>
-        <title>Asesores</title>
-      </Head>
-
-      <Container
-        pb={10}
-        maxW={{
-          base: "95%",
-          sm: "container.sm",
-          md: "container.md",
-          lg: "container.lg",
-          xl: "container.xl",
-        }}
-        pt={{ base: 10 }}
+    <LazyMotion features={domAnimation}>
+      <Box
+        as={m.div}
+        exit={{ opacity: 0 }}
+        initial="initial"
+        animate="animate"
+        pos="relative"
+        bg="gray.200"
+        minH="100vh"
       >
-        <Breadcrumb
-          mb={5}
-          spacing="8px"
-          display={{ base: "none", lg: "block" }}
-          separator={<ChevronRightIcon color="gray.500" />}
+        <Head>
+          <title>Asesores</title>
+        </Head>
+
+        <Container
+          pb={10}
+          maxW={{
+            base: "95%",
+            sm: "container.sm",
+            md: "container.md",
+            lg: "container.lg",
+            xl: "container.xl",
+          }}
+          pt={{ base: 10 }}
         >
-          <BreadcrumbItem>
-            <NextLink href="/">
-              <BreadcrumbLink fontWeight="light">Inicio</BreadcrumbLink>
-            </NextLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink fontWeight="light">Asesores</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
-
-        <Flex mb={5} align="center">
-          <Heading fontSize={{ base: "2xl", sm: "3xl" }} flex={1}>
-            Asesores
-          </Heading>
-          <Tooltip
-            label="Listado"
-            aria-label="Boton para cambiar presentacion como lista."
+          <m.div
+            initial={{ x: 200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
           >
-            <IconButton colorScheme="red" mr={4} icon={<FaList />} />
-          </Tooltip>
-          <Tooltip
-            label="Galeria"
-            aria-label="Boton para cambiar presentacion como galeria."
-          >
-            <IconButton colorScheme="red" icon={<BsGridFill />} />
-          </Tooltip>
-        </Flex>
+            <Breadcrumb
+              mb={5}
+              spacing="8px"
+              display={{ base: "none", lg: "block" }}
+              separator={<ChevronRightIcon color="gray.500" />}
+            >
+              <BreadcrumbItem>
+                <NextLink href="/">
+                  <BreadcrumbLink fontWeight="light">Inicio</BreadcrumbLink>
+                </NextLink>
+              </BreadcrumbItem>
 
-        <Flex>
-          <div>
-            <AdvanceSearchAsesor />
-            <LastProperties />
-          </div>
-          <Asesores />
-        </Flex>
-      </Container>
-      <Footer />
-    </Box>
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink fontWeight="light">Asesores</BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+          </m.div>
+
+          <Flex mb={5} align="center">
+            <Heading
+              as={m.h1}
+              initial={{ x: 200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1, transition: { delay: 0.1 } }}
+              fontSize={{ base: "2xl", sm: "3xl" }}
+              flex={1}
+            >
+              Asesores
+            </Heading>
+            <Tooltip
+              label="Listado"
+              aria-label="Boton para cambiar presentacion como lista."
+            >
+              <IconButton colorScheme="red" mr={4} icon={<FaList />} />
+            </Tooltip>
+            <Tooltip
+              label="Galeria"
+              aria-label="Boton para cambiar presentacion como galeria."
+            >
+              <IconButton colorScheme="red" icon={<BsGridFill />} />
+            </Tooltip>
+          </Flex>
+
+          <Flex>
+            <m.div
+              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: 200, opacity: 0 }}
+            >
+              <AdvanceSearchAsesor />
+              <LastProperties />
+            </m.div>
+            <Asesores />
+          </Flex>
+        </Container>
+        <Footer />
+      </Box>
+    </LazyMotion>
   );
 };
 

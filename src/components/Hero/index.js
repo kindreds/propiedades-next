@@ -4,6 +4,12 @@ import { Text, Flex, Box, Heading } from "@chakra-ui/layout";
 import { motion } from "framer-motion";
 
 import BasicSearch from "../BasicSearch";
+import {
+  headingMotion,
+  firstBtnsMotion,
+  secondBtnsMotion,
+  basicSearchMotion,
+} from "../../motions/headingMotion";
 
 const Hero = () => {
   // TODO: animacion texto
@@ -17,7 +23,6 @@ const Hero = () => {
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         bgImage="url(./hero_cp.webp)"
-        // style={{ transform: `translateY(${offsetY * 0.3}px)` }}
       >
         <Flex
           minH={{ xl: "100vh" }}
@@ -29,19 +34,7 @@ const Hero = () => {
             <motion.div
               initial="hidden"
               animate="visible"
-              variants={{
-                hidden: {
-                  scale: 0.8,
-                  opacity: 0,
-                },
-                visible: {
-                  scale: 1,
-                  opacity: 1,
-                  transition: {
-                    delay: 0.4,
-                  },
-                },
-              }}
+              variants={headingMotion}
             >
               <Heading
                 mb="2"
@@ -58,26 +51,45 @@ const Hero = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </Text>
             <Flex justify={{ base: "space-evenly", sm: "center" }} mb="6">
-              <Button
-                minW="28"
-                size="lg"
-                mx={{ base: "0", sm: "12px" }}
-                onClick={() => setIsActive(1)}
-                colorScheme={isActive === 1 ? "red" : "gray"}
+              <motion.div
+                variants={firstBtnsMotion}
+                initial="hidden"
+                animate="visible"
               >
-                Alquiler
-              </Button>
-              <Button
-                minW="28"
-                size="lg"
-                mx={{ base: "0", sm: "12px" }}
-                onClick={() => setIsActive(0)}
-                colorScheme={isActive === 0 ? "red" : "gray"}
+                <Button
+                  minW="28"
+                  size="lg"
+                  mx={{ base: "0", sm: "12px" }}
+                  onClick={() => setIsActive(1)}
+                  colorScheme={isActive === 1 ? "red" : "gray"}
+                >
+                  Alquiler
+                </Button>
+              </motion.div>
+              <motion.div
+                variants={secondBtnsMotion}
+                initial="hidden"
+                animate="visible"
               >
-                Venta
-              </Button>
+                <Button
+                  minW="28"
+                  size="lg"
+                  mx={{ base: "0", sm: "12px" }}
+                  onClick={() => setIsActive(0)}
+                  colorScheme={isActive === 0 ? "red" : "gray"}
+                >
+                  Venta
+                </Button>
+              </motion.div>
             </Flex>
-            <BasicSearch />
+
+            <motion.div
+              variants={basicSearchMotion}
+              initial="hidden"
+              animate="visible"
+            >
+              <BasicSearch />
+            </motion.div>
           </Box>
         </Flex>
       </Box>

@@ -21,7 +21,7 @@ const Modal = ({ isOpen, onClose, children, ...props }) => {
       motionPreset="scale"
     >
       <ModalOverlay />
-      <ModalContent maxW={{ base: "90%" }}>
+      <ModalContent maxW={{ base: "90%", xl: "80%" }}>
         <ModalBody pos="relative" p={0}>
           <Box pos="absolute" top={-5} right={-5} zIndex="toast">
             <IconButton

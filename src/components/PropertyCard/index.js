@@ -24,10 +24,10 @@ const PropertyCard = ({ i, fullW, ...props }) => {
       <Box
         {...props}
         mb={5}
-        as="article"
         mx="auto"
         bg="white"
         shadow="md"
+        as="article"
         borderWidth={1}
         borderRadius="lg"
         borderColor="gray.300"

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import ReactSlidy from 'react-slidy';
-import { Box, Flex } from '@chakra-ui/layout';
+import React, { useState } from "react";
+import ReactSlidy from "react-slidy";
+import { Box, Flex } from "@chakra-ui/layout";
+import { useBreakpointValue } from "@chakra-ui/media-query";
 
-import { testimonials } from '../../data';
-import { createStyles, numOfDots } from '../../helper/dotStyles';
-import TestimonialsCard from '../TestimonialsCard';
-import { useBreakpointValue } from '@chakra-ui/media-query';
+import { testimonials } from "../../data";
+import { createStyles } from "../../helper/dotStyles";
+import TestimonialsCard from "../TestimonialsCard";
 
 const Testimonios = () => {
   const numOfSlidesRaw = useBreakpointValue({
@@ -28,27 +28,26 @@ const Testimonios = () => {
   return (
     <Box maxW="1200px" mt={5} mx="auto">
       <ReactSlidy
-        numOfSlides={numOfSlides}
+        infiniteLoop
         showArrows={false}
         keyboardNavigation
         slide={actualSlide}
+        numOfSlides={numOfSlides}
         doAfterSlide={updateSlide}
       >
         {testimonials.map((item, i) => (
-          <TestimonialsCard key={i} {...item} />
+          <TestimonialsCard key={i} {...item} i={i} actualSlide={actualSlide} />
         ))}
       </ReactSlidy>
       <Flex flex={1} justify="center">
-        {Array(numOfDots({ length: testimonials.length, numOfSlides }))
+        {Array(testimonials.length + 1)
           .fill(null)
           .map((_, i) => {
-            const pos = i === 0 ? 0 : i * numOfSlides;
-
             return (
               <button
                 key={i}
-                style={createStyles(pos === actualSlide)}
-                onClick={() => updateSlide({ currentSlide: pos })}
+                style={createStyles(i === actualSlide)}
+                onClick={() => updateSlide({ currentSlide: i })}
               >
                 &bull;
               </button>
