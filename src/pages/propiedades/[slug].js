@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import ReactSlider from "react-slidy";
 import {
   Box,
@@ -11,7 +12,7 @@ import {
 } from "@chakra-ui/layout";
 import { Tooltip } from "@chakra-ui/tooltip";
 import { IconButton } from "@chakra-ui/button";
-import { Img as ImageChakra } from "@chakra-ui/image";
+// import { Img as ImageChakra } from "@chakra-ui/image";
 
 import {
   FaTwitter,
@@ -100,7 +101,14 @@ const Propiedad = () => {
             doAfterSlide={updateSlide}
           >
             {imagesList.map((src, i) => (
-              <ImageChakra key={i} src={src} objectPosition="50% 50%" />
+              <Image
+                key={i}
+                src={src}
+                width="300"
+                height="200"
+                layout="responsive"
+                objectPosition="50% 50%"
+              />
             ))}
           </ReactSlider>
           <Box

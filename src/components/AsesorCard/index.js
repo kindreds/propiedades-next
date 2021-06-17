@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import NextLink from "next/link";
 import PropTypes from "prop-types";
 import { RiWhatsappFill } from "react-icons/ri";
@@ -9,7 +10,6 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { Icon } from "@chakra-ui/icon";
-import { Image } from "@chakra-ui/image";
 import { IconButton } from "@chakra-ui/button";
 import { Box, SimpleGrid, Text, Heading, Link } from "@chakra-ui/layout";
 import { fadeInUp } from "../../motions/fadeInUp";
@@ -33,14 +33,15 @@ const AsesorCard = ({ simple, drawer, ...props }) => {
         _hover={{ shadow: !drawer ? "xl" : "none" }}
       >
         <Box>
-          <Image
-            h={64}
-            w="full"
-            fit="cover"
-            alt="avatar"
-            objectPosition="center"
-            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-          />
+          <Box pos="relative" h={64} w="full">
+            <Image
+              layout="fill"
+              loading="lazy"
+              objectFit="cover"
+              objectPosition="center"
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+            />
+          </Box>
 
           <Box alignItems="center" p={4}>
             <Heading as="h1" fontSize="lg" fontWeight="semibold" mb={2}>
