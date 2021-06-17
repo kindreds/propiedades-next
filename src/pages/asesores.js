@@ -1,8 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import NextLink from "next/link";
-import { FaList } from "react-icons/fa";
-import { BsGridFill } from "react-icons/bs";
 import { Tooltip } from "@chakra-ui/tooltip";
 import { IconButton } from "@chakra-ui/button";
 import {
@@ -10,9 +8,11 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
 } from "@chakra-ui/breadcrumb";
-import { GoSettings } from "react-icons/go";
-import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Flex, Heading, Container } from "@chakra-ui/layout";
+
+import { FaList } from "react-icons/fa";
+import { BsGridFill } from "react-icons/bs";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 import Footer from "../components/Footer";
 import Asesores from "../components/AsesoresList";

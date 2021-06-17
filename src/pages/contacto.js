@@ -1,20 +1,19 @@
 import React from "react";
 import {
   Box,
-  Container,
-  Heading,
-  SimpleGrid,
-  Stack,
-  Text,
-} from "@chakra-ui/layout";
-import {
-  Button,
   Flex,
-  Icon,
-  Input,
-  Textarea,
-  VisuallyHidden,
-} from "@chakra-ui/react";
+  Text,
+  Stack,
+  Heading,
+  Container,
+  SimpleGrid,
+} from "@chakra-ui/layout";
+import { Icon } from "@chakra-ui/icon";
+import { Input } from "@chakra-ui/input";
+import { Button } from "@chakra-ui/button";
+import { Textarea } from "@chakra-ui/textarea";
+import { VisuallyHidden } from "@chakra-ui/visually-hidden";
+
 import { MdLocationOn } from "react-icons/md";
 import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 

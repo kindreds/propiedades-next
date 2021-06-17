@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import NextLink from "next/link";
-import dynamic from "next/dynamic";
+import d from "next/dynamic";
 import { FaList } from "react-icons/fa";
 import { GoSettings } from "react-icons/go";
 import { BsGridFill } from "react-icons/bs";
@@ -16,25 +16,23 @@ import {
   BreadcrumbLink,
 } from "@chakra-ui/breadcrumb";
 
-import Navbar from "../../components/Navbar";
-
 const o = { ssr: false };
 
 /* COMPONENTES */
 
-const Footer = dynamic(() => {
+const Footer = d(() => {
   return import("../../components/Footer");
 }, o);
-const AdvanceSearch = dynamic(() => {
+const AdvanceSearch = d(() => {
   return import("../../components/AdvanceSearch");
 }, o);
-const LastProperties = dynamic(() => {
+const LastProperties = d(() => {
   return import("../../components/LastProperties");
 }, o);
-const PropertiesResult = dynamic(() => {
+const PropertiesResult = d(() => {
   return import("../../components/PropertiesResult");
 }, o);
-const AdvanceSearchDrawer = dynamic(() => {
+const AdvanceSearchDrawer = d(() => {
   return import("../../components/AdvanceSearch/AdvanceSearchDrawer");
 }, o);
 

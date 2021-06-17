@@ -1,8 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Button } from "@chakra-ui/button";
-import { FormControl, Input, FormLabel } from "@chakra-ui/react";
 import {
   Box,
   Text,
@@ -11,18 +9,23 @@ import {
   Container,
   AspectRatio,
 } from "@chakra-ui/layout";
-import Modal from "../components/Modal";
-import Catchap from "../components/Catchap";
+import { Input } from "@chakra-ui/input";
+import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
+import { FormLabel, FormControl } from "@chakra-ui/form-control";
 
 import { FaPlay } from "react-icons/fa";
 
+import Modal from "../components/Modal";
+import Catchap from "../components/Catchap";
+
 const BeAsesor = () => {
-  const formRef = useRef();
   const modalHandler = useDisclosure();
 
   const scrollToForm = () => {
-    formRef.current.scrollIntoView({ behavior: "smooth" });
+    import("react-scroll").then((scroll) => {
+      scroll.animateScroll.scrollTo(1088);
+    });
   };
 
   return (
@@ -97,7 +100,7 @@ const BeAsesor = () => {
           </Container>
         </Box>
       </Box>
-      <Box bg="gray.200">
+      <Box bg="gray.200" id="BeAsesorID">
         <Container maxW="container.lg" py={5}>
           <Stack spacing={5}>
             <Box
@@ -129,13 +132,15 @@ const BeAsesor = () => {
               bg="white"
               rounded="lg"
               borderWidth={1}
+              id="formContact"
               borderColor="gray.300"
+              style={{ scrollPaddingTop: "100px" }}
             >
               <Heading as="h3" mb={5} fontSize={{ base: "xl" }}>
                 Formulario de contacto para ser asesor asociado de RE/MAX Perú
               </Heading>
 
-              <Stack ref={formRef} mb={5}>
+              <Stack mb={5}>
                 <Stack direction={{ base: "column", sm: "row" }}>
                   <FormControl id="nombres" isRequired>
                     <FormLabel>Nombre</FormLabel>
@@ -219,18 +224,6 @@ const BeAsesor = () => {
     </>
   );
 };
-
-{
-  /* <Box
-            px={4}
-            py={20}
-            mx="auto"
-            w="600px"
-            rounded="lg"
-            className="glass"
-            textAlign={{ base: "left", md: "center" }}
-          > */
-}
 
 BeAsesor.getInitialProps = () => {
   return { dark: true };

@@ -2,28 +2,27 @@ import "@fontsource/poppins";
 import React from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-
-import Hero from "../components/Hero";
 import { Image } from "@chakra-ui/image";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import { keyframes } from "@chakra-ui/react";
 import { Container, Text, Heading, Box } from "@chakra-ui/layout";
 
-const opts = { ssr: false };
+import Hero from "../components/Hero";
+import Footer from "../components/Footer";
 
-const GridProperty = dynamic(() => import("../components/GridProperty"), opts);
+const o = { ssr: false };
+
+const GridProperty = dynamic(() => import("../components/GridProperty"), o);
 const Testimonios = dynamic(
   () => import("../components/Section/Testimonios"),
-  opts
+  o
 );
 const PropiedadesDesc = dynamic(
   () => import("../components/Section/PropiedadesDesc"),
-  opts
+  o
 );
 const PorQueElegirnos = dynamic(
   () => import("../components/Section/PorQueElegirnos"),
-  opts
+  o
 );
 
 const Wave = keyframes`
@@ -51,8 +50,8 @@ const Index = () => {
       <Box bg="#D2EAFF" pos="relative" overflow="hidden">
         <Container maxW="container.xl" mx="auto" py="50px">
           <Heading
-            as="h3"
             mb={2}
+            as="h3"
             textAlign="center"
             fontWeight="semibold"
             fontSize={{ base: "2xl", md: "4xl" }}

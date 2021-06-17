@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 // import { Avatar } from '@chakra-ui/avatar';
-import { Text, Box, Heading } from '@chakra-ui/layout';
+import { Text, Box, Heading } from "@chakra-ui/layout";
 
 const Card = ({ image: Image, title, content, ...props }) => {
   return (
     <Box
-      w={{ base: '90%', sm: '380px' }}
+      w={{ base: "90%", sm: "380px" }}
       shadow="lg"
       rounded="lg"
       pos="relative"
@@ -15,6 +15,8 @@ const Card = ({ image: Image, title, content, ...props }) => {
       cursor="pointer"
       overflow="hidden"
       flexDirection="column"
+      transition="all 0.5s ease"
+      _hover={{ borderBottomRadius: "25%" }}
       sx={{ zIndex: 3 }}
       {...props}
     >
@@ -27,7 +29,7 @@ const Card = ({ image: Image, title, content, ...props }) => {
         pos="absolute"
         borderBottomRadius="25%"
         transition="height 0.5s ease"
-        sx={{ zIndex: 1, '.card:hover &': { height: '100%' } }}
+        sx={{ zIndex: 1, ".card:hover &": { height: "100%" } }}
       />
       <Box p={{ base: 5, xl: 10 }} sx={{ zIndex: 2 }}>
         <Box
@@ -41,7 +43,7 @@ const Card = ({ image: Image, title, content, ...props }) => {
           alignItems="center"
           justifyContent="center"
           transition="background 0.5s ease"
-          sx={{ '.card:hover &': { bg: 'white' } }}
+          sx={{ ".card:hover &": { bg: "white" } }}
         >
           <Image fontSize="80px" />
         </Box>
@@ -63,19 +65,6 @@ const Card = ({ image: Image, title, content, ...props }) => {
         >
           {content}
         </Text>
-        {/* <Button
-          as="a"
-          mt={16}
-          size="lg"
-          variant="outline"
-          color="gray.700"
-          _hover="gray.600"
-          w={{ base: 'full' }}
-          transition="all 0.5s ease"
-          sx={{ '.card:hover &': { bg: 'gray.700', color: 'gray.200' } }}
-        >
-          Learn More
-        </Button> */}
       </Box>
     </Box>
   );

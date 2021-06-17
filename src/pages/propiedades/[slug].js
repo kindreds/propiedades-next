@@ -1,39 +1,40 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import ReactSlider from "react-slidy";
-import { BsChatFill } from "react-icons/bs";
-import { GoPrimitiveDot } from "react-icons/go";
-import { Tooltip } from "@chakra-ui/tooltip";
-import { RiWhatsappFill } from "react-icons/ri";
-import { useDisclosure } from "@chakra-ui/hooks";
-import { Img as ImageChakra } from "@chakra-ui/image";
-import { BiPrinter, BiShareAlt } from "react-icons/bi";
-import { IconButton } from "@chakra-ui/button";
-import { useInView } from "react-intersection-observer";
-import { useBreakpointValue } from "@chakra-ui/media-query";
 import {
   Box,
   Stack,
   HStack,
+  Heading,
   Container,
   SimpleGrid,
-  Heading,
 } from "@chakra-ui/layout";
+import { Tooltip } from "@chakra-ui/tooltip";
+import { IconButton } from "@chakra-ui/button";
+import { Img as ImageChakra } from "@chakra-ui/image";
+
 import {
-  FaFacebookF,
-  FaLinkedinIn,
   FaTwitter,
   FaWhatsapp,
+  FaFacebookF,
+  FaLinkedinIn,
 } from "react-icons/fa";
+import Icon from "@chakra-ui/icon";
+import { BsChatFill } from "react-icons/bs";
+import { GoPrimitiveDot } from "react-icons/go";
+import { RiWhatsappFill } from "react-icons/ri";
+import { BiPrinter, BiShareAlt } from "react-icons/bi";
 
-import Navbar from "../../components/Navbar";
+import { useDisclosure } from "@chakra-ui/hooks";
+import { useInView } from "react-intersection-observer";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+
 import AsesorCard from "../../components/AsesorCard";
 import PropertiHeader from "../../components/PropertiHeader";
 import CommentForm from "../../components/CommentArea/CommentForm";
+import PropiedadesDesc from "../../components/Section/PropiedadesDesc";
 
 import { nativeShare } from "../../helper/nativeShare";
-import Icon from "@chakra-ui/icon";
-import PropiedadesDesc from "../../components/Section/PropiedadesDesc";
 
 /* Componentes */
 
