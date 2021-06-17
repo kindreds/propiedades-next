@@ -1,16 +1,20 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
-import { ChakraProvider } from "@chakra-ui/react";
+
+const Chakra = dynamic(() =>
+  import("@chakra-ui/react").then((chakra) => chakra.ChakraProvider)
+);
 
 import theme from "../theme";
 import "react-slidy/lib/index.scss";
 /* eslint-disable */
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider resetCSS theme={theme}>
+    <Chakra resetCSS theme={theme}>
       <Navbar dark={pageProps.dark} />
       <Component {...pageProps} />
-    </ChakraProvider>
+    </Chakra>
   );
 }
 
