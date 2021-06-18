@@ -42,97 +42,102 @@ const Propiedades = () => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <m.div initial="initial" animate="animate" exit={{ opacity: 0 }}>
-        <Box fontWeight="light" pos="relative" bg="gray.200" minH="100vh">
-          <Head>
-            <title>Propiedades</title>
-          </Head>
+      <Box
+        w="full"
+        as={m.div}
+        bg="gray.200"
+        initial="initial"
+        animate="animate"
+        exit={{ opacity: 0 }}
+      >
+        <Head>
+          <title>Propiedades</title>
+        </Head>
 
-          <Container
-            pb={10}
-            maxW={{
-              base: "95%",
-              sm: "container.sm",
-              md: "container.md",
-              lg: "container.lg",
-              xl: "container.xl",
-            }}
-            pt={{ base: 10 }}
+        <Container
+          pb={10}
+          maxW={{
+            base: "95%",
+            sm: "container.sm",
+            md: "container.md",
+            lg: "container.lg",
+            xl: "container.xl",
+          }}
+          pt={{ base: 10 }}
+        >
+          <m.div
+            initial={{ x: 200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
           >
-            <m.div
-              initial={{ x: 200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+            <Breadcrumb
+              mb={5}
+              spacing="8px"
+              display={{ base: "none", lg: "block" }}
+              separator={<ChevronRightIcon color="gray.500" />}
             >
-              <Breadcrumb
-                mb={5}
-                spacing="8px"
-                display={{ base: "none", lg: "block" }}
-                separator={<ChevronRightIcon color="gray.500" />}
-              >
-                <BreadcrumbItem>
-                  <NextLink href="/">
-                    <BreadcrumbLink fontWeight="light" href="#">
-                      Inicio
-                    </BreadcrumbLink>
-                  </NextLink>
-                </BreadcrumbItem>
-
-                <BreadcrumbItem isCurrentPage>
+              <BreadcrumbItem>
+                <NextLink href="/">
                   <BreadcrumbLink fontWeight="light" href="#">
-                    Propiedades
+                    Inicio
                   </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Breadcrumb>
+                </NextLink>
+              </BreadcrumbItem>
+
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink fontWeight="light" href="#">
+                  Propiedades
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+          </m.div>
+          <Flex mb={5} align="center">
+            <Heading
+              as={m.h1}
+              initial={{ x: 200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1, transition: { delay: 0.1 } }}
+              fontSize={{ base: "2xl", sm: "3xl" }}
+              flex={1}
+            >
+              Propiedades
+            </Heading>
+            <Tooltip
+              label="Listado"
+              aria-label="Boton para cambiar presentacion como lista."
+            >
+              <IconButton colorScheme="red" mr={4} icon={<FaList />} />
+            </Tooltip>
+            <Tooltip
+              label="Galeria"
+              aria-label="Boton para cambiar presentacion como galeria."
+            >
+              <IconButton colorScheme="red" icon={<BsGridFill />} />
+            </Tooltip>
+          </Flex>
+          <Flex>
+            <m.div
+              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: 200, opacity: 0 }}
+            >
+              <AdvanceSearch />
+              <LastProperties />
             </m.div>
-            <Flex mb={5} align="center">
-              <Heading
-                as={m.h1}
-                initial={{ x: 200, opacity: 0 }}
-                animate={{ x: 0, opacity: 1, transition: { delay: 0.1 } }}
-                fontSize={{ base: "2xl", sm: "3xl" }}
-                flex={1}
-              >
-                Propiedades
-              </Heading>
-              <Tooltip
-                label="Listado"
-                aria-label="Boton para cambiar presentacion como lista."
-              >
-                <IconButton colorScheme="red" mr={4} icon={<FaList />} />
-              </Tooltip>
-              <Tooltip
-                label="Galeria"
-                aria-label="Boton para cambiar presentacion como galeria."
-              >
-                <IconButton colorScheme="red" icon={<BsGridFill />} />
-              </Tooltip>
-            </Flex>
-            <Flex>
-              <m.div
-                animate={{ x: 0, opacity: 1 }}
-                initial={{ x: 200, opacity: 0 }}
-              >
-                <AdvanceSearch />
-                <LastProperties />
-              </m.div>
-              <PropertiesResult />
-            </Flex>
-          </Container>
-          <Footer />
-          <AdvanceSearchDrawer isOpen={isOpen} onClose={onClose} />
-          <IconButton
-            size="lg"
-            right={4}
-            bottom={4}
-            pos="fixed"
-            rounded="full"
-            colorScheme="red"
-            onClick={() => onOpen()}
-            icon={<GoSettings fontSize="30px" />}
-            display={{ base: "flex", xl: "none" }}
-          />
-        </Box>
-      </m.div>
+            <PropertiesResult />
+          </Flex>
+        </Container>
+        <Footer />
+        <AdvanceSearchDrawer isOpen={isOpen} onClose={onClose} />
+        <IconButton
+          size="lg"
+          right={4}
+          bottom={4}
+          pos="fixed"
+          rounded="full"
+          colorScheme="red"
+          onClick={() => onOpen()}
+          icon={<GoSettings fontSize="30px" />}
+          display={{ base: "flex", xl: "none" }}
+        />
+      </Box>
     </LazyMotion>
   );
 };

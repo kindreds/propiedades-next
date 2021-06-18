@@ -53,7 +53,6 @@ const DetailSlider = dynamic(
   () => import("../../components/SliderImage/DetailSlider"),
   {
     ssr: true,
-    loading: () => <p>Loading...</p>,
   }
 );
 

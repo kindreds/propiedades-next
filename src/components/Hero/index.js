@@ -12,9 +12,6 @@ import {
 } from "../../motions/headingMotion";
 
 const Hero = () => {
-  // TODO: animacion texto
-  // TODO: Animacion boders
-  // TODO: slider de testimonios uno por uno y que se que centrado el del centro
   const [isActive, setIsActive] = useState(0);
 
   return (

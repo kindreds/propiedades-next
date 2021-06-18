@@ -59,7 +59,6 @@ const AsesoresList = () => {
         gap={4}
         as={motion.div}
         variants={stagger}
-        mx="auto"
         boxSizing="border-box"
         templateColumns={{
           base: "minmax(0, 1fr)",
