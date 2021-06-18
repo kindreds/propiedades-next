@@ -1,29 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import d from "next/dynamic";
 import NextLink from "next/link";
-import { useInView } from "react-intersection-observer";
 import { Box, Heading, Link, Text } from "@chakra-ui/layout";
 
 const MapWithSsr = d(() => import("./MapWithSsr"), { ssr: false });
 
 const Map = () => {
-  const { ref, inView } = useInView();
-  const [load, setLoad] = useState(false);
-
-  useEffect(() => {
-    if (inView) setLoad(true);
-  }, [inView]);
-
   return (
     <>
-      <Box
-        mt={4}
-        ref={ref}
-        bg="white"
-        shadow="lg"
-        rounded="lg"
-        overflow="hidden"
-      >
+      <Box mt={4} bg="white" shadow="lg" rounded="lg" overflow="hidden">
         <Box p={4}>
           <Heading mb={2} fontSize="lg" letterSpacing={1} fontWeight="semibold">
             Ubicación
@@ -36,7 +21,7 @@ const Map = () => {
         </Box>
 
         <Box h="400px" id="mapid">
-          {load && <MapWithSsr />}
+          <MapWithSsr />
         </Box>
       </Box>
     </>

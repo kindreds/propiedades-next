@@ -5,7 +5,6 @@ import PropertyCard from "../PropertyCard";
 import { Box, Flex } from "@chakra-ui/layout";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { createStyles, numOfDots } from "../../helper/dotStyles";
-import { motion } from "framer-motion";
 
 const initialState = {
   base: 1,

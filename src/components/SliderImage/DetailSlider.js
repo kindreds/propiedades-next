@@ -7,7 +7,6 @@ import { IconButton } from "@chakra-ui/button";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 
 import { GoPrimitiveDot } from "react-icons/go";
-import { logoBase64 } from "../../data";
 
 const initialState = {
   base: 1,
@@ -54,9 +53,8 @@ const DetailSlider = () => {
             src={src}
             width="300"
             height="200"
-            placeholder="blur"
+            priority={i <= 3}
             layout="responsive"
-            blurDataURL={logoBase64}
             objectPosition="50% 50%"
           />
         ))}

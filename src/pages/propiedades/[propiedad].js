@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import {
@@ -30,23 +30,44 @@ import {
 import { BsChatFill } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
 import { BiPrinter, BiShareAlt } from "react-icons/bi";
+import { useMediaQuery } from "@chakra-ui/media-query";
 
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { fadeInDown, fadeInUp } from "../../motions/fadeInUp";
 /* Componentes */
 
-const Map = dynamic(() => import("../../components/Map"));
-const Contact = dynamic(() => import("../../components/Contact"));
-const FloorMap = dynamic(() => import("../../components/FloorMap"));
-const ProDetails = dynamic(() => import("../../components/ProDetails"));
-const VideoProperti = dynamic(() => import("../../components/VideoProperti"));
-const DetailSlider = dynamic(() =>
-  import("../../components/SliderImage/DetailSlider")
+const Map = dynamic(() => import("../../components/Map"), { ssr: false });
+const Contact = dynamic(() => import("../../components/Contact"), {
+  ssr: false,
+});
+const FloorMap = dynamic(() => import("../../components/FloorMap"), {
+  ssr: false,
+});
+const ProDetails = dynamic(() => import("../../components/ProDetails"), {
+  ssr: false,
+});
+const VideoProperti = dynamic(() => import("../../components/VideoProperti"), {
+  ssr: false,
+});
+const DetailSlider = dynamic(
+  () => import("../../components/SliderImage/DetailSlider"),
+  { ssr: false }
 );
 
 const Propiedad = () => {
+  const [load, setLoad] = useState(false);
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const [is1024px] = useMediaQuery("(min-width: 1024px)");
   const { ref: socialRef, inView: SocialInView } = useInView();
+
+  useEffect(() => {
+    let timer;
+    timer = setTimeout(() => {
+      setLoad(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const ScrollToContact = () => {
     const el = document.getElementById("asesor_msg");
@@ -95,33 +116,37 @@ const Propiedad = () => {
                 />
                 <ProDetails />
               </m.div>
-              <FloorMap />
-              <Map />
-              <VideoProperti />
-              <Box mt={10}>
-                <Heading
-                  mb={2}
-                  fontSize="lg"
-                  letterSpacing={1}
-                  fontWeight="semibold"
-                >
-                  Propiedades Similares
-                </Heading>
-                <PropiedadesDesc
-                  maxW="816px"
-                  breakpoints={{
-                    base: 1,
-                    ms: 1,
-                    sm: 2,
-                    md: 2,
-                    lg: 2,
-                    xl: 2,
-                  }}
-                />
-              </Box>
-              <div id="asesor_msg">
-                <CommentForm />
-              </div>
+              {load && (
+                <>
+                  <FloorMap />
+                  <Map />
+                  <VideoProperti />
+                  <Box mt={10}>
+                    <Heading
+                      mb={2}
+                      fontSize="lg"
+                      letterSpacing={1}
+                      fontWeight="semibold"
+                    >
+                      Propiedades Similares
+                    </Heading>
+                    <PropiedadesDesc
+                      maxW="816px"
+                      breakpoints={{
+                        base: 1,
+                        ms: 1,
+                        sm: 2,
+                        md: 2,
+                        lg: 2,
+                        xl: 2,
+                      }}
+                    />
+                  </Box>
+                  <div id="asesor_msg">
+                    <CommentForm />
+                  </div>
+                </>
+              )}
             </Box>
             <Box display={{ base: "none", lg: "block" }}>
               <Box pos="sticky" top={{ base: "100px" }}>
@@ -192,24 +217,26 @@ const Propiedad = () => {
 
         {isOpen && <Contact isOpen={isOpen} onClose={onClose} />}
 
-        <Stack right={4} bottom={4} pos="fixed" style={{ zIndex: 2 }}>
-          <IconButton
-            size="lg"
-            rounded="full"
-            colorScheme="teal"
-            onClick={nativeShare}
-            icon={<BiShareAlt fontSize="25px" />}
-            display={{ base: !SocialInView ? "flex" : "none", lg: "none" }}
-          />
-          <IconButton
-            size="lg"
-            rounded="full"
-            colorScheme="whatsapp"
-            onClick={() => onOpen()}
-            icon={<RiWhatsappFill fontSize="30px" />}
-            display={{ base: "flex", lg: "none" }}
-          />
-        </Stack>
+        {!is1024px && (
+          <Stack right={4} bottom={4} pos="fixed" style={{ zIndex: 2 }}>
+            <IconButton
+              size="lg"
+              rounded="full"
+              colorScheme="teal"
+              onClick={nativeShare}
+              icon={<BiShareAlt fontSize="25px" />}
+              display={{ base: !SocialInView ? "flex" : "none", lg: "none" }}
+            />
+            <IconButton
+              size="lg"
+              rounded="full"
+              colorScheme="whatsapp"
+              onClick={() => onOpen()}
+              icon={<RiWhatsappFill fontSize="30px" />}
+              display={{ base: "flex", lg: "none" }}
+            />
+          </Stack>
+        )}
       </Box>
     </LazyMotion>
   );
