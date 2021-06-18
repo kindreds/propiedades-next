@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import NextLink from "next/link";
 import d from "next/dynamic";
 import { FaList } from "react-icons/fa";
@@ -15,9 +16,6 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
 } from "@chakra-ui/breadcrumb";
-
-import { m, LazyMotion, domAnimation } from "framer-motion";
-import Image from "next/image";
 const o = { ssr: false };
 
 /* COMPONENTES */
@@ -42,138 +40,125 @@ const Propiedades = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <LazyMotion features={domAnimation}>
-      <Box w="full" bg="gray.200">
-        <Head>
-          <title>Propiedades</title>
-          <link
-            as="image"
-            rel="preload"
-            href="/banner-propiedades.webp"
-            imagesrcset={`${"/banner-propiedades.webp"} 1200w,
+    <Box w="full" bg="gray.200">
+      <Head>
+        <title>Propiedades</title>
+        <link
+          as="image"
+          rel="preload"
+          href="/banner-propiedades.webp"
+          imagesrcset={`${"/banner-propiedades.webp"} 1200w,
              ${"/banner-propiedades.webp"}?w=200 200w,
              ${"/banner-propiedades.webp"}?w=400 400w,
              ${"/banner-propiedades.webp"}?w=800 800w,
              ${"/banner-propiedades.webp"}?w=1024 1024w,
             `}
-          />
-        </Head>
-        <Box
-          pos="relative"
-          w="full"
-          h="40vh"
-          overflow="hidden"
-          borderBottomRadius="2xl"
+        />
+      </Head>
+      <Box
+        pos="relative"
+        w="full"
+        h="40vh"
+        overflow="hidden"
+        borderBottomRadius="2xl"
+      >
+        <Image
+          priority
+          quality={70}
+          layout="fill"
+          objectFit="cover"
+          alt="Banner Propiedades"
+          src="/banner-propiedades.webp"
+        />
+        <Box w="full" h="full" pos="absolute" bg="rgba(0,0,0,0.6)" />
+      </Box>
+      <Container
+        pb={10}
+        transform={{ base: "translateY(-100px)", lg: "translateY(-150px)" }}
+        maxW={{
+          base: "95%",
+          sm: "container.sm",
+          md: "container.md",
+          lg: "container.lg",
+          xl: "container.xl",
+        }}
+      >
+        <Breadcrumb
+          mb={5}
+          spacing="8px"
+          display={{ base: "none", lg: "block" }}
+          separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
         >
-          <Image
-            priority
-            objectFit="cover"
-            quality={70}
-            layout="fill"
-            alt="Banner Propiedades"
-            src="/banner-propiedades.webp"
-          />
-          <Box w="full" h="full" pos="absolute" bg="rgba(0,0,0,0.6)" />
-        </Box>
-        <Container
-          pb={10}
-          transform={{ base: "translateY(-100px)", lg: "translateY(-150px)" }}
-          maxW={{
-            base: "95%",
-            sm: "container.sm",
-            md: "container.md",
-            lg: "container.lg",
-            xl: "container.xl",
-          }}
-        >
-          <m.div
-            initial={{ x: 200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-          >
-            <Breadcrumb
-              mb={5}
-              spacing="8px"
-              display={{ base: "none", lg: "block" }}
-              separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
-            >
-              <BreadcrumbItem>
-                <NextLink href="/">
-                  <BreadcrumbLink
-                    fontWeight="light"
-                    fontSize="lg"
-                    color="white"
-                    href="#"
-                  >
-                    Inicio
-                  </BreadcrumbLink>
-                </NextLink>
-              </BreadcrumbItem>
+          <BreadcrumbItem>
+            <NextLink href="/">
+              <BreadcrumbLink
+                fontWeight="light"
+                fontSize="lg"
+                color="white"
+                href="#"
+              >
+                Inicio
+              </BreadcrumbLink>
+            </NextLink>
+          </BreadcrumbItem>
 
-              <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink
-                  fontWeight="light"
-                  fontSize="lg"
-                  color="white"
-                  href="#"
-                >
-                  Propiedades
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-            </Breadcrumb>
-          </m.div>
-          <Flex mb={5} align="center">
-            <Heading
-              flex={1}
-              as={m.h1}
-              initial={{ x: 200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1, transition: { delay: 0.1 } }}
-              color="gray.100"
-              lineHeight="shorter"
-              letterSpacing="tight"
-              fontWeight="extrabold"
-              fontSize={{ base: "3xl", sm: "4xl" }}
+          <BreadcrumbItem isCurrentPage>
+            <BreadcrumbLink
+              fontWeight="light"
+              fontSize="lg"
+              color="white"
+              href="#"
             >
               Propiedades
-            </Heading>
-            <Tooltip
-              label="Listado"
-              aria-label="Boton para cambiar presentacion como lista."
-            >
-              <IconButton colorScheme="red" mr={4} icon={<FaList />} />
-            </Tooltip>
-            <Tooltip
-              label="Galeria"
-              aria-label="Boton para cambiar presentacion como galeria."
-            >
-              <IconButton colorScheme="red" icon={<BsGridFill />} />
-            </Tooltip>
-          </Flex>
-          <Flex>
-            <m.div
-              animate={{ x: 0, opacity: 1 }}
-              initial={{ x: 200, opacity: 0 }}
-            >
-              <AdvanceSearch />
-              <LastProperties />
-            </m.div>
-            <PropertiesResult />
-          </Flex>
-        </Container>
-        <Footer />
-        <AdvanceSearchDrawer isOpen={isOpen} onClose={onClose} />
-        <IconButton
-          size="lg"
-          right={4}
-          bottom={4}
-          pos="fixed"
-          rounded="full"
-          colorScheme="red"
-          onClick={() => onOpen()}
-          icon={<GoSettings fontSize="30px" />}
-          display={{ base: "flex", xl: "none" }}
-        />
-      </Box>
-    </LazyMotion>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        </Breadcrumb>
+        <Flex mb={5} align="center">
+          <Heading
+            flex={1}
+            color="gray.100"
+            lineHeight="shorter"
+            letterSpacing="tight"
+            fontWeight="extrabold"
+            fontSize={{ base: "3xl", sm: "4xl" }}
+          >
+            Propiedades
+          </Heading>
+          <Tooltip
+            label="Listado"
+            aria-label="Boton para cambiar presentacion como lista."
+          >
+            <IconButton colorScheme="red" mr={4} icon={<FaList />} />
+          </Tooltip>
+          <Tooltip
+            label="Galeria"
+            aria-label="Boton para cambiar presentacion como galeria."
+          >
+            <IconButton colorScheme="red" icon={<BsGridFill />} />
+          </Tooltip>
+        </Flex>
+        <Flex>
+          <Box>
+            <AdvanceSearch />
+            <LastProperties />
+          </Box>
+          <PropertiesResult />
+        </Flex>
+      </Container>
+      <Footer />
+      <AdvanceSearchDrawer isOpen={isOpen} onClose={onClose} />
+      <IconButton
+        size="lg"
+        right={4}
+        bottom={4}
+        pos="fixed"
+        rounded="full"
+        colorScheme="red"
+        onClick={() => onOpen()}
+        icon={<GoSettings fontSize="30px" />}
+        display={{ base: "flex", xl: "none" }}
+      />
+    </Box>
   );
 };
 

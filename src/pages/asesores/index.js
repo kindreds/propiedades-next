@@ -14,6 +14,7 @@ import { Box, Flex, Heading, Container } from "@chakra-ui/layout";
 import { FaList } from "react-icons/fa";
 import { BsGridFill } from "react-icons/bs";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { useMediaQuery } from "@chakra-ui/media-query";
 
 import Footer from "../../components/Footer";
 import Asesores from "../../components/AsesoresList";
@@ -22,6 +23,8 @@ import AdvanceSearchAsesor from "../../components/AdvanceSearch/AdvanceSearchAse
 import { m, LazyMotion, domAnimation } from "framer-motion";
 
 const asesores = () => {
+  const [is1024px] = useMediaQuery("(min-width: 1024px)");
+
   return (
     <LazyMotion features={domAnimation}>
       <Box pos="relative" bg="gray.200" minH="100vh">
@@ -57,36 +60,31 @@ const asesores = () => {
           }}
           transform={{ base: "translateY(-100px)", lg: "translateY(-150px)" }}
         >
-          <m.div
-            initial={{ x: 200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+          <Breadcrumb
+            mb={5}
+            spacing="8px"
+            display={{ base: "none", lg: "block" }}
+            separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
           >
-            <Breadcrumb
-              mb={5}
-              spacing="8px"
-              display={{ base: "none", lg: "block" }}
-              separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
-            >
-              <BreadcrumbItem>
-                <NextLink href="/">
-                  <BreadcrumbLink fontWeight="light" color="gray.100">
-                    Inicio
-                  </BreadcrumbLink>
-                </NextLink>
-              </BreadcrumbItem>
-
-              <BreadcrumbItem isCurrentPage>
+            <BreadcrumbItem>
+              <NextLink href="/">
                 <BreadcrumbLink fontWeight="light" color="gray.100">
-                  Asesores
+                  Inicio
                 </BreadcrumbLink>
-              </BreadcrumbItem>
-            </Breadcrumb>
-          </m.div>
+              </NextLink>
+            </BreadcrumbItem>
+
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink fontWeight="light" color="gray.100">
+                Asesores
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
 
           <Flex mb={5} align="center">
             <Heading
               flex={1}
-              as={m.h1}
+              as={is1024px && m.h1}
               initial={{ x: 200, opacity: 0 }}
               animate={{ x: 0, opacity: 1, transition: { delay: 0.1 } }}
               color="gray.100"
@@ -112,13 +110,14 @@ const asesores = () => {
           </Flex>
 
           <Flex>
-            <m.div
+            <Box
+              as={is1024px && m.div}
               animate={{ x: 0, opacity: 1 }}
               initial={{ x: 200, opacity: 0 }}
             >
               <AdvanceSearchAsesor />
               <LastProperties />
-            </m.div>
+            </Box>
             <Asesores />
           </Flex>
         </Container>
