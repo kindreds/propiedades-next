@@ -60,26 +60,31 @@ const asesores = () => {
           }}
           transform={{ base: "translateY(-100px)", lg: "translateY(-150px)" }}
         >
-          <Breadcrumb
-            mb={5}
-            spacing="8px"
-            display={{ base: "none", lg: "block" }}
-            separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
-          >
-            <BreadcrumbItem>
-              <NextLink href="/">
-                <BreadcrumbLink fontWeight="light" color="gray.100">
-                  Inicio
-                </BreadcrumbLink>
-              </NextLink>
-            </BreadcrumbItem>
+          {is1024px && (
+            <Breadcrumb
+              mb={5}
+              as={m.div}
+              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: 200, opacity: 0 }}
+              spacing="8px"
+              display={{ base: "none", lg: "block" }}
+              separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
+            >
+              <BreadcrumbItem>
+                <NextLink href="/">
+                  <BreadcrumbLink fontWeight="light" color="gray.100">
+                    Inicio
+                  </BreadcrumbLink>
+                </NextLink>
+              </BreadcrumbItem>
 
-            <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink fontWeight="light" color="gray.100">
-                Asesores
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink fontWeight="light" color="gray.100">
+                  Asesores
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+          )}
 
           <Flex mb={5} align="center">
             <Heading
@@ -110,14 +115,16 @@ const asesores = () => {
           </Flex>
 
           <Flex>
-            <Box
-              as={is1024px && m.div}
-              animate={{ x: 0, opacity: 1 }}
-              initial={{ x: 200, opacity: 0 }}
-            >
-              <AdvanceSearchAsesor />
-              <LastProperties />
-            </Box>
+            {is1024px && (
+              <Box
+                as={m.div}
+                animate={{ x: 0, opacity: 1 }}
+                initial={{ x: 200, opacity: 0 }}
+              >
+                <AdvanceSearchAsesor />
+                <LastProperties />
+              </Box>
+            )}
             <Asesores />
           </Flex>
         </Container>
