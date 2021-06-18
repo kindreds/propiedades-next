@@ -48,15 +48,16 @@ const DetailSlider = () => {
         doAfterSlide={updateSlide}
       >
         {imagesList.map((src, i) => (
-          // <Image
-          //   key={i}
-          //   src={src}
-          //   width="300"
-          //   height="200"
-          //   layout="responsive"
-          //   objectPosition="50% 50%"
-          // />
-          <img key={i} src={src} />
+          <img
+            key={i}
+            src={`${src}?q=70`}
+            srcSet={`${src}?q=70 1200w,
+             ${src}?w=200&q=70 200w,
+             ${src}?w=400&q=70 400w,
+             ${src}?w=800&q=70 800w,
+             ${src}?w=1024&q=70 1024w,
+            `}
+          />
         ))}
       </ReactSlider>
       <Box

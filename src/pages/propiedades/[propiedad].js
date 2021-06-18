@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import {
-  Box,
-  Stack,
-  HStack,
-  Heading,
-  Container,
-  SimpleGrid,
-} from "@chakra-ui/layout";
+import { Box, Stack, HStack, Container, SimpleGrid } from "@chakra-ui/layout";
 import { Tooltip } from "@chakra-ui/tooltip";
 import { IconButton } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
+import { useMediaQuery } from "@chakra-ui/media-query";
 import { useInView } from "react-intersection-observer";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 
 import AsesorCard from "../../components/AsesorCard";
+import ProDetails from "../../components/ProDetails";
 import PropertiHeader from "../../components/PropertiHeader";
-import CommentForm from "../../components/CommentArea/CommentForm";
-import PropiedadesDesc from "../../components/Section/PropiedadesDesc";
-
-import { nativeShare } from "../../helper/nativeShare";
+import DetailSlider from "../../components/SliderImage/DetailSlider";
 
 import {
   FaTwitter,
@@ -30,28 +23,19 @@ import {
 import { BsChatFill } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
 import { BiPrinter, BiShareAlt } from "react-icons/bi";
-import { useMediaQuery } from "@chakra-ui/media-query";
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { nativeShare } from "../../helper/nativeShare";
 import { fadeInDown, fadeInUp } from "../../motions/fadeInUp";
 /* Componentes */
 
-const Map = dynamic(() => import("../../components/Map"), { ssr: false });
 const Contact = dynamic(() => import("../../components/Contact"), {
   ssr: false,
 });
-const FloorMap = dynamic(() => import("../../components/FloorMap"), {
-  ssr: false,
-});
-const ProDetails = dynamic(() => import("../../components/ProDetails"), {
-  ssr: false,
-});
-const VideoProperti = dynamic(() => import("../../components/VideoProperti"), {
-  ssr: false,
-});
-const DetailSlider = dynamic(
-  () => import("../../components/SliderImage/DetailSlider"),
-  { ssr: false }
+const InfoProperti = dynamic(
+  () => import("../../components/Section/InfoProperti"),
+  {
+    ssr: false,
+  }
 );
 
 const Propiedad = () => {
@@ -78,9 +62,39 @@ const Propiedad = () => {
     <LazyMotion features={domAnimation}>
       <Head>
         <title>Departamento Diamante</title>
-        <link rel="preload" href="/inhouse_1_cp.webp" as="image" />
-        <link rel="preload" href="/inhouse_2_cp.webp" as="image" />
-        <link rel="preload" href="/inhouse_3_cp.webp" as="image" />
+        <link
+          rel="preload"
+          href="/inhouse_1_cp.webp"
+          as="image"
+          imagesrcset={`${"/inhouse_1_cp.webp"} 1200w,
+             ${"/inhouse_1_cp.webp"}?w=200 200w,
+             ${"/inhouse_1_cp.webp"}?w=400 400w,
+             ${"/inhouse_1_cp.webp"}?w=800 800w,
+             ${"/inhouse_1_cp.webp"}?w=1024 1024w,
+            `}
+        />
+        <link
+          rel="preload"
+          href="/inhouse_2_cp.webp"
+          as="image"
+          imagesrcset={`${"/inhouse_1_cp.webp"} 1200w,
+             ${"/inhouse_2_cp.webp"}?w=200 200w,
+             ${"/inhouse_2_cp.webp"}?w=400 400w,
+             ${"/inhouse_2_cp.webp"}?w=800 800w,
+             ${"/inhouse_2_cp.webp"}?w=1024 1024w,
+            `}
+        />
+        <link
+          rel="preload"
+          href="/inhouse_3_cp.webp"
+          as="image"
+          imagesrcset={`${"/inhouse_1_cp.webp"}?q=70 1200w,
+             ${"/inhouse_3_cp.webp"}?w=200&q=70 200w,
+             ${"/inhouse_3_cp.webp"}?w=400&q=70 400w,
+             ${"/inhouse_3_cp.webp"}?w=800&q=70 800w,
+             ${"/inhouse_3_cp.webp"}?w=1024&q=70 1024w,
+            `}
+        />
       </Head>
 
       <Box bg="gray.200" w="100%">
@@ -119,37 +133,7 @@ const Propiedad = () => {
                 />
                 <ProDetails />
               </m.div>
-              {load && (
-                <>
-                  <FloorMap />
-                  <Map />
-                  <VideoProperti />
-                  <Box mt={10}>
-                    <Heading
-                      mb={2}
-                      fontSize="lg"
-                      letterSpacing={1}
-                      fontWeight="semibold"
-                    >
-                      Propiedades Similares
-                    </Heading>
-                    <PropiedadesDesc
-                      maxW="816px"
-                      breakpoints={{
-                        base: 1,
-                        ms: 1,
-                        sm: 2,
-                        md: 2,
-                        lg: 2,
-                        xl: 2,
-                      }}
-                    />
-                  </Box>
-                  <div id="asesor_msg">
-                    <CommentForm />
-                  </div>
-                </>
-              )}
+              {load && <InfoProperti />}
             </Box>
             <Box display={{ base: "none", lg: "block" }}>
               <Box pos="sticky" top={{ base: "100px" }}>
