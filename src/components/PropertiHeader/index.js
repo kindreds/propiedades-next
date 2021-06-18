@@ -1,6 +1,6 @@
-import React from 'react';
-import NextLink from 'next/link';
-import PropTypes from 'prop-types';
+import React from "react";
+import NextLink from "next/link";
+import PropTypes from "prop-types";
 import {
   Box,
   Flex,
@@ -10,29 +10,28 @@ import {
   HStack,
   Heading,
   SimpleGrid,
-} from '@chakra-ui/layout';
+} from "@chakra-ui/layout";
 import {
   FaBed,
   FaBath,
   FaBuilding,
   FaWhatsapp,
   FaFacebookF,
-  FaFacebookMessenger,
   FaTwitter,
   FaLinkedinIn,
-} from 'react-icons/fa';
-import { BsChatFill } from 'react-icons/bs';
-import { Tooltip } from '@chakra-ui/tooltip';
-import { Icon, StarIcon } from '@chakra-ui/icons';
-import { Button, IconButton } from '@chakra-ui/button';
-import { BiPrinter, BiShareAlt } from 'react-icons/bi';
+} from "react-icons/fa";
+import { BsChatFill } from "react-icons/bs";
+import { Tooltip } from "@chakra-ui/tooltip";
+import { Icon, StarIcon } from "@chakra-ui/icons";
+import { Button, IconButton } from "@chakra-ui/button";
+import { BiPrinter, BiShareAlt } from "react-icons/bi";
 
-import { nativeShare } from '../../helper/nativeShare';
+import { nativeShare } from "../../helper/nativeShare";
 
 const PropertiHeader = ({ socialRef, ScrollToContact }) => {
   return (
     <SimpleGrid
-      templateColumns={{ base: 'minmax(0, 1fr)', ms: 'repeat(2, 1fr)' }}
+      templateColumns={{ base: "minmax(0, 1fr)", ms: "repeat(2, 1fr)" }}
     >
       <Box mb={{ base: 4, sm: 0 }}>
         <HStack pb={2}>
@@ -49,13 +48,13 @@ const PropertiHeader = ({ socialRef, ScrollToContact }) => {
         </NextLink>
         <Box d="flex" alignItems="center" mb={2}>
           {Array(5)
-            .fill('')
+            .fill("")
             .map((_, i) => (
               <StarIcon
                 key={i}
                 mr={1}
                 fontSize="large"
-                color={i < 4 ? 'teal.500' : 'gray.300'}
+                color={i < 4 ? "teal.500" : "gray.300"}
               />
             ))}
           <Box as="span" ml="2" color="gray.600">
@@ -77,7 +76,7 @@ const PropertiHeader = ({ socialRef, ScrollToContact }) => {
           flex={1}
           mb={{ base: 4, sm: 0 }}
           templateColumns="repeat(3, 80px)"
-          justifyContent={{ base: 'center', ms: 'flex-end' }}
+          justifyContent={{ base: "center", ms: "flex-end" }}
         >
           <Flex
             userSelect="none"
@@ -119,26 +118,26 @@ const PropertiHeader = ({ socialRef, ScrollToContact }) => {
         <HStack
           ref={socialRef}
           justifySelf="flex-end"
-          alignSelf={{ base: 'center', ms: 'flex-end' }}
+          alignSelf={{ base: "center", ms: "flex-end" }}
         >
           <IconButton
             size="lg"
             colorScheme="teal"
             onClick={nativeShare}
             icon={<BiShareAlt fontSize="20px" />}
-            display={{ base: 'flex', lg: 'none' }}
+            display={{ base: "flex", lg: "none" }}
           />
           <IconButton
             size="lg"
             colorScheme="teal"
             icon={<BiPrinter fontSize="20px" />}
-            display={{ base: 'flex', lg: 'none' }}
+            display={{ base: "flex", lg: "none" }}
           />
           <Tooltip label="Compartir en facebook">
             <IconButton
               size="lg"
               colorScheme="facebook"
-              display={{ base: 'none', lg: 'flex' }}
+              display={{ base: "none", lg: "flex" }}
               icon={<FaFacebookF fontSize="25px" />}
             />
           </Tooltip>
@@ -146,7 +145,7 @@ const PropertiHeader = ({ socialRef, ScrollToContact }) => {
             <IconButton
               size="lg"
               colorScheme="whatsapp"
-              display={{ base: 'none', lg: 'flex' }}
+              display={{ base: "none", lg: "flex" }}
               icon={<FaWhatsapp fontSize="25px" />}
             />
           </Tooltip>
@@ -154,7 +153,7 @@ const PropertiHeader = ({ socialRef, ScrollToContact }) => {
             <IconButton
               size="lg"
               colorScheme="twitter"
-              display={{ base: 'none', lg: 'flex' }}
+              display={{ base: "none", lg: "flex" }}
               icon={<FaTwitter fontSize="25px" />}
             />
           </Tooltip>
@@ -162,7 +161,7 @@ const PropertiHeader = ({ socialRef, ScrollToContact }) => {
             <IconButton
               size="lg"
               colorScheme="twitter"
-              display={{ base: 'none', lg: 'flex' }}
+              display={{ base: "none", lg: "flex" }}
               icon={<FaLinkedinIn fontSize="25px" />}
             />
           </Tooltip>

@@ -32,11 +32,10 @@ const BeAsesor = () => {
   return (
     <LazyMotion features={domAnimation}>
       <m.div exit={{ opacity: 0 }} initial="initial" animate="animate">
+        <Head>
+          <title>Sé un asesor</title>
+        </Head>
         <Box bg="gray.200">
-          <Head>
-            <title>Inmobiliara</title>
-          </Head>
-
           <Box minH="550px">
             <Box
               w="full"
@@ -47,12 +46,7 @@ const BeAsesor = () => {
               overflow="hidden"
               pos="relative"
             >
-              <Image
-                layout="fill"
-                quality="100"
-                objectFit="cover"
-                src="/bannerasesor.png"
-              />
+              <Image layout="fill" objectFit="cover" src="/bannerasesor.png" />
               <Box w="full" h="full" pos="absolute" bg="rgba(0,0,0,0.5)"></Box>
             </Box>
             <Container
