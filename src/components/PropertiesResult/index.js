@@ -11,7 +11,7 @@ import { stagger } from "../../motions/stagger";
 
 const PropertyCard = dynamic(() => import("../PropertyCard"));
 
-const PropertiesResult = () => {
+const PropertiesResult = ({ columns = 2 }) => {
   return (
     <Box flex={1} d="flex" flexDir="column" justifyContent="center">
       <motion.div variants={fadeInUp}>
@@ -60,7 +60,7 @@ const PropertiesResult = () => {
         boxSizing="border-box"
         templateColumns={{
           base: "minmax(0, 1fr)",
-          sm: "repeat(2, minmax(0, 1fr))",
+          sm: `repeat(${columns}, minmax(0, 1fr))`,
         }}
       >
         {Array(10)

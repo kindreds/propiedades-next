@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/breadcrumb";
 
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import Image from "next/image";
 const o = { ssr: false };
 
 /* COMPONENTES */
@@ -45,10 +46,38 @@ const Propiedades = () => {
       <Box w="full" bg="gray.200">
         <Head>
           <title>Propiedades</title>
+          <link
+            as="image"
+            rel="preload"
+            href="/banner-propiedades.webp"
+            imagesrcset={`${"/banner-propiedades.webp"} 1200w,
+             ${"/banner-propiedades.webp"}?w=200 200w,
+             ${"/banner-propiedades.webp"}?w=400 400w,
+             ${"/banner-propiedades.webp"}?w=800 800w,
+             ${"/banner-propiedades.webp"}?w=1024 1024w,
+            `}
+          />
         </Head>
-
+        <Box
+          pos="relative"
+          w="full"
+          h="40vh"
+          overflow="hidden"
+          borderBottomRadius="2xl"
+        >
+          <Image
+            priority
+            objectFit="cover"
+            quality={70}
+            layout="fill"
+            alt="Banner Propiedades"
+            src="/banner-propiedades.webp"
+          />
+          <Box w="full" h="full" pos="absolute" bg="rgba(0,0,0,0.6)" />
+        </Box>
         <Container
           pb={10}
+          transform={{ base: "translateY(-100px)", lg: "translateY(-150px)" }}
           maxW={{
             base: "95%",
             sm: "container.sm",
@@ -56,7 +85,6 @@ const Propiedades = () => {
             lg: "container.lg",
             xl: "container.xl",
           }}
-          pt={{ base: 10 }}
         >
           <m.div
             initial={{ x: 200, opacity: 0 }}
@@ -66,18 +94,28 @@ const Propiedades = () => {
               mb={5}
               spacing="8px"
               display={{ base: "none", lg: "block" }}
-              separator={<ChevronRightIcon color="gray.500" />}
+              separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
             >
               <BreadcrumbItem>
                 <NextLink href="/">
-                  <BreadcrumbLink fontWeight="light" href="#">
+                  <BreadcrumbLink
+                    fontWeight="light"
+                    fontSize="lg"
+                    color="white"
+                    href="#"
+                  >
                     Inicio
                   </BreadcrumbLink>
                 </NextLink>
               </BreadcrumbItem>
 
               <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink fontWeight="light" href="#">
+                <BreadcrumbLink
+                  fontWeight="light"
+                  fontSize="lg"
+                  color="white"
+                  href="#"
+                >
                   Propiedades
                 </BreadcrumbLink>
               </BreadcrumbItem>
@@ -85,11 +123,15 @@ const Propiedades = () => {
           </m.div>
           <Flex mb={5} align="center">
             <Heading
+              flex={1}
               as={m.h1}
               initial={{ x: 200, opacity: 0 }}
               animate={{ x: 0, opacity: 1, transition: { delay: 0.1 } }}
-              fontSize={{ base: "2xl", sm: "3xl" }}
-              flex={1}
+              color="gray.100"
+              lineHeight="shorter"
+              letterSpacing="tight"
+              fontWeight="extrabold"
+              fontSize={{ base: "3xl", sm: "4xl" }}
             >
               Propiedades
             </Heading>

@@ -59,7 +59,7 @@ const AsesorCard = ({ simple, drawer, ...props }) => {
                 {12} Opiniones
               </Box>
             </Box>
-            <NextLink href="/propiedades">
+            <NextLink href="/asesores/0">
               <Link
                 mt={2}
                 d="flex"

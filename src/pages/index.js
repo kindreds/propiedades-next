@@ -49,6 +49,17 @@ const Index = () => {
     <LazyMotion features={domAnimation}>
       <Head>
         <title>Inmobiliara</title>
+        <link
+          as="image"
+          rel="preload"
+          href="/hero_cp.webp"
+          imagesrcset={`${"/inhouse_1_cp.webp"} 1200w,
+             ${"/hero_cp.webp"}?w=200 200w,
+             ${"/hero_cp.webp"}?w=400 400w,
+             ${"/hero_cp.webp"}?w=800 800w,
+             ${"/hero_cp.webp"}?w=1024 1024w,
+            `}
+        />
       </Head>
 
       <Hero />
