@@ -78,6 +78,9 @@ const Propiedad = () => {
     <LazyMotion features={domAnimation}>
       <Head>
         <title>Departamento Diamante</title>
+        <link rel="preload" href="/inhouse_1_cp.webp" as="image" />
+        <link rel="preload" href="/inhouse_2_cp.webp" as="image" />
+        <link rel="preload" href="/inhouse_3_cp.webp" as="image" />
       </Head>
 
       <Box bg="gray.200" w="100%">

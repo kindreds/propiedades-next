@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Icon from "@chakra-ui/icon";
 import ReactSlider from "react-slidy";
 import { Box } from "@chakra-ui/layout";
@@ -48,15 +48,15 @@ const DetailSlider = () => {
         doAfterSlide={updateSlide}
       >
         {imagesList.map((src, i) => (
-          <Image
-            key={i}
-            src={src}
-            width="300"
-            height="200"
-            priority={i <= 3}
-            layout="responsive"
-            objectPosition="50% 50%"
-          />
+          // <Image
+          //   key={i}
+          //   src={src}
+          //   width="300"
+          //   height="200"
+          //   layout="responsive"
+          //   objectPosition="50% 50%"
+          // />
+          <img key={i} src={src} />
         ))}
       </ReactSlider>
       <Box
