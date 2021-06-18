@@ -1,12 +1,10 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
+import { AnimatePresence, m, LazyMotion, domAnimation } from "framer-motion";
 
 const Chakra = dynamic(() =>
   import("@chakra-ui/react").then((chakra) => chakra.ChakraProvider)
-);
-const AnimatePresence = dynamic(() =>
-  import("framer-motion").then((chakra) => chakra.AnimatePresence)
 );
 
 import theme from "../theme";
@@ -17,7 +15,11 @@ function MyApp({ Component, pageProps, router }) {
     <Chakra resetCSS theme={theme}>
       <Navbar dark={pageProps.dark} />
       <AnimatePresence exitBeforeEnter>
-        <Component {...pageProps} key={router.route} />
+        <LazyMotion features={domAnimation}>
+          <m.div exit={{ opacity: 0 }} initial="initial" animate="animate">
+            <Component {...pageProps} key={router.route} />
+          </m.div>
+        </LazyMotion>
       </AnimatePresence>
     </Chakra>
   );

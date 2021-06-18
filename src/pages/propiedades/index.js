@@ -42,14 +42,7 @@ const Propiedades = () => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <Box
-        w="full"
-        as={m.div}
-        bg="gray.200"
-        initial="initial"
-        animate="animate"
-        exit={{ opacity: 0 }}
-      >
+      <Box w="full" bg="gray.200">
         <Head>
           <title>Propiedades</title>
         </Head>

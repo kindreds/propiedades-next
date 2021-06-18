@@ -23,15 +23,7 @@ import { m, LazyMotion, domAnimation } from "framer-motion";
 const asesores = () => {
   return (
     <LazyMotion features={domAnimation}>
-      <Box
-        as={m.div}
-        exit={{ opacity: 0 }}
-        initial="initial"
-        animate="animate"
-        pos="relative"
-        bg="gray.200"
-        minH="100vh"
-      >
+      <Box pos="relative" bg="gray.200" minH="100vh">
         <Head>
           <title>Asesores</title>
         </Head>

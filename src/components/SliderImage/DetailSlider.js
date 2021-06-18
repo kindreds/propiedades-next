@@ -43,6 +43,7 @@ const DetailSlider = () => {
         infiniteLoop
         keyboardNavigation
         slide={actualSlide}
+        lazyLoadSlider={!!0}
         numOfSlides={numOfSlides}
         doAfterSlide={updateSlide}
       >
@@ -52,6 +53,7 @@ const DetailSlider = () => {
             src={src}
             width="300"
             height="200"
+            priority={i <= 3}
             layout="responsive"
             objectPosition="50% 50%"
           />

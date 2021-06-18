@@ -5,7 +5,7 @@ import { Box, Heading, Link, Text } from "@chakra-ui/layout";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
-// import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 
 const Map = () => {
@@ -19,8 +19,8 @@ const Map = () => {
   return (
     <>
       <Box
-        ref={ref}
         mt={4}
+        ref={ref}
         bg="white"
         shadow="lg"
         rounded="lg"

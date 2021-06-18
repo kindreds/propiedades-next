@@ -19,239 +19,235 @@ import { VisuallyHidden } from "@chakra-ui/visually-hidden";
 import { MdLocationOn } from "react-icons/md";
 import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
-
 import { FaPlay } from "react-icons/fa";
 
 const contacto = () => {
   return (
-    <LazyMotion features={domAnimation}>
-      <m.div exit={{ opacity: 0 }} initial="initial" animate="animate">
-        <Head>
-          <title>Contactanos</title>
-        </Head>
-        <Box
-          w="full"
-          h="50vh"
-          mt="-82px"
-          minH="550px"
-          rounded="3xl"
-          overflow="hidden"
-          pos="relative"
+    <div>
+      <Head>
+        <title>Contactanos</title>
+      </Head>
+      <Box
+        w="full"
+        h="50vh"
+        mt="-82px"
+        minH="550px"
+        rounded="3xl"
+        overflow="hidden"
+        pos="relative"
+      >
+        <Image layout="fill" objectFit="cover" src="/banner-contacto.jpg" />
+        <Box w="full" h="full" pos="absolute" bg="rgba(0,0,0,0.5)"></Box>
+        <Container
+          pos="absolute"
+          top={52}
+          left={0}
+          right={0}
+          bottom={0}
+          maxW="container.xl"
         >
-          <Image layout="fill" objectFit="cover" src="/banner-contacto.jpg" />
-          <Box w="full" h="full" pos="absolute" bg="rgba(0,0,0,0.5)"></Box>
-          <Container
-            pos="absolute"
-            top={52}
-            left={0}
-            right={0}
-            bottom={0}
-            maxW="container.xl"
-          >
-            <div className="glass">
-              <Heading
-                mb={6}
-                color="gray.100"
-                lineHeight="shorter"
-                letterSpacing="tight"
-                fontWeight="extrabold"
-                fontSize={{ base: "3xl", sm: "4xl" }}
+          <div className="glass">
+            <Heading
+              mb={6}
+              color="gray.100"
+              lineHeight="shorter"
+              letterSpacing="tight"
+              fontWeight="extrabold"
+              fontSize={{ base: "3xl", sm: "4xl" }}
+            >
+              <Text display="block" color="white" mb={{ base: 1 }}>
+                ¿Deseas contactar con nosotros?
+              </Text>
+            </Heading>
+            <Stack
+              mt={2}
+              spacing={2}
+              justifyContent={{ base: "center" }}
+              direction={{ base: "column", sm: "row" }}
+            >
+              <Button size="lg" shadow="lg">
+                Sé un asesor
+              </Button>
+              <Button
+                size="lg"
+                shadow="lg"
+                colorScheme="red"
+                leftIcon={<FaPlay />}
+                // onClick={() => modalHandler.onOpen()}
               >
-                <Text display="block" color="white" mb={{ base: 1 }}>
-                  ¿Deseas contactar con nosotros?
-                </Text>
-              </Heading>
-              <Stack
-                mt={2}
-                spacing={2}
-                justifyContent={{ base: "center" }}
-                direction={{ base: "column", sm: "row" }}
-              >
-                <Button size="lg" shadow="lg">
-                  Sé un asesor
-                </Button>
-                <Button
-                  size="lg"
-                  shadow="lg"
-                  colorScheme="red"
-                  leftIcon={<FaPlay />}
-                  // onClick={() => modalHandler.onOpen()}
-                >
-                  Ver video
-                </Button>
-              </Stack>
-            </div>
-          </Container>
-        </Box>
-        <Box
-          w="100%"
+                Ver video
+              </Button>
+            </Stack>
+          </div>
+        </Container>
+      </Box>
+      <Box
+        w="100%"
+        d="flex"
+        // minH="100vh"
+        bg="gray.200"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Container
+          py={5}
           d="flex"
-          // minH="100vh"
-          bg="gray.200"
           alignItems="center"
           justifyContent="center"
+          maxW={{
+            base: "99%",
+            sm: "container.sm",
+            md: "container.md",
+            lg: "container.lg",
+            xl: "container.xl",
+          }}
         >
-          <Container
-            py={5}
-            d="flex"
-            alignItems="center"
-            justifyContent="center"
-            maxW={{
-              base: "99%",
-              sm: "container.sm",
-              md: "container.md",
-              lg: "container.lg",
-              xl: "container.xl",
-            }}
-          >
-            <Box>
-              <SimpleGrid
-                gap={{ xl: 5 }}
-                templateColumns={{
-                  base: "minmax(0, 1fr)",
-                  xl: "repeat(2, minmax(0, 1fr))",
-                }}
-              >
-                <Stack bg="red.500" shadow="lg" rounded="lg" p={6}>
-                  <Heading
-                    as="h3"
-                    mb={2}
-                    fontWeight="semibold"
-                    fontSize={{ base: "2xl", md: "2xl" }}
-                    lineHeight={{ base: "shorter", md: "none" }}
+          <Box>
+            <SimpleGrid
+              gap={{ xl: 5 }}
+              templateColumns={{
+                base: "minmax(0, 1fr)",
+                xl: "repeat(2, minmax(0, 1fr))",
+              }}
+            >
+              <Stack bg="red.500" shadow="lg" rounded="lg" p={6}>
+                <Heading
+                  as="h3"
+                  mb={2}
+                  fontWeight="semibold"
+                  fontSize={{ base: "2xl", md: "2xl" }}
+                  lineHeight={{ base: "shorter", md: "none" }}
+                  letterSpacing={{ base: "normal", md: "tight" }}
+                >
+                  Información de contacto
+                </Heading>
+                <Text color="gray.100" mb={2} fontSize="sm">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Harum dolorem quod similique, amet nihil adipisci magnam
+                  eligendi praesentium inventore alias iste ipsum mollitia
+                  accusantium voluptas vero temporibus officiis soluta?
+                  Deleniti.
+                </Text>
+
+                <Flex align="center">
+                  <Icon
+                    fontSize="40px"
+                    mr={6}
+                    color="gray.700"
+                    as={MdLocationOn}
+                  />
+                  <Text
                     letterSpacing={{ base: "normal", md: "tight" }}
+                    color="gray.100"
                   >
-                    Información de contacto
-                  </Heading>
-                  <Text color="gray.100" mb={2} fontSize="sm">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Harum dolorem quod similique, amet nihil adipisci magnam
-                    eligendi praesentium inventore alias iste ipsum mollitia
-                    accusantium voluptas vero temporibus officiis soluta?
-                    Deleniti.
+                    Av Rockvile, #1098, mz 1, lt2.
                   </Text>
-
-                  <Flex align="center">
-                    <Icon
-                      fontSize="40px"
-                      mr={6}
-                      color="gray.700"
-                      as={MdLocationOn}
-                    />
-                    <Text
-                      letterSpacing={{ base: "normal", md: "tight" }}
-                      color="gray.100"
-                    >
-                      Av Rockvile, #1098, mz 1, lt2.
-                    </Text>
-                  </Flex>
-                  <Flex align="center">
-                    <Icon
-                      fontSize="28px"
-                      ml={2}
-                      mr={6}
-                      color="gray.700"
-                      as={PhoneIcon}
-                    />
-                    <Text
-                      letterSpacing={{ base: "normal", md: "tight" }}
-                      color="gray.100"
-                    >
-                      Correo: correo@example.com
-                    </Text>
-                  </Flex>
-                  <Flex align="center">
-                    <Icon
-                      fontSize="28px"
-                      ml={2}
-                      mr={6}
-                      color="gray.700"
-                      as={EmailIcon}
-                    />
-                    <Text
-                      letterSpacing={{ base: "normal", md: "tight" }}
-                      color="gray.100"
-                    >
-                      Telefono: correo@example.com
-                    </Text>
-                  </Flex>
-                </Stack>
-
-                <Stack spacing={4} bg="white" shadow="lg" rounded="lg" p={6}>
-                  <Heading
-                    as="h3"
-                    mb={2}
-                    fontWeight="semibold"
-                    fontSize={{ base: "2xl", md: "2xl" }}
-                    lineHeight={{ base: "shorter", md: "none" }}
+                </Flex>
+                <Flex align="center">
+                  <Icon
+                    fontSize="28px"
+                    ml={2}
+                    mr={6}
+                    color="gray.700"
+                    as={PhoneIcon}
+                  />
+                  <Text
                     letterSpacing={{ base: "normal", md: "tight" }}
+                    color="gray.100"
                   >
-                    Queremos tu opinion
-                  </Heading>
-
-                  <SimpleGrid
-                    gap={4}
-                    templateColumns={{
-                      base: "minmax(0, 1fr)",
-                      sm: "repeat(2, 1fr)",
-                    }}
+                    Correo: correo@example.com
+                  </Text>
+                </Flex>
+                <Flex align="center">
+                  <Icon
+                    fontSize="28px"
+                    ml={2}
+                    mr={6}
+                    color="gray.700"
+                    as={EmailIcon}
+                  />
+                  <Text
+                    letterSpacing={{ base: "normal", md: "tight" }}
+                    color="gray.100"
                   >
-                    <Flex>
-                      <VisuallyHidden>Nombre</VisuallyHidden>
-                      <Input type="text" required placeholder="Nombre" />
-                    </Flex>
-                    <Flex>
-                      <VisuallyHidden>Correo</VisuallyHidden>
-                      <Input type="text" required placeholder="Correo" />
-                    </Flex>
-                  </SimpleGrid>
+                    Telefono: correo@example.com
+                  </Text>
+                </Flex>
+              </Stack>
 
+              <Stack spacing={4} bg="white" shadow="lg" rounded="lg" p={6}>
+                <Heading
+                  as="h3"
+                  mb={2}
+                  fontWeight="semibold"
+                  fontSize={{ base: "2xl", md: "2xl" }}
+                  lineHeight={{ base: "shorter", md: "none" }}
+                  letterSpacing={{ base: "normal", md: "tight" }}
+                >
+                  Queremos tu opinion
+                </Heading>
+
+                <SimpleGrid
+                  gap={4}
+                  templateColumns={{
+                    base: "minmax(0, 1fr)",
+                    sm: "repeat(2, 1fr)",
+                  }}
+                >
                   <Flex>
-                    <VisuallyHidden>Asunto</VisuallyHidden>
-                    <Input type="text" required placeholder="Asunto" />
+                    <VisuallyHidden>Nombre</VisuallyHidden>
+                    <Input type="text" required placeholder="Nombre" />
                   </Flex>
-
                   <Flex>
-                    <VisuallyHidden>Descripción</VisuallyHidden>
-                    <Textarea required placeholder="Dinos tu opinion" />
+                    <VisuallyHidden>Correo</VisuallyHidden>
+                    <Input type="text" required placeholder="Correo" />
                   </Flex>
+                </SimpleGrid>
 
-                  <Flex flex={1} justify="flex-end">
-                    <Button size="lg" colorScheme="red">
-                      Enviar
-                    </Button>
-                  </Flex>
-                </Stack>
-              </SimpleGrid>
-            </Box>
-          </Container>
-        </Box>
-        <style jsx>
-          {`
+                <Flex>
+                  <VisuallyHidden>Asunto</VisuallyHidden>
+                  <Input type="text" required placeholder="Asunto" />
+                </Flex>
+
+                <Flex>
+                  <VisuallyHidden>Descripción</VisuallyHidden>
+                  <Textarea required placeholder="Dinos tu opinion" />
+                </Flex>
+
+                <Flex flex={1} justify="flex-end">
+                  <Button size="lg" colorScheme="red">
+                    Enviar
+                  </Button>
+                </Flex>
+              </Stack>
+            </SimpleGrid>
+          </Box>
+        </Container>
+      </Box>
+      <style jsx>
+        {`
+          .glass {
+            width: 700px;
+            text-align: center;
+            padding-block: 5rem;
+            padding-inline: 1rem;
+            margin-inline: auto;
+          }
+
+          @media screen and (max-width: 826px) {
             .glass {
-              width: 700px;
-              text-align: center;
-              padding-block: 5rem;
-              padding-inline: 1rem;
-              margin-inline: auto;
+              width: 500px;
             }
-
-            @media screen and (max-width: 826px) {
-              .glass {
-                width: 500px;
-              }
+          }
+          @media screen and (max-width: 526px) {
+            .glass {
+              width: 90%;
+              padding-block: 2rem;
             }
-            @media screen and (max-width: 526px) {
-              .glass {
-                width: 90%;
-                padding-block: 2rem;
-              }
-            }
-          `}
-        </style>
-      </m.div>
-    </LazyMotion>
+          }
+        `}
+      </style>
+    </div>
   );
 };
 
