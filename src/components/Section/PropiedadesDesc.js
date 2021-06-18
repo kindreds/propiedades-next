@@ -52,6 +52,7 @@ const PropiedadesDesc = ({ breakpoints = initialState, maxW = "1200px" }) => {
         showArrows={false}
         keyboardNavigation
         slide={actualSlide}
+        lazyLoadSlider={!!0}
         numOfSlides={numOfSlides}
         doAfterSlide={updateSlide}
       >
