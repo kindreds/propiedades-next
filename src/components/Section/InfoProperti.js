@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, Heading } from "@chakra-ui/layout";
+import React from "react"
+import { Box, Heading } from "@chakra-ui/layout"
 
-import Map from "../../components/Map";
-import FloorMap from "../../components/FloorMap";
-import VideoProperti from "../../components/VideoProperti";
-import CommentForm from "../../components/CommentArea/CommentForm";
-import PropiedadesDesc from "../../components/Section/PropiedadesDesc";
+import Map from "../../components/Map"
+import Slider from "../../components/Slider"
+import FloorMap from "../../components/FloorMap"
+import VideoProperti from "../../components/VideoProperti"
+import CommentForm from "../../components/CommentArea/CommentForm"
 
 const InfoProperti = () => {
   return (
@@ -17,23 +17,15 @@ const InfoProperti = () => {
         <Heading mb={2} fontSize="lg" letterSpacing={1} fontWeight="semibold">
           Propiedades Similares
         </Heading>
-        <PropiedadesDesc
-          maxW="816px"
-          breakpoints={{
-            base: 1,
-            ms: 1,
-            sm: 2,
-            md: 2,
-            lg: 2,
-            xl: 2,
-          }}
-        />
+        <Box mt={5}>
+          <Slider />
+        </Box>
       </Box>
       <div id="asesor_msg">
         <CommentForm />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default InfoProperti;
+export default InfoProperti

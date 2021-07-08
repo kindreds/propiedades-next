@@ -1,15 +1,12 @@
-import React from 'react';
-import {
-  FormLabel,
-  FormControl,
-  FormHelperText,
-} from '@chakra-ui/form-control';
-import { Input } from '@chakra-ui/input';
-import { Button } from '@chakra-ui/button';
-import { Textarea } from '@chakra-ui/textarea';
-import { Box, Heading, Stack } from '@chakra-ui/layout';
-import { SimpleGrid } from '@chakra-ui/layout';
-import { Flex } from '@chakra-ui/layout';
+import React from "react"
+import { FormLabel, FormControl } from "@chakra-ui/form-control"
+import { Input } from "@chakra-ui/input"
+import { Select } from "@chakra-ui/select"
+import { Button } from "@chakra-ui/button"
+import { Textarea } from "@chakra-ui/textarea"
+import { Box, Heading, Stack } from "@chakra-ui/layout"
+import { SimpleGrid } from "@chakra-ui/layout"
+import { Flex } from "@chakra-ui/layout"
 
 const CommentForm = () => {
   return (
@@ -24,17 +21,35 @@ const CommentForm = () => {
             <FormLabel>Nombre</FormLabel>
             <Input type="text" />
           </FormControl>
-
+          <FormControl id="last-name" isRequired>
+            <FormLabel>Apellido</FormLabel>
+            <Input type="text" />
+          </FormControl>
+        </SimpleGrid>
+        <SimpleGrid
+          gap={6}
+          templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, 1fr)" }}
+        >
           <FormControl id="email" isRequired>
             <FormLabel>Correo</FormLabel>
             <Input type="email" />
           </FormControl>
-        </SimpleGrid>
 
-        <FormControl id="phone" isRequired>
-          <FormLabel>Telefono</FormLabel>
-          <Input type="phone" />
-        </FormControl>
+          <FormControl id="phone" isRequired>
+            <FormLabel>Telefono</FormLabel>
+            <Input type="phone" />
+          </FormControl>
+          <FormControl id="phone" isRequired>
+            <FormLabel>Horario de contacto</FormLabel>
+            <Select placeholder="Horario de contacto">
+              <option>8:00 am - 10:00 am</option>
+              <option>10:00 am - 12:00 pm</option>
+              <option>12:00 pm - 2:00 pm</option>
+              <option>2:00 pm - 4:00 pm</option>
+              <option>4:00 pm - 6:00 pm</option>
+            </Select>
+          </FormControl>
+        </SimpleGrid>
 
         <FormControl id="phone" isRequired>
           <FormLabel>Descripción</FormLabel>
@@ -45,7 +60,7 @@ const CommentForm = () => {
         <Button colorScheme="teal">Enviar</Button>
       </Flex>
     </Box>
-  );
-};
+  )
+}
 
-export default CommentForm;
+export default CommentForm

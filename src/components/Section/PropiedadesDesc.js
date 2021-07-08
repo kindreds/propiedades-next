@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import ReactSlidy from "react-slidy";
-import PropertyCard from "../PropertyCard";
-import { Box, Flex } from "@chakra-ui/layout";
-import { useBreakpointValue } from "@chakra-ui/media-query";
-import { createStyles, numOfDots } from "../../helper/dotStyles";
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import ReactSlidy from "react-slidy"
+import PropertyCard from "../PropertyCard"
+import { Box, Flex } from "@chakra-ui/layout"
+import { useBreakpointValue } from "@chakra-ui/media-query"
+import { createStyles, numOfDots } from "../../helper/dotStyles"
 
 const initialState = {
   base: 1,
@@ -12,25 +12,25 @@ const initialState = {
   sm: 2,
   md: 2,
   lg: 3,
-  xl: 3,
-};
+  xl: 3
+}
 
 const PropiedadesDesc = ({ breakpoints = initialState, maxW = "1200px" }) => {
-  const [timer, setTimer] = useState(0);
-  const [actualSlide, setActualSlide] = useState(0);
-  const numOfSlidesRaw = useBreakpointValue(breakpoints);
+  const [timer, setTimer] = useState(0)
+  const [actualSlide, setActualSlide] = useState(0)
+  const numOfSlidesRaw = useBreakpointValue(breakpoints)
 
-  const SLIDES = Array(10).fill(null);
-  const numOfSlides = numOfSlidesRaw ?? 3;
+  const SLIDES = Array(10).fill(null)
+  const numOfSlides = numOfSlidesRaw ?? 3
 
   useEffect(() => {
-    if (numOfSlidesRaw) setTimer(0);
-    return () => clearInterval(timer);
-  }, [numOfSlidesRaw]);
+    if (numOfSlidesRaw) setTimer(0)
+    return () => clearInterval(timer)
+  }, [numOfSlidesRaw])
 
   const updateSlide = ({ currentSlide }) => {
-    setActualSlide(currentSlide);
-  };
+    setActualSlide(currentSlide)
+  }
 
   const play = () => {
     // return setInterval(() => {
@@ -39,14 +39,14 @@ const PropiedadesDesc = ({ breakpoints = initialState, maxW = "1200px" }) => {
     //     return state + numOfSlides;
     //   });
     // }, 5000);
-  };
+  }
 
   const reset = () => {
-    clearInterval(timer);
-  };
+    clearInterval(timer)
+  }
 
   return (
-    <Box exit={{ opacity: 0 }} mt={5} mx="auto" maxW={maxW}>
+    <Box mt={5} mx="auto" maxW={maxW}>
       <ReactSlidy
         showArrows={false}
         keyboardNavigation
@@ -68,7 +68,7 @@ const PropiedadesDesc = ({ breakpoints = initialState, maxW = "1200px" }) => {
         {Array(numOfDots({ length: SLIDES.length, numOfSlides }))
           .fill(null)
           .map((_, i) => {
-            const pos = i === 0 ? 0 : i * numOfSlides;
+            const pos = i === 0 ? 0 : i * numOfSlides
             return (
               <button
                 key={i}
@@ -77,16 +77,16 @@ const PropiedadesDesc = ({ breakpoints = initialState, maxW = "1200px" }) => {
               >
                 &bull;
               </button>
-            );
+            )
           })}
       </Flex>
     </Box>
-  );
-};
+  )
+}
 
 PropiedadesDesc.propTypes = {
   maxW: PropTypes.string,
-  breakpoints: PropTypes.object,
-};
+  breakpoints: PropTypes.object
+}
 
-export default PropiedadesDesc;
+export default PropiedadesDesc

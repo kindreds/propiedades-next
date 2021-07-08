@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import NextLink from "next/link";
-import { StarIcon } from "@chakra-ui/icons";
-import { Tooltip } from "@chakra-ui/tooltip";
-import { IconButton } from "@chakra-ui/button";
-import { CgArrowsExchangeAlt } from "react-icons/cg";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { Box, Text, Flex, Badge, HStack, Divider } from "@chakra-ui/layout";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
+import NextLink from "next/link"
+import { StarIcon } from "@chakra-ui/icons"
+import { Tooltip } from "@chakra-ui/tooltip"
+import { IconButton } from "@chakra-ui/button"
+import { CgArrowsExchangeAlt } from "react-icons/cg"
+import { BsHeart, BsHeartFill } from "react-icons/bs"
+import { Box, Text, Flex, Badge, HStack, Divider } from "@chakra-ui/layout"
 
-import { motion } from "framer-motion";
-import { Avatar } from "../tools";
-import { Link } from "@chakra-ui/layout";
-import SliderImage from "./SliderImage";
-import { fadeInUp } from "../../motions/fadeInUp";
+import { motion } from "framer-motion"
+import { Avatar } from "../tools"
+import { Link } from "@chakra-ui/layout"
+import SliderImage from "./SliderImage"
+import { fadeInUp } from "../../motions/fadeInUp"
 
 const PropertyCard = ({ i, fullW, ...props }) => {
-  const [isLike, setIsLike] = useState(false);
-  const w = { base: "95%", xl: "370px" };
-  const imagesList = ["/casa1_cp.webp", "/casa2_cp.webp", "/casa3_cp.webp"];
+  const [isLike, setIsLike] = useState(false)
+  const w = { base: "95%", xl: "370px" }
+  const imagesList = ["/casa1_cp.webp", "/casa2_cp.webp", "/casa3_cp.webp"]
 
   return (
     <motion.div variants={fadeInUp}>
@@ -162,12 +162,12 @@ const PropertyCard = ({ i, fullW, ...props }) => {
         </Flex>
       </Box>
     </motion.div>
-  );
-};
+  )
+}
 
 PropertyCard.propTypes = {
   i: PropTypes.number,
-  fullW: PropTypes.bool,
-};
+  fullW: PropTypes.bool
+}
 
-export default PropertyCard;
+export default PropertyCard
