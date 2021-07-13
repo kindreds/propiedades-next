@@ -1,28 +1,33 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import NextLink from "next/link"
-import { StarIcon } from "@chakra-ui/icons"
-import { Tooltip } from "@chakra-ui/tooltip"
-import { IconButton } from "@chakra-ui/button"
-import { CgArrowsExchangeAlt } from "react-icons/cg"
-import { BsHeart, BsHeartFill } from "react-icons/bs"
-import { Box, Text, Flex, Badge, HStack, Divider } from "@chakra-ui/layout"
+import React, { useState } from 'react'
+import NextLink from 'next/link'
 
-import { motion } from "framer-motion"
-import { Avatar } from "../tools"
-import { Link } from "@chakra-ui/layout"
-import SliderImage from "./SliderImage"
-import { fadeInUp } from "../../motions/fadeInUp"
+// Terceros
+// import { motion } from 'framer-motion'
+import { Image } from '@chakra-ui/image'
+import { StarIcon } from '@chakra-ui/icons'
+import { Tooltip } from '@chakra-ui/tooltip'
+import { IconButton } from '@chakra-ui/button'
+import { CgArrowsExchangeAlt } from 'react-icons/cg'
+import { BsHeart, BsHeartFill } from 'react-icons/bs'
+import {
+  Box,
+  Text,
+  Link,
+  Flex,
+  Badge,
+  HStack,
+  Divider
+} from '@chakra-ui/layout'
 
-const PropertyCard = ({ i, fullW, ...props }) => {
+import { Avatar } from '../tools'
+// import { fadeInUp } from '../../motions/fadeInUp'
+
+const PropertyCard = ({ i, p }) => {
   const [isLike, setIsLike] = useState(false)
-  const w = { base: "95%", xl: "370px" }
-  const imagesList = ["/casa1_cp.webp", "/casa2_cp.webp", "/casa3_cp.webp"]
 
   return (
-    <motion.div variants={fadeInUp}>
+    <>
       <Box
-        {...props}
         mb={5}
         mx="auto"
         bg="white"
@@ -31,21 +36,20 @@ const PropertyCard = ({ i, fullW, ...props }) => {
         borderWidth={1}
         borderRadius="lg"
         borderColor="gray.300"
-        _hover={{ shadow: "xl" }}
+        _hover={{ shadow: 'xl' }}
         transition="all 0.3s ease"
-        maxW={fullW ? { base: "100%", ms: "95%" } : w}
+        maxW={{ base: '90%', ms: '370px' }}
       >
         <Box w="full" pos="relative">
           <Box
             w="full"
+            overflow="hidden"
             borderTopEndRadius="lg"
             borderTopStartRadius="lg"
-            overflow="hidden"
           >
-            <SliderImage
-              minH="250px"
-              images={imagesList}
-              h={{ base: "250px" }}
+            <Image
+              src={p.fotoPrincipal.url}
+              alt={p.fotoPrincipal.descripcion}
             />
           </Box>
           <HStack pos="absolute" top={2} left={2} w="100%">
@@ -64,9 +68,9 @@ const PropertyCard = ({ i, fullW, ...props }) => {
               bottom={2}
               pos="absolute"
               opacity={isLike ? 1 : 0.7}
-              color={isLike ? "red.600" : ""}
+              color={isLike ? 'red.600' : ''}
               onClick={() => setIsLike(!isLike)}
-              _hover={{ opacity: 1, color: "red.600" }}
+              _hover={{ opacity: 1, color: 'red.600' }}
               icon={isLike ? <BsHeartFill /> : <BsHeart />}
             />
           </Tooltip>
@@ -78,16 +82,16 @@ const PropertyCard = ({ i, fullW, ...props }) => {
               bottom={2}
               pos="absolute"
               opacity={isLike ? 1 : 0.7}
-              color={isLike ? "blue.600" : ""}
+              color={isLike ? 'blue.600' : ''}
               onClick={() => setIsLike(!isLike)}
-              _hover={{ opacity: 1, color: "blue.600" }}
+              _hover={{ opacity: 1, color: 'blue.600' }}
               icon={<CgArrowsExchangeAlt fontSize="20px" />}
             />
           </Tooltip>
         </Box>
         <Box p={3}>
           <Box mb={4}>
-            <NextLink href={`/propiedades/${i}`}>
+            <NextLink href={`/propiedades/${p.slug}`}>
               <Link>
                 <Text
                   as="h4"
@@ -97,16 +101,16 @@ const PropertyCard = ({ i, fullW, ...props }) => {
                   lineHeight="tight"
                   fontWeight="semibold"
                 >
-                  Casa moderna en el centro de la ciudad, con vista al mar y
-                  ....
+                  {p.titulo}
                 </Text>
               </Link>
             </NextLink>
             <Text fontSize="sm" color="gray.600">
-              Av. Coronel Portillo #1088.
+              {p.direccion}
             </Text>
             <Text fontSize="sm" color="gray.600">
-              Lima - Lima - San Isidro
+              {p.Departamento.DeparNom} - {p.Provincia.ProvNom} -{' '}
+              {p.Distrito.DistNom}
             </Text>
             <Text fontSize="md" color="gray.800" fontWeight="semibold">
               S/ 200.000,00
@@ -120,24 +124,24 @@ const PropertyCard = ({ i, fullW, ...props }) => {
             fontSize="xs"
             textTransform="uppercase"
           >
-            {4} Cuartos &bull; {4} Baños
+            {p.cuartos} Cuartos &bull; {p.banios} Baños
           </Box>
 
           <Box d="flex" alignItems="center" mb={2}>
             {Array(5)
-              .fill("")
+              .fill('')
               .map((_, i) => (
                 <StarIcon
                   fontSize="sm"
                   key={i}
-                  color={i < 4 ? "teal.500" : "gray.300"}
+                  color={i < 4 ? 'teal.500' : 'gray.300'}
                 />
               ))}
             <Box as="span" ml="2" color="gray.600" fontSize="sm">
               {33} Opiniones
             </Box>
           </Box>
-          <NextLink href={`/propiedades/${i}`}>
+          <NextLink href={`/propiedades/${p.slug}`}>
             <Link fontSize="sm" color="blue.500" textDecorationLine="underline">
               Ver mas
             </Link>
@@ -146,7 +150,7 @@ const PropertyCard = ({ i, fullW, ...props }) => {
         <Divider />
         <Flex justify="space-between" alignItems="center" p={3}>
           <Flex alignItems="center">
-            <Box w={"50px"} h={"50px"}>
+            <Box w={'50px'} h={'50px'}>
               <Avatar
                 width={50}
                 height={50}
@@ -155,19 +159,14 @@ const PropertyCard = ({ i, fullW, ...props }) => {
               />
             </Box>
             <Text ml={1} fontSize="sm">
-              Dan Abrahmov
+              {p.Asesor.nombres} {p.Asesor.apellidos}
             </Text>
           </Flex>
           <Text fontSize="sm">hace 1 año</Text>
         </Flex>
       </Box>
-    </motion.div>
+    </>
   )
-}
-
-PropertyCard.propTypes = {
-  i: PropTypes.number,
-  fullW: PropTypes.bool
 }
 
 export default PropertyCard

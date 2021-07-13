@@ -1,63 +1,64 @@
-import React from "react";
-import Head from "next/head";
-import Image from "next/image";
-import NextLink from "next/link";
-import d from "next/dynamic";
-import { FaList } from "react-icons/fa";
-import { GoSettings } from "react-icons/go";
-import { BsGridFill } from "react-icons/bs";
-import { Tooltip } from "@chakra-ui/tooltip";
-import { IconButton } from "@chakra-ui/button";
-import { useDisclosure } from "@chakra-ui/hooks";
-import { ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, Container } from "@chakra-ui/layout";
+import React from 'react'
+import Head from 'next/head'
+import Image from 'next/image'
+import NextLink from 'next/link'
+import { FaList } from 'react-icons/fa'
+import { GoSettings } from 'react-icons/go'
+import { BsGridFill } from 'react-icons/bs'
+import { Tooltip } from '@chakra-ui/tooltip'
+import { IconButton } from '@chakra-ui/button'
+import { useDisclosure } from '@chakra-ui/hooks'
+import { ChevronRightIcon } from '@chakra-ui/icons'
+import { Box, Flex, Heading, Container } from '@chakra-ui/layout'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
-} from "@chakra-ui/breadcrumb";
-import { m, LazyMotion, domAnimation } from "framer-motion";
-import { useMediaQuery } from "@chakra-ui/react";
-const o = { ssr: false };
+  BreadcrumbLink
+} from '@chakra-ui/breadcrumb'
+import { useMediaQuery } from '@chakra-ui/media-query'
+import { m, LazyMotion, domAnimation } from 'framer-motion'
 
-/* COMPONENTES */
+// components
+import Footer from '../../components/Footer'
+import AdvanceSearch from '../../components/AdvanceSearch'
+import LastProperties from '../../components/LastProperties'
+import PropertiesResult from '../../components/PropertiesResult'
+import AdvanceSearchDrawer from '../../components/AdvanceSearch/AdvanceSearchDrawer'
 
-const Footer = d(() => {
-  return import("../../components/Footer");
-}, o);
-const AdvanceSearch = d(() => {
-  return import("../../components/AdvanceSearch");
-}, o);
-const LastProperties = d(() => {
-  return import("../../components/LastProperties");
-}, o);
-const PropertiesResult = d(() => {
-  return import("../../components/PropertiesResult");
-}, o);
-const AdvanceSearchDrawer = d(() => {
-  return import("../../components/AdvanceSearch/AdvanceSearchDrawer");
-}, o);
+import client from '../../apollo'
+import { GetAllPropiedadesDocument as GET_ALL_PROPIEDADES } from '../../generated/graphql'
 
-const Propiedades = () => {
-  const [is1024px] = useMediaQuery("(min-width: 1024px)");
-  const { isOpen, onClose, onOpen } = useDisclosure();
+export async function getStaticProps() {
+  const {
+    data: { GetAllPropiedades }
+  } = await client.query({
+    query: GET_ALL_PROPIEDADES,
+    variables: {
+      page: 1,
+      estado: '',
+      destacado: '',
+      numberPaginate: 10
+    }
+  })
+
+  return {
+    props: {
+      dark: true,
+      propiedades: GetAllPropiedades.data,
+      NroItems: GetAllPropiedades.NroItems
+    }
+  }
+}
+
+const Propiedades = ({ propiedades }) => {
+  const { isOpen, onClose, onOpen } = useDisclosure()
+  const [is1024px] = useMediaQuery('(min-width: 1024px)')
 
   return (
     <LazyMotion features={domAnimation}>
       <Box w="full" bg="gray.200">
         <Head>
           <title>Propiedades</title>
-          <link
-            as="image"
-            rel="preload"
-            href="/banner-propiedades.webp"
-            imagesrcset={`${"/banner-propiedades.webp"} 1200w,
-             ${"/banner-propiedades.webp"}?w=200 200w,
-             ${"/banner-propiedades.webp"}?w=400 400w,
-             ${"/banner-propiedades.webp"}?w=800 800w,
-             ${"/banner-propiedades.webp"}?w=1024 1024w,
-            `}
-          />
         </Head>
         <Box
           pos="relative"
@@ -78,13 +79,13 @@ const Propiedades = () => {
         </Box>
         <Container
           pb={10}
-          transform={{ base: "translateY(-100px)", lg: "translateY(-150px)" }}
+          transform={{ base: 'translateY(-100px)', lg: 'translateY(-150px)' }}
           maxW={{
-            base: "95%",
-            sm: "container.sm",
-            md: "container.md",
-            lg: "container.lg",
-            xl: "container.xl",
+            base: '95%',
+            sm: 'container.sm',
+            md: 'container.md',
+            lg: 'container.lg',
+            xl: 'container.xl'
           }}
         >
           {is1024px && (
@@ -94,7 +95,7 @@ const Propiedades = () => {
               animate={{ x: 0, opacity: 1 }}
               initial={{ x: 200, opacity: 0 }}
               spacing="8px"
-              display={{ base: "none", lg: "block" }}
+              display={{ base: 'none', lg: 'block' }}
               separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
             >
               <BreadcrumbItem>
@@ -133,7 +134,7 @@ const Propiedades = () => {
               lineHeight="shorter"
               letterSpacing="tight"
               fontWeight="extrabold"
-              fontSize={{ base: "3xl", sm: "4xl" }}
+              fontSize={{ base: '3xl', sm: '4xl' }}
             >
               Propiedades
             </Heading>
@@ -150,7 +151,7 @@ const Propiedades = () => {
               <IconButton colorScheme="red" icon={<BsGridFill />} />
             </Tooltip>
           </Flex>
-          <Flex>
+          <Flex mt={5}>
             {is1024px && (
               <Box
                 as={m.div}
@@ -161,7 +162,7 @@ const Propiedades = () => {
                 <LastProperties />
               </Box>
             )}
-            <PropertiesResult />
+            <PropertiesResult {...{ propiedades }} />
           </Flex>
         </Container>
         <Footer />
@@ -177,17 +178,13 @@ const Propiedades = () => {
               colorScheme="red"
               onClick={() => onOpen()}
               icon={<GoSettings fontSize="30px" />}
-              display={{ base: "flex", xl: "none" }}
+              display={{ base: 'flex', xl: 'none' }}
             />
           </>
         )}
       </Box>
     </LazyMotion>
-  );
-};
+  )
+}
 
-Propiedades.getInitialProps = () => {
-  return { dark: true };
-};
-
-export default Propiedades;
+export default Propiedades

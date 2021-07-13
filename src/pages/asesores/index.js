@@ -1,29 +1,51 @@
-import React from "react";
-import Head from "next/head";
-import Image from "next/image";
-import NextLink from "next/link";
-import { Tooltip } from "@chakra-ui/tooltip";
-import { IconButton } from "@chakra-ui/button";
+import React from 'react'
+import Head from 'next/head'
+import Image from 'next/image'
+import NextLink from 'next/link'
+import { Tooltip } from '@chakra-ui/tooltip'
+import { IconButton } from '@chakra-ui/button'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
-} from "@chakra-ui/breadcrumb";
-import { Box, Flex, Heading, Container } from "@chakra-ui/layout";
+  BreadcrumbLink
+} from '@chakra-ui/breadcrumb'
+import { Box, Flex, Heading, Container } from '@chakra-ui/layout'
 
-import { FaList } from "react-icons/fa";
-import { BsGridFill } from "react-icons/bs";
-import { ChevronRightIcon } from "@chakra-ui/icons";
-import { useMediaQuery } from "@chakra-ui/media-query";
+import { FaList } from 'react-icons/fa'
+import { BsGridFill } from 'react-icons/bs'
+import { ChevronRightIcon } from '@chakra-ui/icons'
+import { useMediaQuery } from '@chakra-ui/media-query'
+import { m, LazyMotion, domAnimation } from 'framer-motion'
 
-import Footer from "../../components/Footer";
-import Asesores from "../../components/AsesoresList";
-import LastProperties from "../../components/LastProperties";
-import AdvanceSearchAsesor from "../../components/AdvanceSearch/AdvanceSearchAsesor";
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import Footer from '../../components/Footer'
+import Asesores from '../../components/AsesoresList'
+import LastProperties from '../../components/LastProperties'
+import AdvanceSearchAsesor from '../../components/AdvanceSearch/AdvanceSearchAsesor'
 
-const asesores = () => {
-  const [is1024px] = useMediaQuery("(min-width: 1024px)");
+import client from '../../apollo'
+import { GetAllUsersDocument as GET_ALL_USERS } from '../../generated/graphql'
+
+export async function getStaticProps() {
+  const {
+    data: { GetAllUsers }
+  } = await client.query({
+    query: GET_ALL_USERS,
+    variables: {
+      estado: '',
+      tipoUsuario: 2
+    }
+  })
+
+  return {
+    props: {
+      dark: true,
+      asesores: GetAllUsers
+    }
+  }
+}
+
+const asesores = ({ asesores }) => {
+  const [is1024px] = useMediaQuery('(min-width: 1024px)')
 
   return (
     <LazyMotion features={domAnimation}>
@@ -52,13 +74,13 @@ const asesores = () => {
         <Container
           pb={10}
           maxW={{
-            base: "95%",
-            sm: "container.sm",
-            md: "container.md",
-            lg: "container.lg",
-            xl: "container.xl",
+            base: '95%',
+            sm: 'container.sm',
+            md: 'container.md',
+            lg: 'container.lg',
+            xl: 'container.xl'
           }}
-          transform={{ base: "translateY(-100px)", lg: "translateY(-150px)" }}
+          transform={{ base: 'translateY(-100px)', lg: 'translateY(-150px)' }}
         >
           {is1024px && (
             <Breadcrumb
@@ -67,7 +89,7 @@ const asesores = () => {
               animate={{ x: 0, opacity: 1 }}
               initial={{ x: 200, opacity: 0 }}
               spacing="8px"
-              display={{ base: "none", lg: "block" }}
+              display={{ base: 'none', lg: 'block' }}
               separator={<ChevronRightIcon color="gray.100" fontSize="25px" />}
             >
               <BreadcrumbItem>
@@ -86,7 +108,7 @@ const asesores = () => {
             </Breadcrumb>
           )}
 
-          <Flex mb={5} align="center">
+          <Flex mb={5} align="flex-start">
             <Heading
               flex={1}
               as={is1024px && m.h1}
@@ -96,7 +118,7 @@ const asesores = () => {
               lineHeight="shorter"
               letterSpacing="tight"
               fontWeight="extrabold"
-              fontSize={{ base: "3xl", sm: "4xl" }}
+              fontSize={{ base: '3xl', sm: '4xl' }}
             >
               Asesores
             </Heading>
@@ -114,7 +136,7 @@ const asesores = () => {
             </Tooltip>
           </Flex>
 
-          <Flex>
+          <Flex mt={5}>
             {is1024px && (
               <Box
                 as={m.div}
@@ -125,17 +147,13 @@ const asesores = () => {
                 <LastProperties />
               </Box>
             )}
-            <Asesores />
+            <Asesores {...{ asesores }} />
           </Flex>
         </Container>
         <Footer />
       </Box>
     </LazyMotion>
-  );
-};
+  )
+}
 
-asesores.getInitialProps = () => {
-  return { dark: true };
-};
-
-export default asesores;
+export default asesores

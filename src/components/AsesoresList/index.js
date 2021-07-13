@@ -1,20 +1,20 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import { Box, SimpleGrid } from "@chakra-ui/layout";
-import { Button, IconButton } from "@chakra-ui/button";
-import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
-import { Input, InputGroup, InputRightAddon } from "@chakra-ui/input";
-import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
-import { motion } from "framer-motion";
+import React from 'react'
+import dynamic from 'next/dynamic'
+import { Box, SimpleGrid } from '@chakra-ui/layout'
+import { Button, IconButton } from '@chakra-ui/button'
+import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons'
+import { Input, InputGroup, InputRightAddon } from '@chakra-ui/input'
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu'
+import { motion } from 'framer-motion'
 
-import { stagger } from "../../motions/stagger";
-import { fadeInUp } from "../../motions/fadeInUp";
+import { stagger } from '../../motions/stagger'
+import { fadeInUp } from '../../motions/fadeInUp'
 
-const AsesorCard = dynamic(() => import("../AsesorCard"), { ssr: false });
+const AsesorCard = dynamic(() => import('../AsesorCard'), { ssr: false })
 
-const AsesoresList = () => {
+const AsesoresList = ({ asesores }) => {
   return (
-    <Box flex={1} d="flex" flexDir="column" justifyContent="center">
+    <Box flex={1} d="flex" flexDir="column" justifyContent="flex-start">
       <motion.div variants={fadeInUp}>
         <SimpleGrid
           mb={6}
@@ -26,8 +26,8 @@ const AsesoresList = () => {
           gap={{ base: 2, md: 6 }}
           justify="space-between"
           templateColumns={{
-            base: "minmax(0, 1fr)",
-            sm: "minmax(0, 2fr) 150px",
+            base: 'minmax(0, 1fr)',
+            sm: 'minmax(0, 2fr) 150px'
           }}
         >
           <InputGroup>
@@ -40,16 +40,16 @@ const AsesoresList = () => {
           <Menu ml={6}>
             <MenuButton
               as={Button}
-              fontSize={{ base: "sm" }}
+              fontSize={{ base: 'sm' }}
               rightIcon={<ChevronDownIcon />}
             >
               Ordenar
             </MenuButton>
             <MenuList>
-              <MenuItem fontSize={{ base: "sm" }}>Nuevos</MenuItem>
-              <MenuItem fontSize={{ base: "sm" }}>Antiguos</MenuItem>
-              <MenuItem fontSize={{ base: "sm" }}>Menor precio</MenuItem>
-              <MenuItem fontSize={{ base: "sm" }}>Mayor precio</MenuItem>
+              <MenuItem fontSize={{ base: 'sm' }}>Nuevos</MenuItem>
+              <MenuItem fontSize={{ base: 'sm' }}>Antiguos</MenuItem>
+              <MenuItem fontSize={{ base: 'sm' }}>Menor precio</MenuItem>
+              <MenuItem fontSize={{ base: 'sm' }}>Mayor precio</MenuItem>
             </MenuList>
           </Menu>
         </SimpleGrid>
@@ -61,19 +61,17 @@ const AsesoresList = () => {
         variants={stagger}
         boxSizing="border-box"
         templateColumns={{
-          base: "minmax(0, 1fr)",
-          sm: "repeat(2, minmax(0, 1fr))",
-          xl: "repeat(3, minmax(0, 1fr))",
+          base: 'minmax(0, 1fr)',
+          sm: 'repeat(2, minmax(0, 1fr))',
+          xl: 'repeat(3, minmax(0, 1fr))'
         }}
       >
-        {Array(10)
-          .fill(null)
-          .map((_, i) => (
-            <AsesorCard key={i} i={i} />
-          ))}
+        {asesores.map((asesor, i) => (
+          <AsesorCard key={i} i={i} {...{ asesor }} />
+        ))}
       </SimpleGrid>
     </Box>
-  );
-};
+  )
+}
 
-export default AsesoresList;
+export default AsesoresList

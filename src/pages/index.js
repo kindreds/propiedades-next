@@ -1,32 +1,19 @@
-import "@fontsource/poppins";
-import React from "react";
-import Head from "next/head";
-import dynamic from "next/dynamic";
-import { Image } from "@chakra-ui/image";
-import { keyframes } from "@chakra-ui/react";
-import { Container, Text, Heading, Box } from "@chakra-ui/layout";
+import "@fontsource/poppins"
+import React from "react"
+import Head from "next/head"
+import { Image } from "@chakra-ui/image"
+import { keyframes } from "@chakra-ui/react"
+import { useInView } from "react-intersection-observer"
+import { Container, Text, Heading, Box } from "@chakra-ui/layout"
+import { m, LazyMotion, domAnimation } from "framer-motion"
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
-
-import Hero from "../components/Hero";
-import Footer from "../components/Footer";
-import { useInView } from "react-intersection-observer";
-
-const opts = { ssr: false };
-
-const GridProperty = dynamic(() => import("../components/GridProperty"), opts);
-const Testimonios = dynamic(
-  () => import("../components/Section/Testimonios"),
-  opts
-);
-const PropiedadesDesc = dynamic(
-  () => import("../components/Section/PropiedadesDesc"),
-  opts
-);
-const PorQueElegirnos = dynamic(
-  () => import("../components/Section/PorQueElegirnos"),
-  opts
-);
+import Hero from "../components/Hero"
+import Footer from "../components/Footer"
+import GridProperty from "../components/GridProperty"
+import Testimonios from "../components/Section/Testimonios"
+import PropiedadesDesc from "../components/Section/PropiedadesDesc"
+import PorQueElegirnos from "../components/Section/PorQueElegirnos"
+import { useGetAllPropiedadesQuery } from "../generated/graphql.tsx"
 
 const Wave = keyframes`
   0% {
@@ -38,28 +25,17 @@ const Wave = keyframes`
   100% {
     transform: translateY(0px);
   }
-`;
+`
 
-const animation = `${Wave} 5s infinite ease-in-out`;
+const animation = `${Wave} 5s infinite ease-in-out`
 
 const Index = () => {
-  const { ref: ref2, inView: inView2 } = useInView();
+  const { ref: ref2, inView: inView2 } = useInView()
 
   return (
     <LazyMotion features={domAnimation}>
       <Head>
         <title>Inmobiliara</title>
-        <link
-          as="image"
-          rel="preload"
-          href="/hero_cp.webp"
-          imagesrcset={`${"/inhouse_1_cp.webp"} 1200w,
-             ${"/hero_cp.webp"}?w=200 200w,
-             ${"/hero_cp.webp"}?w=400 400w,
-             ${"/hero_cp.webp"}?w=800 800w,
-             ${"/hero_cp.webp"}?w=1024 1024w,
-            `}
-        />
       </Head>
 
       <Hero />
@@ -89,15 +65,15 @@ const Index = () => {
           variants={{
             hidden: {
               scale: 0.8,
-              opacity: 0,
+              opacity: 0
             },
             visible: {
               scale: 1,
               opacity: 1,
               transition: {
-                delay: 0.4,
-              },
-            },
+                delay: 0.4
+              }
+            }
           }}
         >
           <Heading
@@ -125,15 +101,15 @@ const Index = () => {
             variants={{
               hidden: {
                 scale: 0.8,
-                opacity: 0,
+                opacity: 0
               },
               visible: {
                 scale: 1,
                 opacity: 1,
                 transition: {
-                  delay: 0.4,
-                },
-              },
+                  delay: 0.4
+                }
+              }
             }}
           >
             <Heading
@@ -207,7 +183,7 @@ const Index = () => {
       </Box>
       <Footer />
     </LazyMotion>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

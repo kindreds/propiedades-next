@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 // import Image from "next/image";
-import Icon from "@chakra-ui/icon";
-import ReactSlider from "react-slidy";
-import { Box } from "@chakra-ui/layout";
-import { IconButton } from "@chakra-ui/button";
-import { useBreakpointValue } from "@chakra-ui/media-query";
+import Icon from '@chakra-ui/icon'
+import ReactSlider from 'react-slidy'
+import { Box } from '@chakra-ui/layout'
+import { IconButton } from '@chakra-ui/button'
+import { useBreakpointValue } from '@chakra-ui/media-query'
 
-import { GoPrimitiveDot } from "react-icons/go";
+import { GoPrimitiveDot } from 'react-icons/go'
 
 const initialState = {
   base: 1,
@@ -14,27 +14,27 @@ const initialState = {
   sm: 2,
   md: 2,
   lg: 2,
-  xl: 3,
-};
+  xl: 3
+}
 
-const DetailSlider = () => {
-  const [actualSlide, setActualSlide] = useState(0);
-  const numOfSlidesRaw = useBreakpointValue(initialState);
+const DetailSlider = ({ galeria }) => {
+  const [actualSlide, setActualSlide] = useState(0)
+  const numOfSlidesRaw = useBreakpointValue(initialState)
 
   const updateSlide = ({ currentSlide }) => {
-    setActualSlide(currentSlide);
-  };
+    setActualSlide(currentSlide)
+  }
 
-  const numOfSlides = numOfSlidesRaw ?? 3;
+  const numOfSlides = numOfSlidesRaw ?? 3
 
-  const imagesList = [
-    "/inhouse_1_cp.webp",
-    "/inhouse_2_cp.webp",
-    "/inhouse_3_cp.webp",
-    "/inhouse_4_cp.webp",
-    "/inhouse_5_cp.webp",
-    "/inhouse_6_cp.webp",
-  ];
+  // const imagesList = [
+  //   '/inhouse_1_cp.webp',
+  //   '/inhouse_2_cp.webp',
+  //   '/inhouse_3_cp.webp',
+  //   '/inhouse_4_cp.webp',
+  //   '/inhouse_5_cp.webp',
+  //   '/inhouse_6_cp.webp'
+  // ]
 
   return (
     <>
@@ -47,15 +47,16 @@ const DetailSlider = () => {
         numOfSlides={numOfSlides}
         doAfterSlide={updateSlide}
       >
-        {imagesList.map((src, i) => (
+        {galeria.map(({ id, url, descripcion }) => (
           <img
-            key={i}
-            src={`${src}?q=70`}
-            srcSet={`${src}?q=70 1200w,
-             ${src}?w=200&q=70 200w,
-             ${src}?w=400&q=70 400w,
-             ${src}?w=800&q=70 800w,
-             ${src}?w=1024&q=70 1024w,
+            key={id}
+            alt={descripcion}
+            src={`${url}?q=70`}
+            urlSet={`${url}?q=70 1200w,
+             ${url}?w=200&q=70 200w,
+             ${url}?w=400&q=70 400w,
+             ${url}?w=800&q=70 800w,
+             ${url}?w=1024&q=70 1024w,
             `}
           />
         ))}
@@ -68,22 +69,22 @@ const DetailSlider = () => {
         justifyContent="center"
         alignItems="flex-start"
       >
-        {imagesList.map((_, index) => {
+        {galeria.map((_, index) => {
           return (
             <IconButton
               key={index}
               rounded="full"
               variant="unstyled"
-              sx={{ outline: "none", border: "none" }}
+              sx={{ outline: 'none', border: 'none' }}
               opacity={index === actualSlide ? 1 : 0.3}
               icon={<Icon as={GoPrimitiveDot} fontSize="25px" mt="auto" />}
               onClick={() => updateSlide({ currentSlide: index })}
             />
-          );
+          )
         })}
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default DetailSlider;
+export default DetailSlider

@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import {
   Box,
   Text,
@@ -22,17 +22,17 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
-import { SearchIcon } from "@chakra-ui/icons"
+import { SearchIcon } from '@chakra-ui/icons'
 
 const AdvanceSearch = ({ isDrawer }) => {
-  const [desde, setDesde] = useState("0.00")
-  const [hasta, setHasta] = useState("200.000.00")
+  const [desde, setDesde] = useState('0.00')
+  const [hasta, setHasta] = useState('200.000.00')
   const [distance, setDistance] = useState(14)
 
   const format = (val) => `$` + val
-  const parse = (val) => val.replace(/^\$/, "")
+  const parse = (val) => val.replace(/^\$/, '')
 
   return (
     <Stack
@@ -40,16 +40,16 @@ const AdvanceSearch = ({ isDrawer }) => {
       bg="white"
       py={6}
       px={isDrawer ? 0 : 6}
-      w={isDrawer ? "100%" : null}
-      maxH={isDrawer ? null : "970px"}
-      shadow={isDrawer ? "none" : "lg"}
-      rounded={isDrawer ? "none" : "lg"}
-      display={isDrawer ? "flex" : { base: "none", xl: "flex" }}
+      w={isDrawer ? '100%' : null}
+      maxH={isDrawer ? null : '970px'}
+      shadow={isDrawer ? 'none' : 'lg'}
+      rounded={isDrawer ? 'none' : 'lg'}
+      display={isDrawer ? 'flex' : { base: 'none', xl: 'flex' }}
     >
       <Text
         fontWeight="bold"
         mb={isDrawer ? 4 : 0}
-        textAlign={isDrawer ? "center" : "left"}
+        textAlign={isDrawer ? 'center' : 'left'}
       >
         Busqueda Avanzada
       </Text>
