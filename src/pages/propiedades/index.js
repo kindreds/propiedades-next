@@ -43,7 +43,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      dark: true,
       propiedades: GetAllPropiedades.data,
       NroItems: GetAllPropiedades.NroItems
     }

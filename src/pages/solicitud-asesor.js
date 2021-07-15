@@ -1,33 +1,33 @@
-import React from "react";
-import Head from "next/head";
-import Image from "next/image";
+import React from 'react'
+import Head from 'next/head'
+import Image from 'next/image'
 import {
   Box,
   Text,
   Stack,
   Heading,
   Container,
-  AspectRatio,
-} from "@chakra-ui/layout";
-import { Input } from "@chakra-ui/input";
-import { Button } from "@chakra-ui/button";
-import { useDisclosure } from "@chakra-ui/hooks";
-import { FormLabel, FormControl } from "@chakra-ui/form-control";
-import { m, LazyMotion, domAnimation } from "framer-motion";
+  AspectRatio
+} from '@chakra-ui/layout'
+import { Input } from '@chakra-ui/input'
+import { Button } from '@chakra-ui/button'
+import { useDisclosure } from '@chakra-ui/hooks'
+import { FormLabel, FormControl } from '@chakra-ui/form-control'
+import { m, LazyMotion, domAnimation } from 'framer-motion'
 
-import { FaPlay } from "react-icons/fa";
+import { FaPlay } from 'react-icons/fa'
 
-import Modal from "../components/Modal";
-import Catchap from "../components/Catchap";
+import Modal from '../components/Modal'
+import Catchap from '../components/Catchap'
 
 const BeAsesor = () => {
-  const modalHandler = useDisclosure();
+  const modalHandler = useDisclosure()
 
   const scrollToForm = () => {
-    import("react-scroll").then((scroll) => {
-      scroll.animateScroll.scrollTo(1088);
-    });
-  };
+    import('react-scroll').then((scroll) => {
+      scroll.animateScroll.scrollTo(1088)
+    })
+  }
 
   return (
     <LazyMotion features={domAnimation}>
@@ -63,7 +63,7 @@ const BeAsesor = () => {
                 lineHeight="shorter"
                 letterSpacing="tight"
                 fontWeight="extrabold"
-                fontSize={{ base: "3xl", sm: "4xl" }}
+                fontSize={{ base: '3xl', sm: '4xl' }}
               >
                 <Text display="block" color="white" mb={{ base: 1 }}>
                   ¿Deseas unirte a nuestro equipo?
@@ -75,8 +75,8 @@ const BeAsesor = () => {
               <Stack
                 mt={2}
                 spacing={2}
-                justifyContent={{ base: "center" }}
-                direction={{ base: "column", sm: "row" }}
+                justifyContent={{ base: 'center' }}
+                direction={{ base: 'column', sm: 'row' }}
               >
                 <Button onClick={scrollToForm} size="lg" shadow="lg">
                   Sé un asesor
@@ -129,14 +129,14 @@ const BeAsesor = () => {
               borderWidth={1}
               id="formContact"
               borderColor="gray.300"
-              style={{ scrollPaddingTop: "100px" }}
+              style={{ scrollPaddingTop: '100px' }}
             >
-              <Heading as="h3" mb={5} fontSize={{ base: "xl" }}>
+              <Heading as="h3" mb={5} fontSize={{ base: 'xl' }}>
                 Formulario de contacto para ser asesor asociado de RE/MAX Perú
               </Heading>
 
               <Stack mb={5}>
-                <Stack direction={{ base: "column", sm: "row" }}>
+                <Stack direction={{ base: 'column', sm: 'row' }}>
                   <FormControl id="nombres" isRequired>
                     <FormLabel>Nombre</FormLabel>
                     <Input />
@@ -146,7 +146,7 @@ const BeAsesor = () => {
                     <Input />
                   </FormControl>
                 </Stack>
-                <Stack direction={{ base: "column", sm: "row" }}>
+                <Stack direction={{ base: 'column', sm: 'row' }}>
                   <FormControl id="direccion" isRequired>
                     <FormLabel>Direccion</FormLabel>
                     <Input />
@@ -156,7 +156,7 @@ const BeAsesor = () => {
                     <Input />
                   </FormControl>
                 </Stack>
-                <Stack direction={{ base: "column", sm: "row" }}>
+                <Stack direction={{ base: 'column', sm: 'row' }}>
                   <FormControl id="correo" isRequired>
                     <FormLabel>Correo</FormLabel>
                     <Input />
@@ -176,7 +176,7 @@ const BeAsesor = () => {
               <Button
                 size="lg"
                 colorScheme="teal"
-                w={{ base: "full", sm: "unset" }}
+                w={{ base: 'full', sm: 'unset' }}
               >
                 Enviar
               </Button>
@@ -217,11 +217,7 @@ const BeAsesor = () => {
         `}
       </style>
     </LazyMotion>
-  );
-};
+  )
+}
 
-BeAsesor.getInitialProps = () => {
-  return { dark: true };
-};
-
-export default BeAsesor;
+export default BeAsesor

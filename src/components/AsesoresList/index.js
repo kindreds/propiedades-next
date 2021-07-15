@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, SimpleGrid } from '@chakra-ui/layout'
 import { Button, IconButton } from '@chakra-ui/button'
@@ -12,7 +12,17 @@ import { fadeInUp } from '../../motions/fadeInUp'
 
 const AsesorCard = dynamic(() => import('../AsesorCard'), { ssr: false })
 
-const AsesoresList = ({ asesores }) => {
+const AsesoresList = ({ asesores, setVariables }) => {
+  const [text, setText] = useState('')
+
+  const handleSubmit = () => {
+    setVariables((v) => ({
+      ...v,
+      asesor: text
+    }))
+    setText('')
+  }
+
   return (
     <Box flex={1} d="flex" flexDir="column" justifyContent="flex-start">
       <motion.div variants={fadeInUp}>
@@ -31,9 +41,14 @@ const AsesoresList = ({ asesores }) => {
           }}
         >
           <InputGroup>
-            <Input placeholder="Buscar asesor" />
+            <Input
+              value={text}
+              name="search"
+              placeholder="Buscar asesor"
+              onChange={({ target: { value } }) => setText(value)}
+            />
             <InputRightAddon>
-              <IconButton icon={<SearchIcon />} />
+              <IconButton onClick={handleSubmit} icon={<SearchIcon />} />
             </InputRightAddon>
           </InputGroup>
 

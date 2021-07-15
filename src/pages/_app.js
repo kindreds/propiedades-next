@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps, router }) {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <ApolloProvider client={client}>
-        <Navbar dark={pageProps.dark} />
+        <Navbar dark={!pageProps.dark} />
         <AnimatePresence exitBeforeEnter>
           <LazyMotion features={domAnimation}>
             <m.div

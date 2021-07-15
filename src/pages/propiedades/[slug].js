@@ -51,25 +51,7 @@ const Contact = dynamic(() => import('../../components/Contact'), {
   ssr: false
 })
 
-export async function getStaticPaths() {
-  const { data } = await client.query({
-    query: GET_ALL_PROPIEDADES,
-    variables: {
-      page: 1,
-      estado: '',
-      destacado: '',
-      numberPaginate: 10
-    }
-  })
-
-  const paths = data.GetAllPropiedades.data.map((p) => {
-    return { params: { slug: p.slug } }
-  })
-
-  return { paths, fallback: false }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const {
     data: { GetAllPropiedades }
   } = await client.query({
@@ -87,7 +69,7 @@ export async function getStaticProps({ params }) {
   })
 
   if (propiedadItem) {
-    return { props: { propiedad: propiedadItem, dark: true } }
+    return { props: { propiedad: propiedadItem } }
   }
 
   const {
@@ -97,7 +79,7 @@ export async function getStaticProps({ params }) {
     variables: { slug: params.slug }
   })
 
-  return { props: { propiedad: GetSlugPropiedades, dark: true } }
+  return { props: { propiedad: GetSlugPropiedades } }
 }
 
 const Propiedad = ({ propiedad }) => {
@@ -117,15 +99,11 @@ const Propiedad = ({ propiedad }) => {
       </Head>
 
       <Box bg="gray.200" w="100%">
-        <Box
-          w="full"
-          as={m.div}
-          initial="initial"
-          animate="animate"
-          variants={fadeInDown}
-        >
-          <DetailSlider {...{ galeria: propiedad.galeria }} />
-        </Box>
+        <m.div initial="initial" animate="animate" variants={fadeInDown}>
+          <Box w="full">
+            <DetailSlider {...{ galeria: propiedad.galeria }} />
+          </Box>
+        </m.div>
 
         <Container
           pb={5}

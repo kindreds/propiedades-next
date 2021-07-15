@@ -48,17 +48,7 @@ const DetailSlider = ({ galeria }) => {
         doAfterSlide={updateSlide}
       >
         {galeria.map(({ id, url, descripcion }) => (
-          <img
-            key={id}
-            alt={descripcion}
-            src={`${url}?q=70`}
-            urlSet={`${url}?q=70 1200w,
-             ${url}?w=200&q=70 200w,
-             ${url}?w=400&q=70 400w,
-             ${url}?w=800&q=70 800w,
-             ${url}?w=1024&q=70 1024w,
-            `}
-          />
+          <img key={id} alt={descripcion} src={`${url}?q=70`} />
         ))}
       </ReactSlider>
       <Box

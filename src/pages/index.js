@@ -1,19 +1,20 @@
-import "@fontsource/poppins"
-import React from "react"
-import Head from "next/head"
-import { Image } from "@chakra-ui/image"
-import { keyframes } from "@chakra-ui/react"
-import { useInView } from "react-intersection-observer"
-import { Container, Text, Heading, Box } from "@chakra-ui/layout"
-import { m, LazyMotion, domAnimation } from "framer-motion"
+import '@fontsource/poppins'
+import React from 'react'
+import Head from 'next/head'
+import { Image } from '@chakra-ui/image'
+import { keyframes } from '@chakra-ui/react'
+import { useInView } from 'react-intersection-observer'
+import { m, LazyMotion } from 'framer-motion'
+import { Container, Text, Heading, Box } from '@chakra-ui/layout'
 
-import Hero from "../components/Hero"
-import Footer from "../components/Footer"
-import GridProperty from "../components/GridProperty"
-import Testimonios from "../components/Section/Testimonios"
-import PropiedadesDesc from "../components/Section/PropiedadesDesc"
-import PorQueElegirnos from "../components/Section/PorQueElegirnos"
-import { useGetAllPropiedadesQuery } from "../generated/graphql.tsx"
+import Hero from '../components/Hero'
+import Footer from '../components/Footer'
+import GridProperty from '../components/GridProperty'
+import Testimonios from '../components/Section/Testimonios'
+import PropiedadesDesc from '../components/Section/PropiedadesDesc'
+import PorQueElegirnos from '../components/Section/PorQueElegirnos'
+
+import { fadeInUp } from '../motions/fadeInUp'
 
 const Wave = keyframes`
   0% {
@@ -33,30 +34,34 @@ const Index = () => {
   const { ref: ref2, inView: inView2 } = useInView()
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotion
+      features={() => import('framer-motion').then((m) => m.domAnimation)}
+    >
       <Head>
         <title>Inmobiliara</title>
       </Head>
 
       <Hero />
       <Box bg="#D2EAFF" pos="relative" overflow="hidden">
-        <Container maxW="container.xl" mx="auto" py="50px">
-          <Heading
-            mb={2}
-            as="h3"
-            textAlign="center"
-            fontWeight="semibold"
-            fontSize={{ base: "2xl", md: "4xl" }}
-            lineHeight={{ base: "shorter", md: "none" }}
-            letterSpacing={{ base: "normal", md: "tight" }}
-          >
-            Propiedades destacada
-          </Heading>
-          <Text textAlign="center">
-            Propiedades seleccionadas por nuestro equipo.
-          </Text>
-          <PropiedadesDesc />
-        </Container>
+        <m.div variants={fadeInUp}>
+          <Container maxW="container.xl" mx="auto" py="50px">
+            <Heading
+              mb={2}
+              as="h3"
+              textAlign="center"
+              fontWeight="semibold"
+              fontSize={{ base: '2xl', md: '4xl' }}
+              lineHeight={{ base: 'shorter', md: 'none' }}
+              letterSpacing={{ base: 'normal', md: 'tight' }}
+            >
+              Propiedades destacada
+            </Heading>
+            <Text textAlign="center">
+              Propiedades seleccionadas por nuestro equipo.
+            </Text>
+            <PropiedadesDesc />
+          </Container>
+        </m.div>
       </Box>
       <Container ref={ref2} maxW="container.xl" py="50px">
         <m.div
@@ -81,9 +86,9 @@ const Index = () => {
             mb={2}
             textAlign="center"
             fontWeight="semibold"
-            fontSize={{ base: "2xl", md: "4xl" }}
-            lineHeight={{ base: "shorter", md: "none" }}
-            letterSpacing={{ base: "normal", md: "tight" }}
+            fontSize={{ base: '2xl', md: '4xl' }}
+            lineHeight={{ base: 'shorter', md: 'none' }}
+            letterSpacing={{ base: 'normal', md: 'tight' }}
           >
             Podras buscar propiedades en estas ciudades.
           </Heading>
@@ -117,9 +122,9 @@ const Index = () => {
               mb={2}
               textAlign="center"
               fontWeight="semibold"
-              fontSize={{ base: "2xl", md: "4xl" }}
-              lineHeight={{ base: "shorter", md: "none" }}
-              letterSpacing={{ base: "normal", md: "tight" }}
+              fontSize={{ base: '2xl', md: '4xl' }}
+              lineHeight={{ base: 'shorter', md: 'none' }}
+              letterSpacing={{ base: 'normal', md: 'tight' }}
             >
               Por que elegirnos..
             </Heading>
@@ -135,7 +140,7 @@ const Index = () => {
           pos="absolute"
           animation={animation}
           src="/left_bottom_01.png"
-          sx={{ zIndex: 2, animationDelay: "1s" }}
+          sx={{ zIndex: 2, animationDelay: '1s' }}
         />
         <Image
           left={{ base: -10, md: -5, xl: -2 }}
@@ -146,16 +151,16 @@ const Index = () => {
           src="/left_bottom_02.png"
         />
         <Image
-          right={{ base: "-90%", md: -5, xl: -2 }}
-          bottom={{ base: "-90%", md: -5, xl: -2 }}
+          right={{ base: '-90%', md: -5, xl: -2 }}
+          bottom={{ base: '-90%', md: -5, xl: -2 }}
           pos="absolute"
           animation={animation}
           src="/right_bottom_01.png"
-          sx={{ zIndex: 2, animationDelay: "1s" }}
+          sx={{ zIndex: 2, animationDelay: '1s' }}
         />
         <Image
-          right={{ base: "-90%", md: -5, xl: -2 }}
-          bottom={{ base: "-90%", md: -5, xl: -2 }}
+          right={{ base: '-90%', md: -5, xl: -2 }}
+          bottom={{ base: '-90%', md: -5, xl: -2 }}
           pos="absolute"
           sx={{ zIndex: 1 }}
           animation={animation}
@@ -169,9 +174,9 @@ const Index = () => {
             mb={2}
             textAlign="center"
             fontWeight="semibold"
-            fontSize={{ base: "2xl", md: "4xl" }}
-            lineHeight={{ base: "shorter", md: "none" }}
-            letterSpacing={{ base: "normal", md: "tight" }}
+            fontSize={{ base: '2xl', md: '4xl' }}
+            lineHeight={{ base: 'shorter', md: 'none' }}
+            letterSpacing={{ base: 'normal', md: 'tight' }}
           >
             Testimonios
           </Heading>
@@ -184,6 +189,10 @@ const Index = () => {
       <Footer />
     </LazyMotion>
   )
+}
+
+Index.getInitialProps = () => {
+  return { dark: true }
 }
 
 export default Index

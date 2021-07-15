@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -22,30 +22,26 @@ import Asesores from '../../components/AsesoresList'
 import LastProperties from '../../components/LastProperties'
 import AdvanceSearchAsesor from '../../components/AdvanceSearch/AdvanceSearchAsesor'
 
-import client from '../../apollo'
-import { GetAllUsersDocument as GET_ALL_USERS } from '../../generated/graphql'
+import { useGetBusquedaAsesoresQuery } from '../../generated/graphql'
 
-export async function getStaticProps() {
-  const {
-    data: { GetAllUsers }
-  } = await client.query({
-    query: GET_ALL_USERS,
-    variables: {
-      estado: '',
-      tipoUsuario: 2
-    }
+const SearchAsesores = () => {
+  const [is1024px] = useMediaQuery('(min-width: 1024px)')
+  const [variables, setVariables] = useState({
+    page: 1,
+    asesor: '',
+    distrito: '',
+    provincia: '',
+    departamento: '',
+    numberPaginate: 10,
+    orden: 'desc'
   })
 
-  return {
-    props: {
-      dark: true,
-      asesores: GetAllUsers
-    }
-  }
-}
+  const { data } = useGetBusquedaAsesoresQuery({
+    variables,
+    fetchPolicy: 'network-only'
+  })
 
-const asesores = ({ asesores }) => {
-  const [is1024px] = useMediaQuery('(min-width: 1024px)')
+  const asesores = data ? data.GetBusquedaAsesores.data : []
 
   return (
     <LazyMotion features={domAnimation}>
@@ -143,11 +139,11 @@ const asesores = ({ asesores }) => {
                 animate={{ x: 0, opacity: 1 }}
                 initial={{ x: 200, opacity: 0 }}
               >
-                <AdvanceSearchAsesor />
+                <AdvanceSearchAsesor {...{ setVariables }} />
                 <LastProperties />
               </Box>
             )}
-            <Asesores {...{ asesores }} />
+            <Asesores {...{ asesores, setVariables }} />
           </Flex>
         </Container>
         <Footer />
@@ -156,4 +152,4 @@ const asesores = ({ asesores }) => {
   )
 }
 
-export default asesores
+export default SearchAsesores

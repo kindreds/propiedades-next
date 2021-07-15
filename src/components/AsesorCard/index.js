@@ -17,7 +17,10 @@ import { Box, SimpleGrid, Text, Heading, Link } from '@chakra-ui/layout'
 import { fadeInUp } from '../../motions/fadeInUp'
 
 const AsesorCard = ({ simple, drawer, asesor, ...props }) => {
-  console.log(asesor)
+  const foto =
+    asesor.foto.url ??
+    'https://apipropiedades.softaki.com/storage/app/imagenesGenerales/2021-07/casa11.webp'
+
   return (
     <LazyMotion features={domAnimation}>
       <m.div variants={fadeInUp}>
@@ -42,7 +45,7 @@ const AsesorCard = ({ simple, drawer, asesor, ...props }) => {
               loading="lazy"
               objectFit="cover"
               objectPosition="center"
-              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+              src={foto}
             />
           </Box>
 

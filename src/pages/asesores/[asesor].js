@@ -24,6 +24,7 @@ import client from '../../apollo'
 import {
   GetAllUsersDocument as GET_ALL_USERS,
   GetAllPropiedadesDocument as GET_ALL_PROPIEDADES
+  // GetAliasAsesorPropiedadesDocument as GET_USER_BYID
 } from '../../generated/graphql'
 
 export async function getStaticPaths() {
@@ -37,7 +38,7 @@ export async function getStaticPaths() {
     }
   })
 
-  const users = GetAllUsers.slice(0, 10)
+  const users = GetAllUsers.slice(0, 5)
 
   const paths = users.map((u) => {
     return { params: { asesor: u.alias } }
@@ -52,10 +53,10 @@ export async function getStaticProps({ params }) {
   } = await client.query({
     query: GET_ALL_PROPIEDADES,
     variables: {
-      numberPaginate: 10,
       page: 1,
       estado: '',
-      destacado: ''
+      destacado: '',
+      numberPaginate: 10
     }
   })
 
@@ -73,7 +74,9 @@ export async function getStaticProps({ params }) {
     return u.alias === params.asesor
   })
 
-  return { props: { asesor, propiedades: GetAllPropiedades.data, dark: true } }
+  return {
+    props: { asesor, propiedades: GetAllPropiedades.data }
+  }
 }
 
 const AsesorAlias = ({ asesor, propiedades }) => {

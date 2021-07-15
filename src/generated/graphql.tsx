@@ -109,6 +109,12 @@ export type FormularioInput = {
   propiedadId?: Maybe<Scalars['Int']>;
 };
 
+export type GetAsesorses = {
+  __typename?: 'GetAsesorses';
+  NroItems?: Maybe<Scalars['Int']>;
+  data?: Maybe<Array<User>>;
+};
+
 export type GetFormularios = {
   __typename?: 'GetFormularios';
   NroItems?: Maybe<Scalars['Int']>;
@@ -369,6 +375,8 @@ export type Propiedades = {
   pisos?: Maybe<Scalars['Int']>;
   dimensiones?: Maybe<Scalars['String']>;
   antiguedad?: Maybe<Scalars['Int']>;
+  precioOferta?: Maybe<Scalars['Float']>;
+  precioReal?: Maybe<Scalars['Float']>;
   areaConstruida?: Maybe<Scalars['String']>;
   ambientes?: Maybe<Scalars['String']>;
   direccion?: Maybe<Scalars['String']>;
@@ -403,6 +411,8 @@ export type PropiedadesInput = {
   areaConstruida?: Maybe<Scalars['String']>;
   ambientes?: Maybe<Scalars['String']>;
   direccion?: Maybe<Scalars['String']>;
+  precioOferta?: Maybe<Scalars['Float']>;
+  precioReal?: Maybe<Scalars['Float']>;
   DeparCodi?: Maybe<Scalars['Int']>;
   ProvCodi?: Maybe<Scalars['Int']>;
   DistCodi?: Maybe<Scalars['Int']>;
@@ -430,7 +440,9 @@ export type Query = {
   GetAllPropiedades?: Maybe<GetPropiedades>;
   GetAsesorPropiedades?: Maybe<GetPropiedades>;
   GetSlugPropiedades?: Maybe<Propiedades>;
+  GetAliasAsesorPropiedades?: Maybe<GetPropiedades>;
   GetAllFormularios?: Maybe<GetFormularios>;
+  GetBusquedaAsesores?: Maybe<GetAsesorses>;
 };
 
 
@@ -479,10 +491,30 @@ export type QueryGetSlugPropiedadesArgs = {
 };
 
 
+export type QueryGetAliasAsesorPropiedadesArgs = {
+  numberPaginate?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  aliasAsesor?: Maybe<Scalars['String']>;
+  ordenPrecio?: Maybe<Scalars['String']>;
+  ordenCreacion?: Maybe<Scalars['String']>;
+};
+
+
 export type QueryGetAllFormulariosArgs = {
   numberPaginate?: Maybe<Scalars['Int']>;
   page?: Maybe<Scalars['Int']>;
   estado?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetBusquedaAsesoresArgs = {
+  numberPaginate?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  departamento?: Maybe<Scalars['String']>;
+  provincia?: Maybe<Scalars['String']>;
+  distrito?: Maybe<Scalars['String']>;
+  asesor?: Maybe<Scalars['String']>;
+  orden?: Maybe<Scalars['String']>;
 };
 
 /** The available directions for ordering a list of records. */
@@ -1343,6 +1375,108 @@ export type GetAllUsersQuery = (
       & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado'>
     )> }
   )>> }
+);
+
+export type GetAliasAsesorPropiedadesQueryVariables = Exact<{
+  page?: Maybe<Scalars['Int']>;
+  numberPaginate?: Maybe<Scalars['Int']>;
+  aliasAsesor?: Maybe<Scalars['String']>;
+  ordenPrecio?: Maybe<Scalars['String']>;
+  ordenCreacion?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetAliasAsesorPropiedadesQuery = (
+  { __typename?: 'Query' }
+  & { GetAliasAsesorPropiedades?: Maybe<(
+    { __typename?: 'GetPropiedades' }
+    & Pick<GetPropiedades, 'NroItems'>
+    & { data?: Maybe<Array<(
+      { __typename?: 'Propiedades' }
+      & Pick<Propiedades, 'propiedadId' | 'titulo' | 'slug' | 'tipoContrato' | 'descripcionCorta' | 'descripcionCompleta' | 'video' | 'estado' | 'destacado' | 'lat' | 'log' | 'cuartos' | 'banios' | 'pisos' | 'dimensiones' | 'antiguedad' | 'areaConstruida' | 'ambientes' | 'direccion'>
+      & { fotoPrincipal?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, fotoSecundaria?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, galeria?: Maybe<Array<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>>, Departamento?: Maybe<(
+        { __typename?: 'Departamento' }
+        & Pick<Departamento, 'DeparCodi' | 'DeparNom'>
+      )>, Provincia?: Maybe<(
+        { __typename?: 'Provincia' }
+        & Pick<Provincia, 'ProvCodi' | 'ProvNom' | 'DeparCodi'>
+      )>, Distrito?: Maybe<(
+        { __typename?: 'Distrito' }
+        & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado'>
+      )>, Categorias?: Maybe<(
+        { __typename?: 'Categorias' }
+        & Pick<Categorias, 'categoriaId' | 'slugCategoria' | 'nombreCategoria' | 'descripcionCategoria' | 'KeywordsCategoria'>
+        & { ImagenPrincipal?: Maybe<(
+          { __typename?: 'Imagenes' }
+          & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+        )>, ImagenSecundaria?: Maybe<(
+          { __typename?: 'Imagenes' }
+          & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+        )> }
+      )>, Asesor?: Maybe<(
+        { __typename?: 'User' }
+        & Pick<User, 'userId' | 'alias' | 'tipoUsuario' | 'nombres' | 'apellidos' | 'tipoDocumento' | 'nroDocumento' | 'fechaNacimiento' | 'email' | 'estado' | 'apiToken'>
+        & { foto?: Maybe<(
+          { __typename?: 'Imagenes' }
+          & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+        )>, Departamento?: Maybe<(
+          { __typename?: 'Departamento' }
+          & Pick<Departamento, 'DeparCodi' | 'DeparNom'>
+        )>, Provincia?: Maybe<(
+          { __typename?: 'Provincia' }
+          & Pick<Provincia, 'ProvCodi' | 'ProvNom' | 'DeparCodi'>
+        )>, Distrito?: Maybe<(
+          { __typename?: 'Distrito' }
+          & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado' | 'estado'>
+        )> }
+      )> }
+    )>> }
+  )> }
+);
+
+export type GetBusquedaAsesoresQueryVariables = Exact<{
+  page?: Maybe<Scalars['Int']>;
+  numberPaginate?: Maybe<Scalars['Int']>;
+  departamento?: Maybe<Scalars['String']>;
+  provincia?: Maybe<Scalars['String']>;
+  distrito?: Maybe<Scalars['String']>;
+  asesor?: Maybe<Scalars['String']>;
+  orden?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetBusquedaAsesoresQuery = (
+  { __typename?: 'Query' }
+  & { GetBusquedaAsesores?: Maybe<(
+    { __typename?: 'GetAsesorses' }
+    & Pick<GetAsesorses, 'NroItems'>
+    & { data?: Maybe<Array<(
+      { __typename?: 'User' }
+      & Pick<User, 'userId' | 'alias' | 'tipoUsuario' | 'nombres' | 'apellidos' | 'tipoDocumento' | 'nroDocumento' | 'fechaNacimiento' | 'email' | 'estado' | 'apiToken' | 'facebook' | 'whatsapp' | 'celular'>
+      & { foto?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, Departamento?: Maybe<(
+        { __typename?: 'Departamento' }
+        & Pick<Departamento, 'DeparCodi' | 'DeparNom'>
+      )>, Provincia?: Maybe<(
+        { __typename?: 'Provincia' }
+        & Pick<Provincia, 'ProvCodi' | 'ProvNom' | 'DeparCodi'>
+      )>, Distrito?: Maybe<(
+        { __typename?: 'Distrito' }
+        & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado' | 'estado'>
+      )> }
+    )>> }
+  )> }
 );
 
 
@@ -3334,3 +3468,236 @@ export function useGetAllUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetAllUsersQueryHookResult = ReturnType<typeof useGetAllUsersQuery>;
 export type GetAllUsersLazyQueryHookResult = ReturnType<typeof useGetAllUsersLazyQuery>;
 export type GetAllUsersQueryResult = Apollo.QueryResult<GetAllUsersQuery, GetAllUsersQueryVariables>;
+export const GetAliasAsesorPropiedadesDocument = gql`
+    query GetAliasAsesorPropiedades($page: Int, $numberPaginate: Int, $aliasAsesor: String, $ordenPrecio: String, $ordenCreacion: String) {
+  GetAliasAsesorPropiedades(
+    numberPaginate: $numberPaginate
+    page: $page
+    aliasAsesor: $aliasAsesor
+    ordenPrecio: $ordenPrecio
+    ordenCreacion: $ordenCreacion
+  ) {
+    NroItems
+    data {
+      propiedadId
+      titulo
+      slug
+      tipoContrato
+      descripcionCorta
+      descripcionCompleta
+      video
+      estado
+      destacado
+      fotoPrincipal {
+        id
+        descripcion
+        url
+      }
+      fotoSecundaria {
+        id
+        descripcion
+        url
+      }
+      galeria {
+        id
+        descripcion
+        url
+      }
+      lat
+      log
+      cuartos
+      banios
+      pisos
+      dimensiones
+      antiguedad
+      areaConstruida
+      ambientes
+      direccion
+      Departamento {
+        DeparCodi
+        DeparNom
+      }
+      Provincia {
+        ProvCodi
+        ProvNom
+        DeparCodi
+      }
+      Distrito {
+        DistCodi
+        DistNom
+        ProvCodi
+        destacado
+      }
+      Categorias {
+        categoriaId
+        slugCategoria
+        nombreCategoria
+        descripcionCategoria
+        ImagenPrincipal {
+          id
+          descripcion
+          url
+        }
+        ImagenSecundaria {
+          id
+          descripcion
+          url
+        }
+        KeywordsCategoria
+      }
+      Asesor {
+        userId
+        alias
+        tipoUsuario
+        nombres
+        apellidos
+        tipoDocumento
+        nroDocumento
+        fechaNacimiento
+        email
+        foto {
+          id
+          descripcion
+          url
+        }
+        estado
+        apiToken
+        Departamento {
+          DeparCodi
+          DeparNom
+        }
+        Provincia {
+          ProvCodi
+          ProvNom
+          DeparCodi
+        }
+        Distrito {
+          DistCodi
+          DistNom
+          ProvCodi
+          destacado
+          estado
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAliasAsesorPropiedadesQuery__
+ *
+ * To run a query within a React component, call `useGetAliasAsesorPropiedadesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAliasAsesorPropiedadesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAliasAsesorPropiedadesQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      numberPaginate: // value for 'numberPaginate'
+ *      aliasAsesor: // value for 'aliasAsesor'
+ *      ordenPrecio: // value for 'ordenPrecio'
+ *      ordenCreacion: // value for 'ordenCreacion'
+ *   },
+ * });
+ */
+export function useGetAliasAsesorPropiedadesQuery(baseOptions?: Apollo.QueryHookOptions<GetAliasAsesorPropiedadesQuery, GetAliasAsesorPropiedadesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAliasAsesorPropiedadesQuery, GetAliasAsesorPropiedadesQueryVariables>(GetAliasAsesorPropiedadesDocument, options);
+      }
+export function useGetAliasAsesorPropiedadesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAliasAsesorPropiedadesQuery, GetAliasAsesorPropiedadesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAliasAsesorPropiedadesQuery, GetAliasAsesorPropiedadesQueryVariables>(GetAliasAsesorPropiedadesDocument, options);
+        }
+export type GetAliasAsesorPropiedadesQueryHookResult = ReturnType<typeof useGetAliasAsesorPropiedadesQuery>;
+export type GetAliasAsesorPropiedadesLazyQueryHookResult = ReturnType<typeof useGetAliasAsesorPropiedadesLazyQuery>;
+export type GetAliasAsesorPropiedadesQueryResult = Apollo.QueryResult<GetAliasAsesorPropiedadesQuery, GetAliasAsesorPropiedadesQueryVariables>;
+export const GetBusquedaAsesoresDocument = gql`
+    query GetBusquedaAsesores($page: Int, $numberPaginate: Int, $departamento: String, $provincia: String, $distrito: String, $asesor: String, $orden: String) {
+  GetBusquedaAsesores(
+    numberPaginate: $numberPaginate
+    page: $page
+    departamento: $departamento
+    provincia: $provincia
+    distrito: $distrito
+    asesor: $asesor
+    orden: $orden
+  ) {
+    NroItems
+    data {
+      userId
+      alias
+      tipoUsuario
+      nombres
+      apellidos
+      tipoDocumento
+      nroDocumento
+      fechaNacimiento
+      email
+      foto {
+        id
+        descripcion
+        url
+      }
+      estado
+      apiToken
+      facebook
+      whatsapp
+      celular
+      Departamento {
+        DeparCodi
+        DeparNom
+      }
+      Provincia {
+        ProvCodi
+        ProvNom
+        DeparCodi
+      }
+      Distrito {
+        DistCodi
+        DistNom
+        ProvCodi
+        destacado
+        estado
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetBusquedaAsesoresQuery__
+ *
+ * To run a query within a React component, call `useGetBusquedaAsesoresQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBusquedaAsesoresQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBusquedaAsesoresQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *      numberPaginate: // value for 'numberPaginate'
+ *      departamento: // value for 'departamento'
+ *      provincia: // value for 'provincia'
+ *      distrito: // value for 'distrito'
+ *      asesor: // value for 'asesor'
+ *      orden: // value for 'orden'
+ *   },
+ * });
+ */
+export function useGetBusquedaAsesoresQuery(baseOptions?: Apollo.QueryHookOptions<GetBusquedaAsesoresQuery, GetBusquedaAsesoresQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetBusquedaAsesoresQuery, GetBusquedaAsesoresQueryVariables>(GetBusquedaAsesoresDocument, options);
+      }
+export function useGetBusquedaAsesoresLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBusquedaAsesoresQuery, GetBusquedaAsesoresQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetBusquedaAsesoresQuery, GetBusquedaAsesoresQueryVariables>(GetBusquedaAsesoresDocument, options);
+        }
+export type GetBusquedaAsesoresQueryHookResult = ReturnType<typeof useGetBusquedaAsesoresQuery>;
+export type GetBusquedaAsesoresLazyQueryHookResult = ReturnType<typeof useGetBusquedaAsesoresLazyQuery>;
+export type GetBusquedaAsesoresQueryResult = Apollo.QueryResult<GetBusquedaAsesoresQuery, GetBusquedaAsesoresQueryVariables>;

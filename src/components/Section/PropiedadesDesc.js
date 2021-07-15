@@ -56,19 +56,17 @@ const PropiedadesDesc = ({ breakpoints = initialsBreaks, maxW = '1200px' }) => {
         ))}
       </ReactSlidy>
       <Flex flex={1} justify="center">
-        {Array(propiedades.length)
-          .fill(null)
-          .map((_, i) => {
-            return (
-              <button
-                key={i}
-                style={createStyles(i === actualSlide)}
-                onClick={() => updateSlide({ currentSlide: i })}
-              >
-                &bull;
-              </button>
-            )
-          })}
+        {propiedades.map((_, i) => {
+          return (
+            <button
+              key={i}
+              style={createStyles(i === actualSlide)}
+              onClick={() => updateSlide({ currentSlide: i })}
+            >
+              &bull;
+            </button>
+          )
+        })}
       </Flex>
     </Box>
   )

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NextLink from 'next/link'
 
 // Terceros
-// import { motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Image } from '@chakra-ui/image'
 import { StarIcon } from '@chakra-ui/icons'
 import { Tooltip } from '@chakra-ui/tooltip'
@@ -20,13 +20,13 @@ import {
 } from '@chakra-ui/layout'
 
 import { Avatar } from '../tools'
-// import { fadeInUp } from '../../motions/fadeInUp'
+import { fadeInUp } from '../../motions/fadeInUp'
 
 const PropertyCard = ({ i, p }) => {
   const [isLike, setIsLike] = useState(false)
 
   return (
-    <>
+    <motion.div initial="initial" animate="animate" variants={fadeInUp}>
       <Box
         mb={5}
         mx="auto"
@@ -165,7 +165,7 @@ const PropertyCard = ({ i, p }) => {
           <Text fontSize="sm">hace 1 año</Text>
         </Flex>
       </Box>
-    </>
+    </motion.div>
   )
 }
 
