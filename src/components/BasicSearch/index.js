@@ -1,12 +1,17 @@
-import React from "react";
-import NextLink from "next/link";
-import { Input } from "@chakra-ui/input";
-import { Select } from "@chakra-ui/select";
-import { Stack, Flex, Link } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/button";
+import React from 'react'
+import NextLink from 'next/link'
+import { Input } from '@chakra-ui/input'
+import { Select } from '@chakra-ui/select'
+import { Stack, Flex, Link } from '@chakra-ui/layout'
+import { Button } from '@chakra-ui/button'
+import { useGetCategoriaQuery } from '../../generated/graphql'
 // import PropTypes from 'prop-types'
 
 const BasicSearch = () => {
+  const { data } = useGetCategoriaQuery()
+
+  const categorias = data ? data.GetAllCategorias : []
+
   return (
     <Stack
       mb="6"
@@ -15,24 +20,19 @@ const BasicSearch = () => {
       spacing="15px"
       borderWidth="1px"
       borderRadius="lg"
-      direction={{ base: "column", xl: "row" }}
-      minW={{ base: "280px", xl: "1100px" }}
+      direction={{ base: 'column', xl: 'row' }}
+      minW={{ base: '280px', xl: '1100px' }}
       mx="auto"
     >
-      <Select
-        fontSize={"15"}
-        minH={{ base: "50px" }}
-        placeholder="Tipo de propiedad"
-      >
-        <option>Tipo 2</option>
-        <option>Tipo 3</option>
-        <option>Tipo 4</option>
-        <option>Tipo 5</option>
+      <Select fontSize={'15'} minH={{ base: '50px' }} placeholder="Categorias">
+        {categorias.map((cat) => (
+          <option key={cat.categoriaId}>{cat.nombreCategoria}</option>
+        ))}
       </Select>
       <Input
         type="text"
-        minH={{ base: "50px" }}
-        fontSize={"15"}
+        fontSize={'15'}
+        minH={{ base: '50px' }}
         placeholder="Ubicacion"
       />
       <Flex justify="center">
@@ -43,9 +43,9 @@ const BasicSearch = () => {
         </NextLink>
       </Flex>
     </Stack>
-  );
-};
+  )
+}
 
-BasicSearch.propTypes = {};
+BasicSearch.propTypes = {}
 
-export default BasicSearch;
+export default BasicSearch
