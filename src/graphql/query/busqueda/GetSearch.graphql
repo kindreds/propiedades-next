@@ -1,0 +1,14 @@
+query GetSearch {
+  GetBanios
+  GetCuartos
+  GetAntiguedad
+  GetAreaMinimo
+  GetAreaMaximo
+  GetMontoMinimo
+  GetMontoMaximo
+  GetCategoria {
+    categoriaId
+    slugCategoria
+    nombreCategoria
+  }
+}

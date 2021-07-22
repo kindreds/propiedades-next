@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -26,32 +26,48 @@ import PropertiesResult from '../../components/PropertiesResult'
 import AdvanceSearchDrawer from '../../components/AdvanceSearch/AdvanceSearchDrawer'
 
 import client from '../../apollo'
-import { GetAllPropiedadesDocument as GET_ALL_PROPIEDADES } from '../../generated/graphql'
+import {
+  GetAllPropiedadesDocument as GET_ALL_PROPIEDADES,
+  useGetBusquedaAvanzadaQuery
+} from '../../generated/graphql'
 
-export async function getStaticProps() {
-  const {
-    data: { GetAllPropiedades }
-  } = await client.query({
-    query: GET_ALL_PROPIEDADES,
-    variables: {
-      page: 1,
-      estado: '',
-      destacado: '',
-      numberPaginate: 10
-    }
-  })
-
-  return {
-    props: {
-      propiedades: GetAllPropiedades.data,
-      NroItems: GetAllPropiedades.NroItems
-    }
+const BusquedaAvanzada = {
+  GetBusquedaAvanzada: {
+    data: [],
+    NroItems: 0
   }
 }
 
-const Propiedades = ({ propiedades }) => {
+const initialState = {
+  tipoContrato: null,
+  slugCategoria: null,
+  DeparCodi: null,
+  ProvCodi: null,
+  DistCodi: null,
+  montoMinimo: null,
+  montoMaximo: null,
+  areaMinima: null,
+  areaMaxima: null,
+  antiguedad: null,
+  cuartos: null,
+  banios: null,
+  destacado: null,
+  ordenPrecio: 'asc',
+  ordenCreacion: 'asc',
+  numberPaginate: 10,
+  page: 1
+}
+
+const Propiedades = () => {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [is1024px] = useMediaQuery('(min-width: 1024px)')
+  const [variables, setVariables] = useState(initialState)
+
+  const { data = BusquedaAvanzada } = useGetBusquedaAvanzadaQuery({
+    variables: { input: variables }
+  })
+
+  const resetVariables = () => setVariables(initialState)
 
   return (
     <LazyMotion features={domAnimation}>
@@ -157,11 +173,13 @@ const Propiedades = ({ propiedades }) => {
                 animate={{ x: 0, opacity: 1 }}
                 initial={{ x: 200, opacity: 0 }}
               >
-                <AdvanceSearch />
+                <AdvanceSearch {...{ setVariables, resetVariables }} />
                 <LastProperties />
               </Box>
             )}
-            <PropertiesResult {...{ propiedades }} />
+            <PropertiesResult
+              {...{ propiedades: data.GetBusquedaAvanzada.data }}
+            />
           </Flex>
         </Container>
         <Footer />
@@ -184,6 +202,27 @@ const Propiedades = ({ propiedades }) => {
       </Box>
     </LazyMotion>
   )
+}
+
+export async function getStaticProps() {
+  const {
+    data: { GetAllPropiedades }
+  } = await client.query({
+    query: GET_ALL_PROPIEDADES,
+    variables: {
+      page: 1,
+      estado: '',
+      destacado: '',
+      numberPaginate: 10
+    }
+  })
+
+  return {
+    props: {
+      propiedades: GetAllPropiedades.data,
+      NroItems: GetAllPropiedades.NroItems
+    }
+  }
 }
 
 export default Propiedades

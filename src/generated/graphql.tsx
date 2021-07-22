@@ -22,6 +22,26 @@ export type Scalars = {
   Upload: any;
 };
 
+export type BusquedaAvanzadaInput = {
+  tipoContrato?: Maybe<Scalars['Int']>;
+  slugCategoria?: Maybe<Scalars['String']>;
+  DeparCodi?: Maybe<Scalars['Int']>;
+  ProvCodi?: Maybe<Scalars['Int']>;
+  DistCodi?: Maybe<Scalars['Int']>;
+  montoMinimo?: Maybe<Scalars['Float']>;
+  montoMaximo?: Maybe<Scalars['Float']>;
+  areaMinima?: Maybe<Scalars['String']>;
+  areaMaxima?: Maybe<Scalars['String']>;
+  antiguedad?: Maybe<Scalars['Int']>;
+  cuartos?: Maybe<Scalars['Int']>;
+  banios?: Maybe<Scalars['Int']>;
+  destacado?: Maybe<Scalars['Int']>;
+  ordenPrecio?: Maybe<Scalars['String']>;
+  ordenCreacion?: Maybe<Scalars['String']>;
+  numberPaginate?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+};
+
 export type CambiarContrasenaInput = {
   userId?: Maybe<Scalars['ID']>;
   passwordNuevo?: Maybe<Scalars['String']>;
@@ -440,7 +460,15 @@ export type Query = {
   GetAllPropiedades?: Maybe<GetPropiedades>;
   GetAsesorPropiedades?: Maybe<GetPropiedades>;
   GetSlugPropiedades?: Maybe<Propiedades>;
+  GetBusquedaAvanzada?: Maybe<GetPropiedades>;
   GetAliasAsesorPropiedades?: Maybe<GetPropiedades>;
+  GetMontoMinimo?: Maybe<Scalars['Float']>;
+  GetMontoMaximo?: Maybe<Scalars['Float']>;
+  GetAreaMinimo?: Maybe<Scalars['String']>;
+  GetAreaMaximo?: Maybe<Scalars['String']>;
+  GetAntiguedad?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  GetCuartos?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  GetBanios?: Maybe<Array<Maybe<Scalars['Int']>>>;
   GetAllFormularios?: Maybe<GetFormularios>;
   GetBusquedaAsesores?: Maybe<GetAsesorses>;
 };
@@ -488,6 +516,11 @@ export type QueryGetAsesorPropiedadesArgs = {
 
 export type QueryGetSlugPropiedadesArgs = {
   slug?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetBusquedaAvanzadaArgs = {
+  input?: Maybe<BusquedaAvanzadaInput>;
 };
 
 
@@ -1025,6 +1058,80 @@ export type UpdateUsuarioMutation = (
       & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado'>
     )> }
   )> }
+);
+
+export type GetBusquedaAvanzadaQueryVariables = Exact<{
+  input?: Maybe<BusquedaAvanzadaInput>;
+}>;
+
+
+export type GetBusquedaAvanzadaQuery = (
+  { __typename?: 'Query' }
+  & { GetBusquedaAvanzada?: Maybe<(
+    { __typename?: 'GetPropiedades' }
+    & Pick<GetPropiedades, 'NroItems'>
+    & { data?: Maybe<Array<(
+      { __typename?: 'Propiedades' }
+      & Pick<Propiedades, 'propiedadId' | 'titulo' | 'slug' | 'tipoContrato' | 'descripcionCorta' | 'descripcionCompleta' | 'video' | 'estado' | 'destacado' | 'lat' | 'log' | 'cuartos' | 'banios' | 'pisos' | 'dimensiones' | 'antiguedad' | 'areaConstruida' | 'ambientes' | 'direccion'>
+      & { fotoPrincipal?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, fotoSecundaria?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, galeria?: Maybe<Array<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>>, Departamento?: Maybe<(
+        { __typename?: 'Departamento' }
+        & Pick<Departamento, 'DeparCodi' | 'DeparNom'>
+      )>, Provincia?: Maybe<(
+        { __typename?: 'Provincia' }
+        & Pick<Provincia, 'ProvCodi' | 'ProvNom' | 'DeparCodi'>
+      )>, Distrito?: Maybe<(
+        { __typename?: 'Distrito' }
+        & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado'>
+      )>, Categorias?: Maybe<(
+        { __typename?: 'Categorias' }
+        & Pick<Categorias, 'categoriaId' | 'slugCategoria' | 'nombreCategoria' | 'descripcionCategoria' | 'KeywordsCategoria'>
+        & { ImagenPrincipal?: Maybe<(
+          { __typename?: 'Imagenes' }
+          & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+        )>, ImagenSecundaria?: Maybe<(
+          { __typename?: 'Imagenes' }
+          & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+        )> }
+      )>, Asesor?: Maybe<(
+        { __typename?: 'User' }
+        & Pick<User, 'userId' | 'alias' | 'tipoUsuario' | 'nombres' | 'apellidos' | 'tipoDocumento' | 'nroDocumento' | 'fechaNacimiento' | 'email' | 'estado' | 'apiToken'>
+        & { foto?: Maybe<(
+          { __typename?: 'Imagenes' }
+          & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+        )>, Departamento?: Maybe<(
+          { __typename?: 'Departamento' }
+          & Pick<Departamento, 'DeparCodi' | 'DeparNom'>
+        )>, Provincia?: Maybe<(
+          { __typename?: 'Provincia' }
+          & Pick<Provincia, 'ProvCodi' | 'ProvNom' | 'DeparCodi'>
+        )>, Distrito?: Maybe<(
+          { __typename?: 'Distrito' }
+          & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado' | 'estado'>
+        )> }
+      )> }
+    )>> }
+  )> }
+);
+
+export type GetSearchQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSearchQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'GetBanios' | 'GetCuartos' | 'GetAntiguedad' | 'GetAreaMinimo' | 'GetAreaMaximo' | 'GetMontoMinimo' | 'GetMontoMaximo'>
+  & { GetCategoria?: Maybe<Array<Maybe<(
+    { __typename?: 'Categorias' }
+    & Pick<Categorias, 'categoriaId' | 'slugCategoria' | 'nombreCategoria'>
+  )>>> }
 );
 
 export type GetCategoriaQueryVariables = Exact<{ [key: string]: never; }>;
@@ -2616,6 +2723,186 @@ export function useUpdateUsuarioMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateUsuarioMutationHookResult = ReturnType<typeof useUpdateUsuarioMutation>;
 export type UpdateUsuarioMutationResult = Apollo.MutationResult<UpdateUsuarioMutation>;
 export type UpdateUsuarioMutationOptions = Apollo.BaseMutationOptions<UpdateUsuarioMutation, UpdateUsuarioMutationVariables>;
+export const GetBusquedaAvanzadaDocument = gql`
+    query GetBusquedaAvanzada($input: BusquedaAvanzadaInput) {
+  GetBusquedaAvanzada(input: $input) {
+    NroItems
+    data {
+      propiedadId
+      titulo
+      slug
+      tipoContrato
+      descripcionCorta
+      descripcionCompleta
+      video
+      estado
+      destacado
+      fotoPrincipal {
+        id
+        descripcion
+        url
+      }
+      fotoSecundaria {
+        id
+        descripcion
+        url
+      }
+      galeria {
+        id
+        descripcion
+        url
+      }
+      lat
+      log
+      cuartos
+      banios
+      pisos
+      dimensiones
+      antiguedad
+      areaConstruida
+      ambientes
+      direccion
+      Departamento {
+        DeparCodi
+        DeparNom
+      }
+      Provincia {
+        ProvCodi
+        ProvNom
+        DeparCodi
+      }
+      Distrito {
+        DistCodi
+        DistNom
+        ProvCodi
+        destacado
+      }
+      Categorias {
+        categoriaId
+        slugCategoria
+        nombreCategoria
+        descripcionCategoria
+        ImagenPrincipal {
+          id
+          descripcion
+          url
+        }
+        ImagenSecundaria {
+          id
+          descripcion
+          url
+        }
+        KeywordsCategoria
+      }
+      Asesor {
+        userId
+        alias
+        tipoUsuario
+        nombres
+        apellidos
+        tipoDocumento
+        nroDocumento
+        fechaNacimiento
+        email
+        foto {
+          id
+          descripcion
+          url
+        }
+        estado
+        apiToken
+        Departamento {
+          DeparCodi
+          DeparNom
+        }
+        Provincia {
+          ProvCodi
+          ProvNom
+          DeparCodi
+        }
+        Distrito {
+          DistCodi
+          DistNom
+          ProvCodi
+          destacado
+          estado
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetBusquedaAvanzadaQuery__
+ *
+ * To run a query within a React component, call `useGetBusquedaAvanzadaQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBusquedaAvanzadaQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBusquedaAvanzadaQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useGetBusquedaAvanzadaQuery(baseOptions?: Apollo.QueryHookOptions<GetBusquedaAvanzadaQuery, GetBusquedaAvanzadaQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetBusquedaAvanzadaQuery, GetBusquedaAvanzadaQueryVariables>(GetBusquedaAvanzadaDocument, options);
+      }
+export function useGetBusquedaAvanzadaLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBusquedaAvanzadaQuery, GetBusquedaAvanzadaQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetBusquedaAvanzadaQuery, GetBusquedaAvanzadaQueryVariables>(GetBusquedaAvanzadaDocument, options);
+        }
+export type GetBusquedaAvanzadaQueryHookResult = ReturnType<typeof useGetBusquedaAvanzadaQuery>;
+export type GetBusquedaAvanzadaLazyQueryHookResult = ReturnType<typeof useGetBusquedaAvanzadaLazyQuery>;
+export type GetBusquedaAvanzadaQueryResult = Apollo.QueryResult<GetBusquedaAvanzadaQuery, GetBusquedaAvanzadaQueryVariables>;
+export const GetSearchDocument = gql`
+    query GetSearch {
+  GetBanios
+  GetCuartos
+  GetAntiguedad
+  GetAreaMinimo
+  GetAreaMaximo
+  GetMontoMinimo
+  GetMontoMaximo
+  GetCategoria {
+    categoriaId
+    slugCategoria
+    nombreCategoria
+  }
+}
+    `;
+
+/**
+ * __useGetSearchQuery__
+ *
+ * To run a query within a React component, call `useGetSearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSearchQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSearchQuery(baseOptions?: Apollo.QueryHookOptions<GetSearchQuery, GetSearchQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSearchQuery, GetSearchQueryVariables>(GetSearchDocument, options);
+      }
+export function useGetSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSearchQuery, GetSearchQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSearchQuery, GetSearchQueryVariables>(GetSearchDocument, options);
+        }
+export type GetSearchQueryHookResult = ReturnType<typeof useGetSearchQuery>;
+export type GetSearchLazyQueryHookResult = ReturnType<typeof useGetSearchLazyQuery>;
+export type GetSearchQueryResult = Apollo.QueryResult<GetSearchQuery, GetSearchQueryVariables>;
 export const GetCategoriaDocument = gql`
     query GetCategoria {
   GetAllCategorias: GetCategoria {

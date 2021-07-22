@@ -14,15 +14,15 @@ const BasicSearch = () => {
 
   return (
     <Stack
-      mb="6"
-      bg="white"
       p={5}
+      mb="6"
+      mx="auto"
+      bg="white"
       spacing="15px"
       borderWidth="1px"
       borderRadius="lg"
-      direction={{ base: 'column', xl: 'row' }}
       minW={{ base: '280px', xl: '1100px' }}
-      mx="auto"
+      direction={{ base: 'column', xl: 'row' }}
     >
       <Select fontSize={'15'} minH={{ base: '50px' }} placeholder="Categorias">
         {categorias.map((cat) => (
