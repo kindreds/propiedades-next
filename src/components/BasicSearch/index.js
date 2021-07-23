@@ -5,6 +5,7 @@ import { Select } from '@chakra-ui/select'
 import { Stack, Flex, Link } from '@chakra-ui/layout'
 import { Button } from '@chakra-ui/button'
 import { useGetCategoriaQuery } from '../../generated/graphql'
+import Suggestions from '../Suggestions'
 // import PropTypes from 'prop-types'
 
 const BasicSearch = () => {
@@ -29,12 +30,13 @@ const BasicSearch = () => {
           <option key={cat.categoriaId}>{cat.nombreCategoria}</option>
         ))}
       </Select>
-      <Input
+      {/* <Input
         type="text"
         fontSize={'15'}
         minH={{ base: '50px' }}
         placeholder="Ubicacion"
-      />
+      /> */}
+      <Suggestions />
       <Flex justify="center">
         <NextLink href="/propiedades">
           <Button as={Link} size="lg" colorScheme="red">
