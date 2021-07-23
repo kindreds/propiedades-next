@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // components
 import Item from './Item'
-import { Box } from '@chakra-ui/layout'
+import { Box, Stack } from '@chakra-ui/layout'
 import { Input } from '@chakra-ui/input'
 
 // Data
@@ -75,67 +75,69 @@ const Suggestions = ({ onChange = () => {} }) => {
         }}
       />
 
-      <Box
-        pos="absolute"
-        bg="gray.100"
-        shadow="md"
-        rounded="md"
-        px={4}
-        py={2}
-        w="full"
-      >
-        {list.map(({ label }, i) => {
-          const arr = label.split(' - ').reverse()
-          const DepCode = DeparProv?.[arr[0]]?.[0]?.DeparCodi
+      {list.length !== 0 ? (
+        <Stack
+          pos="absolute"
+          bg="gray.100"
+          shadow="md"
+          rounded="md"
+          px={4}
+          py={2}
+          w="full"
+        >
+          {list.map(({ label }, i) => {
+            const arr = label.split(' - ').reverse()
+            const DepCode = DeparProv?.[arr[0]]?.[0]?.DeparCodi
 
-          if (arr[2]) {
-            const DistCode = data?.[arr[0]]?.[arr[1]]?.[arr[2]]
-            return (
-              <Item
-                key={`${label}-${i}`}
-                onClick={() => {
-                  handleClick({ AllCodis: DistCode, label })
-                }}
-              >
-                {label}
-              </Item>
-            )
-          }
+            if (arr[2]) {
+              const DistCode = data?.[arr[0]]?.[arr[1]]?.[arr[2]]
+              return (
+                <Item
+                  key={`${label}-${i}`}
+                  onClick={() => {
+                    handleClick({ AllCodis: DistCode, label })
+                  }}
+                >
+                  {label}
+                </Item>
+              )
+            }
 
-          if (arr[1]) {
-            const depar = DeparProv?.[arr[0]]
-            const ProvCode = depar.find((e) => e.ProvNom === arr[1]).ProvCodi
+            if (arr[1]) {
+              const depar = DeparProv?.[arr[0]]
+              const ProvCode = depar.find((e) => e.ProvNom === arr[1]).ProvCodi
+              return (
+                <Item
+                  key={`${label}-${i}`}
+                  onClick={() => {
+                    handleClick({
+                      label,
+                      DeparCodi: DepCode,
+                      ProvCodi: ProvCode
+                    })
+                  }}
+                >
+                  {label}
+                </Item>
+              )
+            }
+
             return (
               <Item
                 key={`${label}-${i}`}
                 onClick={() => {
                   handleClick({
                     label,
-                    DeparCodi: DepCode,
-                    ProvCodi: ProvCode
+                    DeparCodi: DepCode
                   })
                 }}
               >
                 {label}
               </Item>
             )
-          }
-
-          return (
-            <Item
-              key={`${label}-${i}`}
-              onClick={() => {
-                handleClick({
-                  label,
-                  DeparCodi: DepCode
-                })
-              }}
-            >
-              {label}
-            </Item>
-          )
-        })}
-      </Box>
+          })}
+        </Stack>
+      ) : null}
     </Box>
   )
 }
