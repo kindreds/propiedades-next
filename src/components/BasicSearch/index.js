@@ -30,12 +30,6 @@ const BasicSearch = () => {
           <option key={cat.categoriaId}>{cat.nombreCategoria}</option>
         ))}
       </Select>
-      {/* <Input
-        type="text"
-        fontSize={'15'}
-        minH={{ base: '50px' }}
-        placeholder="Ubicacion"
-      /> */}
       <Suggestions />
       <Flex justify="center">
         <NextLink href="/propiedades">

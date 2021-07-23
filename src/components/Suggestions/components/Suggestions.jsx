@@ -84,6 +84,7 @@ const Suggestions = ({ onChange = () => {} }) => {
           px={4}
           py={2}
           w="full"
+          zIndex="popover"
         >
           {list.map(({ label }, i) => {
             const arr = label.split(' - ').reverse()
