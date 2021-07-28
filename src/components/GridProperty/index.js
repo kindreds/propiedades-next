@@ -18,7 +18,7 @@ const Overlay = () => (
 
 const ciudades = {
   GetAllDistritos: {
-    data: [],
+    data: [{ DistNom: '' }, { DistNom: '' }, { DistNom: '' }, { DistNom: '' }],
     NroItems: 0
   }
 }
@@ -27,6 +27,12 @@ const GridProperty = () => {
   const { data = ciudades } = useGetAllDistritosQuery({
     variables: { destacado: '1', numberPaginate: 4, page: 1 }
   })
+
+  const rendername = (i) => {
+    return data.GetAllDistritos.data[i].DistNom
+  }
+
+  console.log(data)
 
   return (
     <Grid
@@ -69,7 +75,7 @@ const GridProperty = () => {
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            {data.GetAllDistritos.data[0].DistNom}
+            {rendername(0)}
           </Text>
         </Flex>
       </GridItem>
@@ -91,7 +97,7 @@ const GridProperty = () => {
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            {data.GetAllDistritos.data[1].DistNom}
+            {rendername(1)}
           </Text>
         </Flex>
       </GridItem>
@@ -118,7 +124,7 @@ const GridProperty = () => {
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            {data.GetAllDistritos.data[3].DistNom}
+            {rendername(2)}
           </Text>
         </Flex>
       </GridItem>
@@ -140,7 +146,7 @@ const GridProperty = () => {
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            {data.GetAllDistritos.data[4].DistNom}
+            {rendername(3)}
           </Text>
         </Flex>
       </GridItem>
