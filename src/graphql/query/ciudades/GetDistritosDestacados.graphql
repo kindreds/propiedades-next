@@ -1,0 +1,27 @@
+query GetAllDistritos($numberPaginate: Int, $page: Int, $destacado: String) {
+  GetAllDistritos(
+    numberPaginate: $numberPaginate
+    page: $page
+    destacado: $destacado
+  ) {
+    NroItems
+    data {
+      DistCodi
+      DistNom
+      ProvCodi
+      destacado
+      estado
+      estadoDistrito
+      imagenPrincipal {
+        id
+        descripcion
+        url
+      }
+      imagenSecundaria {
+        id
+        descripcion
+        url
+      }
+    }
+  }
+}

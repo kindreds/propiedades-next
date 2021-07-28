@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react'
 // import PropType from 'prop-types';
-import { Grid, GridItem, Box, Flex, Text } from "@chakra-ui/layout";
+import { Grid, GridItem, Box, Flex, Text } from '@chakra-ui/layout'
 
-import { Image } from "../tools";
+import { Image } from '../tools'
+import { useGetAllDistritosQuery } from '../../generated/graphql'
 
 const Overlay = () => (
   <Box
@@ -13,25 +14,36 @@ const Overlay = () => (
     cursor="pointer"
     bgGradient="linear(to-b, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0.4), rgba(0,0,0,0.8))"
   />
-);
+)
+
+const ciudades = {
+  GetAllDistritos: {
+    data: [],
+    NroItems: 0
+  }
+}
 
 const GridProperty = () => {
+  const { data = ciudades } = useGetAllDistritosQuery({
+    variables: { destacado: '1', numberPaginate: 4, page: 1 }
+  })
+
   return (
     <Grid
       mt={10}
       gap={{ base: 3, xl: 6 }}
       justifyContent="center"
       templateColumns={{
-        base: "320px",
-        ms: "repeat(2, 1fr)",
-        sm: "repeat(2, 1fr)",
-        md: "repeat(3, 1fr)",
+        base: '320px',
+        ms: 'repeat(2, 1fr)',
+        sm: 'repeat(2, 1fr)',
+        md: 'repeat(3, 1fr)'
       }}
       templateRows={{
-        base: "repeat(4, 250px)",
-        ms: "repeat(3, 250px)",
-        sm: "repeat(3, 250px)",
-        md: "repeat(2, 250px)",
+        base: 'repeat(4, 250px)',
+        ms: 'repeat(3, 250px)',
+        sm: 'repeat(3, 250px)',
+        md: 'repeat(2, 250px)'
       }}
     >
       <GridItem
@@ -49,15 +61,15 @@ const GridProperty = () => {
           filter="grayscale(0.5)"
           transition="all 0.3s ease"
           sx={{
-            ".overlay:hover &": {
-              filter: "grayscale(0)",
-              transform: "scale(1.2) rotate(-5deg)",
-            },
+            '.overlay:hover &': {
+              filter: 'grayscale(0)',
+              transform: 'scale(1.2) rotate(-5deg)'
+            }
           }}
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            Ciudad 1
+            {data.GetAllDistritos.data[0].DistNom}
           </Text>
         </Flex>
       </GridItem>
@@ -67,19 +79,19 @@ const GridProperty = () => {
           cursor="pointer"
           rounded="lg"
           layout="fill"
-          src={"/ciudad1W_cp.webp"}
+          src={'/ciudad1W_cp.webp'}
           filter="grayscale(0.5)"
           transition="all 0.3s ease"
           sx={{
-            ".overlay:hover &": {
-              filter: "grayscale(0)",
-              transform: "scale(1.2) rotate(-5deg)",
-            },
+            '.overlay:hover &': {
+              filter: 'grayscale(0)',
+              transform: 'scale(1.2) rotate(-5deg)'
+            }
           }}
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            Ciudad 2
+            {data.GetAllDistritos.data[1].DistNom}
           </Text>
         </Flex>
       </GridItem>
@@ -94,19 +106,19 @@ const GridProperty = () => {
           cursor="pointer"
           rounded="lg"
           layout="fill"
-          src={"/ciudad3H_cp.webp"}
+          src={'/ciudad3H_cp.webp'}
           filter="grayscale(0.5)"
           transition="all 0.3s ease"
           sx={{
-            ".overlay:hover &": {
-              filter: "grayscale(0)",
-              transform: "scale(1.2) rotate(-5deg)",
-            },
+            '.overlay:hover &': {
+              filter: 'grayscale(0)',
+              transform: 'scale(1.2) rotate(-5deg)'
+            }
           }}
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            Ciudad 3
+            {data.GetAllDistritos.data[3].DistNom}
           </Text>
         </Flex>
       </GridItem>
@@ -116,24 +128,24 @@ const GridProperty = () => {
           cursor="pointer"
           rounded="lg"
           layout="fill"
-          src={"/ciudad4W_cp.webp"}
+          src={'/ciudad4W_cp.webp'}
           filter="grayscale(0.5)"
           transition="all 0.3s ease"
           sx={{
-            ".overlay:hover &": {
-              filter: "grayscale(0)",
-              transform: "scale(1.2) rotate(-5deg)",
-            },
+            '.overlay:hover &': {
+              filter: 'grayscale(0)',
+              transform: 'scale(1.2) rotate(-5deg)'
+            }
           }}
         />
         <Flex pos="absolute" bottom={6} w="100%" justify="center">
           <Text color="#fff" fontSize="xl">
-            Ciudad 4
+            {data.GetAllDistritos.data[4].DistNom}
           </Text>
         </Flex>
       </GridItem>
     </Grid>
-  );
-};
+  )
+}
 
-export default GridProperty;
+export default GridProperty

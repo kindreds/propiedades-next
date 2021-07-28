@@ -217,6 +217,9 @@ export type Mutation = {
   CrearFormularioContacto?: Maybe<FormularioContacto>;
   UpdateFormularioContacto?: Maybe<FormularioContacto>;
   DeleteFormularioContacto?: Maybe<Scalars['String']>;
+  CrearFormulario?: Maybe<Formulario>;
+  UpdateFormulario?: Maybe<Formulario>;
+  DeleteFormulario?: Maybe<Scalars['String']>;
   CrearPlanos?: Maybe<Planos>;
   UpdatePlanos?: Maybe<Planos>;
   DeletePlanos?: Maybe<Scalars['String']>;
@@ -266,6 +269,23 @@ export type MutationUpdateFormularioContactoArgs = {
 
 export type MutationDeleteFormularioContactoArgs = {
   input1: FormularioContactoInput;
+};
+
+
+export type MutationCrearFormularioArgs = {
+  input: ClienteInput;
+  input1: FormularioInput;
+};
+
+
+export type MutationUpdateFormularioArgs = {
+  input: ClienteInput;
+  input1?: Maybe<FormularioInput>;
+};
+
+
+export type MutationDeleteFormularioArgs = {
+  input: FormularioInput;
 };
 
 
@@ -1272,6 +1292,32 @@ export type GetCategoriaSlugQuery = (
       { __typename?: 'Imagenes' }
       & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
     )> }
+  )> }
+);
+
+export type GetAllDistritosQueryVariables = Exact<{
+  numberPaginate?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  destacado?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetAllDistritosQuery = (
+  { __typename?: 'Query' }
+  & { GetAllDistritos?: Maybe<(
+    { __typename?: 'GetDistrito' }
+    & Pick<GetDistrito, 'NroItems'>
+    & { data?: Maybe<Array<(
+      { __typename?: 'Distrito' }
+      & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado' | 'estado' | 'estadoDistrito'>
+      & { imagenPrincipal?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, imagenSecundaria?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )> }
+    )>> }
   )> }
 );
 
@@ -3071,6 +3117,65 @@ export function useGetCategoriaSlugLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetCategoriaSlugQueryHookResult = ReturnType<typeof useGetCategoriaSlugQuery>;
 export type GetCategoriaSlugLazyQueryHookResult = ReturnType<typeof useGetCategoriaSlugLazyQuery>;
 export type GetCategoriaSlugQueryResult = Apollo.QueryResult<GetCategoriaSlugQuery, GetCategoriaSlugQueryVariables>;
+export const GetAllDistritosDocument = gql`
+    query GetAllDistritos($numberPaginate: Int, $page: Int, $destacado: String) {
+  GetAllDistritos(
+    numberPaginate: $numberPaginate
+    page: $page
+    destacado: $destacado
+  ) {
+    NroItems
+    data {
+      DistCodi
+      DistNom
+      ProvCodi
+      destacado
+      estado
+      estadoDistrito
+      imagenPrincipal {
+        id
+        descripcion
+        url
+      }
+      imagenSecundaria {
+        id
+        descripcion
+        url
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAllDistritosQuery__
+ *
+ * To run a query within a React component, call `useGetAllDistritosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllDistritosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllDistritosQuery({
+ *   variables: {
+ *      numberPaginate: // value for 'numberPaginate'
+ *      page: // value for 'page'
+ *      destacado: // value for 'destacado'
+ *   },
+ * });
+ */
+export function useGetAllDistritosQuery(baseOptions?: Apollo.QueryHookOptions<GetAllDistritosQuery, GetAllDistritosQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllDistritosQuery, GetAllDistritosQueryVariables>(GetAllDistritosDocument, options);
+      }
+export function useGetAllDistritosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllDistritosQuery, GetAllDistritosQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllDistritosQuery, GetAllDistritosQueryVariables>(GetAllDistritosDocument, options);
+        }
+export type GetAllDistritosQueryHookResult = ReturnType<typeof useGetAllDistritosQuery>;
+export type GetAllDistritosLazyQueryHookResult = ReturnType<typeof useGetAllDistritosLazyQuery>;
+export type GetAllDistritosQueryResult = Apollo.QueryResult<GetAllDistritosQuery, GetAllDistritosQueryVariables>;
 export const GetAllFormulariosDocument = gql`
     query GetAllFormularios($numberPaginate: Int, $page: Int, $estado: String) {
   GetAllFormularios(numberPaginate: $numberPaginate, page: $page, estado: $estado) {
