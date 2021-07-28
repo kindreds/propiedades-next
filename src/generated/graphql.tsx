@@ -872,6 +872,49 @@ export type CrearFormularioContactoMutation = (
   )> }
 );
 
+export type CrearFormularioMutationVariables = Exact<{
+  input1: FormularioInput;
+  input: ClienteInput;
+}>;
+
+
+export type CrearFormularioMutation = (
+  { __typename?: 'Mutation' }
+  & { CrearFormulario?: Maybe<(
+    { __typename?: 'Formulario' }
+    & Pick<Formulario, 'formularioId' | 'horarioContacto' | 'descripcion' | 'estado' | 'clienteId' | 'propiedadId'>
+    & { Propiedades?: Maybe<(
+      { __typename?: 'Propiedades' }
+      & Pick<Propiedades, 'propiedadId' | 'titulo' | 'slug' | 'tipoContrato' | 'descripcionCorta' | 'descripcionCompleta' | 'video' | 'estado' | 'destacado' | 'lat' | 'log' | 'cuartos' | 'banios' | 'pisos' | 'dimensiones' | 'antiguedad' | 'areaConstruida' | 'ambientes' | 'direccion'>
+      & { fotoPrincipal?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, fotoSecundaria?: Maybe<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>, galeria?: Maybe<Array<(
+        { __typename?: 'Imagenes' }
+        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
+      )>>, Departamento?: Maybe<(
+        { __typename?: 'Departamento' }
+        & Pick<Departamento, 'DeparCodi' | 'DeparNom'>
+      )>, Provincia?: Maybe<(
+        { __typename?: 'Provincia' }
+        & Pick<Provincia, 'ProvCodi' | 'ProvNom' | 'DeparCodi'>
+      )>, Distrito?: Maybe<(
+        { __typename?: 'Distrito' }
+        & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado' | 'estado'>
+      )>, Asesor?: Maybe<(
+        { __typename?: 'User' }
+        & Pick<User, 'userId' | 'alias' | 'tipoUsuario' | 'nombres' | 'apellidos' | 'tipoDocumento' | 'nroDocumento' | 'fechaNacimiento' | 'email' | 'estado' | 'apiToken'>
+      )> }
+    )>, Cliente?: Maybe<(
+      { __typename?: 'Cliente' }
+      & Pick<Cliente, 'clienteId' | 'nombresCliente' | 'apellidosCliente' | 'celularCliente' | 'correoCliente'>
+    )> }
+  )> }
+);
+
 export type CreateImageMutationVariables = Exact<{
   input?: Maybe<ImagenesInput>;
   imagen: Scalars['Upload'];
@@ -2025,6 +2068,117 @@ export function useCrearFormularioContactoMutation(baseOptions?: Apollo.Mutation
 export type CrearFormularioContactoMutationHookResult = ReturnType<typeof useCrearFormularioContactoMutation>;
 export type CrearFormularioContactoMutationResult = Apollo.MutationResult<CrearFormularioContactoMutation>;
 export type CrearFormularioContactoMutationOptions = Apollo.BaseMutationOptions<CrearFormularioContactoMutation, CrearFormularioContactoMutationVariables>;
+export const CrearFormularioDocument = gql`
+    mutation CrearFormulario($input1: FormularioInput!, $input: ClienteInput!) {
+  CrearFormulario(input: $input, input1: $input1) {
+    formularioId
+    horarioContacto
+    descripcion
+    estado
+    clienteId
+    propiedadId
+    Propiedades {
+      propiedadId
+      titulo
+      slug
+      tipoContrato
+      descripcionCorta
+      descripcionCompleta
+      video
+      estado
+      destacado
+      fotoPrincipal {
+        id
+        descripcion
+        url
+      }
+      fotoSecundaria {
+        id
+        descripcion
+        url
+      }
+      galeria {
+        id
+        descripcion
+        url
+      }
+      lat
+      log
+      cuartos
+      banios
+      pisos
+      dimensiones
+      antiguedad
+      areaConstruida
+      ambientes
+      direccion
+      Departamento {
+        DeparCodi
+        DeparNom
+      }
+      Provincia {
+        ProvCodi
+        ProvNom
+        DeparCodi
+      }
+      Distrito {
+        DistCodi
+        DistNom
+        ProvCodi
+        destacado
+        estado
+      }
+      Asesor {
+        userId
+        alias
+        tipoUsuario
+        nombres
+        apellidos
+        tipoDocumento
+        nroDocumento
+        fechaNacimiento
+        email
+        estado
+        apiToken
+      }
+    }
+    Cliente {
+      clienteId
+      nombresCliente
+      apellidosCliente
+      celularCliente
+      correoCliente
+    }
+  }
+}
+    `;
+export type CrearFormularioMutationFn = Apollo.MutationFunction<CrearFormularioMutation, CrearFormularioMutationVariables>;
+
+/**
+ * __useCrearFormularioMutation__
+ *
+ * To run a mutation, you first call `useCrearFormularioMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCrearFormularioMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [crearFormularioMutation, { data, loading, error }] = useCrearFormularioMutation({
+ *   variables: {
+ *      input1: // value for 'input1'
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCrearFormularioMutation(baseOptions?: Apollo.MutationHookOptions<CrearFormularioMutation, CrearFormularioMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CrearFormularioMutation, CrearFormularioMutationVariables>(CrearFormularioDocument, options);
+      }
+export type CrearFormularioMutationHookResult = ReturnType<typeof useCrearFormularioMutation>;
+export type CrearFormularioMutationResult = Apollo.MutationResult<CrearFormularioMutation>;
+export type CrearFormularioMutationOptions = Apollo.BaseMutationOptions<CrearFormularioMutation, CrearFormularioMutationVariables>;
 export const CreateImageDocument = gql`
     mutation CreateImage($input: ImagenesInput, $imagen: Upload!) {
   CreateImage(input: $input, imagen: $imagen) {

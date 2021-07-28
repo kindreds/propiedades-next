@@ -32,8 +32,6 @@ const GridProperty = () => {
     return data.GetAllDistritos.data[i].DistNom
   }
 
-  console.log(data)
-
   return (
     <Grid
       mt={10}

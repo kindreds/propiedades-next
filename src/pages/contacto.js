@@ -65,9 +65,9 @@ const contacto = () => {
               justifyContent={{ base: 'center' }}
               direction={{ base: 'column', sm: 'row' }}
             >
-              <Button size="lg" shadow="lg">
+              {/* <Button size="lg" shadow="lg">
                 Sé un asesor
-              </Button>
+              </Button> */}
               <Button
                 size="lg"
                 shadow="lg"
