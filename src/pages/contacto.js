@@ -19,6 +19,7 @@ import { VisuallyHidden } from '@chakra-ui/visually-hidden'
 import { FaPlay } from 'react-icons/fa'
 import { MdLocationOn } from 'react-icons/md'
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
+import OpinionForm from '../components/OpinionForm'
 
 const contacto = () => {
   return (
@@ -174,51 +175,7 @@ const contacto = () => {
                 </Flex>
               </Stack>
 
-              <Stack spacing={4} bg="white" shadow="lg" rounded="lg" p={6}>
-                <Heading
-                  as="h3"
-                  mb={2}
-                  fontWeight="semibold"
-                  fontSize={{ base: '2xl', md: '2xl' }}
-                  lineHeight={{ base: 'shorter', md: 'none' }}
-                  letterSpacing={{ base: 'normal', md: 'tight' }}
-                >
-                  Queremos tu opinion
-                </Heading>
-
-                <SimpleGrid
-                  gap={4}
-                  templateColumns={{
-                    base: 'minmax(0, 1fr)',
-                    sm: 'repeat(2, 1fr)'
-                  }}
-                >
-                  <Flex>
-                    <VisuallyHidden>Nombre</VisuallyHidden>
-                    <Input type="text" required placeholder="Nombre" />
-                  </Flex>
-                  <Flex>
-                    <VisuallyHidden>Correo</VisuallyHidden>
-                    <Input type="text" required placeholder="Correo" />
-                  </Flex>
-                </SimpleGrid>
-
-                <Flex>
-                  <VisuallyHidden>Asunto</VisuallyHidden>
-                  <Input type="text" required placeholder="Asunto" />
-                </Flex>
-
-                <Flex>
-                  <VisuallyHidden>Descripción</VisuallyHidden>
-                  <Textarea required placeholder="Dinos tu opinion" />
-                </Flex>
-
-                <Flex flex={1} justify="flex-end">
-                  <Button size="lg" colorScheme="red">
-                    Enviar
-                  </Button>
-                </Flex>
-              </Stack>
+              <OpinionForm />
             </SimpleGrid>
           </Box>
         </Container>

@@ -1,0 +1,13 @@
+mutation CrearPostulante($input1: PostulantesInput!) {
+  CrearPostulante(input1: $input1) {
+    postulanteId
+    nombre
+    apellidos
+    direccion
+    ciudad
+    email
+    celular
+    descripcion
+    estado
+  }
+}

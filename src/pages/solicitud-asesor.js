@@ -19,6 +19,7 @@ import { FaPlay } from 'react-icons/fa'
 
 import Modal from '../components/Modal'
 import Catchap from '../components/Catchap'
+import PostulanteForm from '../components/PostulanteForm'
 
 const BeAsesor = () => {
   const modalHandler = useDisclosure()
@@ -135,51 +136,7 @@ const BeAsesor = () => {
                 Formulario de contacto para ser asesor asociado de RE/MAX Perú
               </Heading>
 
-              <Stack mb={5}>
-                <Stack direction={{ base: 'column', sm: 'row' }}>
-                  <FormControl id="nombres" isRequired>
-                    <FormLabel>Nombre</FormLabel>
-                    <Input />
-                  </FormControl>
-                  <FormControl id="apellidos" isRequired>
-                    <FormLabel>Apellidos</FormLabel>
-                    <Input />
-                  </FormControl>
-                </Stack>
-                <Stack direction={{ base: 'column', sm: 'row' }}>
-                  <FormControl id="direccion" isRequired>
-                    <FormLabel>Direccion</FormLabel>
-                    <Input />
-                  </FormControl>
-                  <FormControl id="ciudad" isRequired>
-                    <FormLabel>Ciudad</FormLabel>
-                    <Input />
-                  </FormControl>
-                </Stack>
-                <Stack direction={{ base: 'column', sm: 'row' }}>
-                  <FormControl id="correo" isRequired>
-                    <FormLabel>Correo</FormLabel>
-                    <Input />
-                  </FormControl>
-                  <FormControl id="celular" isRequired>
-                    <FormLabel>Celular</FormLabel>
-                    <Input />
-                  </FormControl>
-                </Stack>
-                <Box mx="auto" w="full">
-                  <FormControl id="celular" isRequired>
-                    <FormLabel>Catchap de seguridad</FormLabel>
-                    <Catchap onChange={console.log} />
-                  </FormControl>
-                </Box>
-              </Stack>
-              <Button
-                size="lg"
-                colorScheme="teal"
-                w={{ base: 'full', sm: 'unset' }}
-              >
-                Enviar
-              </Button>
+              <PostulanteForm />
             </Box>
           </Stack>
         </Container>

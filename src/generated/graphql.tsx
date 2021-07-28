@@ -101,11 +101,17 @@ export type Distrito = {
   ProvCodi?: Maybe<Scalars['Int']>;
   destacado?: Maybe<Scalars['Int']>;
   estado?: Maybe<Scalars['Int']>;
+  estadoDistrito?: Maybe<Scalars['Int']>;
+  imagenPrincipal?: Maybe<Imagenes>;
+  imagenSecundaria?: Maybe<Imagenes>;
 };
 
 export type DistritoInput = {
   DistCodi?: Maybe<Scalars['ID']>;
   destacado?: Maybe<Scalars['Int']>;
+  estadoDistrito?: Maybe<Scalars['Int']>;
+  imagenPrincipal?: Maybe<Scalars['Int']>;
+  imagenSecundaria?: Maybe<Scalars['Int']>;
 };
 
 export type Formulario = {
@@ -118,6 +124,25 @@ export type Formulario = {
   propiedadId?: Maybe<Scalars['Int']>;
   Propiedades?: Maybe<Propiedades>;
   Cliente?: Maybe<Cliente>;
+};
+
+export type FormularioContacto = {
+  __typename?: 'FormularioContacto';
+  formContactoId?: Maybe<Scalars['Int']>;
+  nombre?: Maybe<Scalars['String']>;
+  correo?: Maybe<Scalars['String']>;
+  asunto?: Maybe<Scalars['String']>;
+  descripcion?: Maybe<Scalars['String']>;
+  estado?: Maybe<Scalars['Int']>;
+};
+
+export type FormularioContactoInput = {
+  formContactoId?: Maybe<Scalars['Int']>;
+  nombre?: Maybe<Scalars['String']>;
+  correo?: Maybe<Scalars['String']>;
+  asunto?: Maybe<Scalars['String']>;
+  descripcion?: Maybe<Scalars['String']>;
+  estado?: Maybe<Scalars['Int']>;
 };
 
 export type FormularioInput = {
@@ -135,6 +160,18 @@ export type GetAsesorses = {
   data?: Maybe<Array<User>>;
 };
 
+export type GetDistrito = {
+  __typename?: 'GetDistrito';
+  NroItems?: Maybe<Scalars['Int']>;
+  data?: Maybe<Array<Distrito>>;
+};
+
+export type GetFormularioContacto = {
+  __typename?: 'GetFormularioContacto';
+  NroItems?: Maybe<Scalars['Int']>;
+  data?: Maybe<Array<FormularioContacto>>;
+};
+
 export type GetFormularios = {
   __typename?: 'GetFormularios';
   NroItems?: Maybe<Scalars['Int']>;
@@ -145,6 +182,12 @@ export type GetPlanos = {
   __typename?: 'GetPlanos';
   NroItems?: Maybe<Scalars['Int']>;
   data?: Maybe<Array<Planos>>;
+};
+
+export type GetPostulantes = {
+  __typename?: 'GetPostulantes';
+  NroItems?: Maybe<Scalars['Int']>;
+  data?: Maybe<Array<Postulantes>>;
 };
 
 export type GetPropiedades = {
@@ -168,9 +211,12 @@ export type ImagenesInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  CrearFormulario?: Maybe<Formulario>;
-  UpdateFormulario?: Maybe<Formulario>;
-  DeleteFormulario?: Maybe<Scalars['String']>;
+  CrearPostulante?: Maybe<Postulantes>;
+  UpdatePostulante?: Maybe<Postulantes>;
+  DeletePostulante?: Maybe<Scalars['String']>;
+  CrearFormularioContacto?: Maybe<FormularioContacto>;
+  UpdateFormularioContacto?: Maybe<FormularioContacto>;
+  DeleteFormularioContacto?: Maybe<Scalars['String']>;
   CrearPlanos?: Maybe<Planos>;
   UpdatePlanos?: Maybe<Planos>;
   DeletePlanos?: Maybe<Scalars['String']>;
@@ -193,20 +239,33 @@ export type Mutation = {
 };
 
 
-export type MutationCrearFormularioArgs = {
-  input: ClienteInput;
-  input1: FormularioInput;
+export type MutationCrearPostulanteArgs = {
+  input1: PostulantesInput;
 };
 
 
-export type MutationUpdateFormularioArgs = {
-  input: ClienteInput;
-  input1?: Maybe<FormularioInput>;
+export type MutationUpdatePostulanteArgs = {
+  input1?: Maybe<PostulantesInput>;
 };
 
 
-export type MutationDeleteFormularioArgs = {
-  input: FormularioInput;
+export type MutationDeletePostulanteArgs = {
+  input1: PostulantesInput;
+};
+
+
+export type MutationCrearFormularioContactoArgs = {
+  input1: FormularioContactoInput;
+};
+
+
+export type MutationUpdateFormularioContactoArgs = {
+  input1?: Maybe<FormularioContactoInput>;
+};
+
+
+export type MutationDeleteFormularioContactoArgs = {
+  input1: FormularioContactoInput;
 };
 
 
@@ -374,6 +433,31 @@ export type PlanosInput = {
   propiedadId?: Maybe<Scalars['Int']>;
 };
 
+export type Postulantes = {
+  __typename?: 'Postulantes';
+  postulanteId?: Maybe<Scalars['Int']>;
+  nombre?: Maybe<Scalars['String']>;
+  apellidos?: Maybe<Scalars['String']>;
+  direccion?: Maybe<Scalars['String']>;
+  ciudad?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  celular?: Maybe<Scalars['String']>;
+  descripcion?: Maybe<Scalars['String']>;
+  estado?: Maybe<Scalars['Int']>;
+};
+
+export type PostulantesInput = {
+  postulanteId?: Maybe<Scalars['Int']>;
+  nombre?: Maybe<Scalars['String']>;
+  apellidos?: Maybe<Scalars['String']>;
+  direccion?: Maybe<Scalars['String']>;
+  ciudad?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  celular?: Maybe<Scalars['String']>;
+  descripcion?: Maybe<Scalars['String']>;
+  estado?: Maybe<Scalars['Int']>;
+};
+
 export type Propiedades = {
   __typename?: 'Propiedades';
   propiedadId?: Maybe<Scalars['Int']>;
@@ -471,6 +555,11 @@ export type Query = {
   GetBanios?: Maybe<Array<Maybe<Scalars['Int']>>>;
   GetAllFormularios?: Maybe<GetFormularios>;
   GetBusquedaAsesores?: Maybe<GetAsesorses>;
+  GetAllFormularioContacto?: Maybe<GetFormularioContacto>;
+  GetIdFormularioContacto?: Maybe<FormularioContacto>;
+  GetAllPostulantes?: Maybe<GetPostulantes>;
+  GetIdPostulantes?: Maybe<Postulantes>;
+  GetAllDistritos?: Maybe<GetDistrito>;
 };
 
 
@@ -548,6 +637,37 @@ export type QueryGetBusquedaAsesoresArgs = {
   distrito?: Maybe<Scalars['String']>;
   asesor?: Maybe<Scalars['String']>;
   orden?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetAllFormularioContactoArgs = {
+  numberPaginate?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  estado?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetIdFormularioContactoArgs = {
+  correo?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetAllPostulantesArgs = {
+  numberPaginate?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  estado?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetIdPostulantesArgs = {
+  email?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetAllDistritosArgs = {
+  numberPaginate?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  destacado?: Maybe<Scalars['String']>;
 };
 
 /** The available directions for ordering a list of records. */
@@ -719,46 +839,16 @@ export type UpdateCategoriasMutation = (
   )> }
 );
 
-export type CrearFormularioMutationVariables = Exact<{
-  input1: FormularioInput;
-  input: ClienteInput;
+export type CrearFormularioContactoMutationVariables = Exact<{
+  input1: FormularioContactoInput;
 }>;
 
 
-export type CrearFormularioMutation = (
+export type CrearFormularioContactoMutation = (
   { __typename?: 'Mutation' }
-  & { CrearFormulario?: Maybe<(
-    { __typename?: 'Formulario' }
-    & Pick<Formulario, 'formularioId' | 'horarioContacto' | 'descripcion' | 'estado' | 'clienteId' | 'propiedadId'>
-    & { Propiedades?: Maybe<(
-      { __typename?: 'Propiedades' }
-      & Pick<Propiedades, 'propiedadId' | 'titulo' | 'slug' | 'tipoContrato' | 'descripcionCorta' | 'descripcionCompleta' | 'video' | 'estado' | 'destacado' | 'lat' | 'log' | 'cuartos' | 'banios' | 'pisos' | 'dimensiones' | 'antiguedad' | 'areaConstruida' | 'ambientes' | 'direccion'>
-      & { fotoPrincipal?: Maybe<(
-        { __typename?: 'Imagenes' }
-        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
-      )>, fotoSecundaria?: Maybe<(
-        { __typename?: 'Imagenes' }
-        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
-      )>, galeria?: Maybe<Array<(
-        { __typename?: 'Imagenes' }
-        & Pick<Imagenes, 'id' | 'descripcion' | 'url'>
-      )>>, Departamento?: Maybe<(
-        { __typename?: 'Departamento' }
-        & Pick<Departamento, 'DeparCodi' | 'DeparNom'>
-      )>, Provincia?: Maybe<(
-        { __typename?: 'Provincia' }
-        & Pick<Provincia, 'ProvCodi' | 'ProvNom' | 'DeparCodi'>
-      )>, Distrito?: Maybe<(
-        { __typename?: 'Distrito' }
-        & Pick<Distrito, 'DistCodi' | 'DistNom' | 'ProvCodi' | 'destacado' | 'estado'>
-      )>, Asesor?: Maybe<(
-        { __typename?: 'User' }
-        & Pick<User, 'userId' | 'alias' | 'tipoUsuario' | 'nombres' | 'apellidos' | 'tipoDocumento' | 'nroDocumento' | 'fechaNacimiento' | 'email' | 'estado' | 'apiToken'>
-      )> }
-    )>, Cliente?: Maybe<(
-      { __typename?: 'Cliente' }
-      & Pick<Cliente, 'clienteId' | 'nombresCliente' | 'apellidosCliente' | 'celularCliente' | 'correoCliente'>
-    )> }
+  & { CrearFormularioContacto?: Maybe<(
+    { __typename?: 'FormularioContacto' }
+    & Pick<FormularioContacto, 'nombre' | 'correo' | 'asunto' | 'estado' | 'descripcion' | 'formContactoId'>
   )> }
 );
 
@@ -869,6 +959,19 @@ export type UpdatePlanosMutation = (
       { __typename?: 'Propiedades' }
       & Pick<Propiedades, 'propiedadId' | 'titulo' | 'slug' | 'tipoContrato' | 'descripcionCorta' | 'descripcionCompleta' | 'video' | 'estado' | 'destacado' | 'lat' | 'log' | 'cuartos' | 'banios' | 'pisos' | 'dimensiones' | 'antiguedad' | 'areaConstruida' | 'ambientes' | 'direccion'>
     )> }
+  )> }
+);
+
+export type CrearPostulanteMutationVariables = Exact<{
+  input1: PostulantesInput;
+}>;
+
+
+export type CrearPostulanteMutation = (
+  { __typename?: 'Mutation' }
+  & { CrearPostulante?: Maybe<(
+    { __typename?: 'Postulantes' }
+    & Pick<Postulantes, 'postulanteId' | 'nombre' | 'apellidos' | 'direccion' | 'ciudad' | 'email' | 'celular' | 'descripcion' | 'estado'>
   )> }
 );
 
@@ -1838,117 +1941,44 @@ export function useUpdateCategoriasMutation(baseOptions?: Apollo.MutationHookOpt
 export type UpdateCategoriasMutationHookResult = ReturnType<typeof useUpdateCategoriasMutation>;
 export type UpdateCategoriasMutationResult = Apollo.MutationResult<UpdateCategoriasMutation>;
 export type UpdateCategoriasMutationOptions = Apollo.BaseMutationOptions<UpdateCategoriasMutation, UpdateCategoriasMutationVariables>;
-export const CrearFormularioDocument = gql`
-    mutation CrearFormulario($input1: FormularioInput!, $input: ClienteInput!) {
-  CrearFormulario(input: $input, input1: $input1) {
-    formularioId
-    horarioContacto
-    descripcion
+export const CrearFormularioContactoDocument = gql`
+    mutation CrearFormularioContacto($input1: FormularioContactoInput!) {
+  CrearFormularioContacto(input1: $input1) {
+    nombre
+    correo
+    asunto
     estado
-    clienteId
-    propiedadId
-    Propiedades {
-      propiedadId
-      titulo
-      slug
-      tipoContrato
-      descripcionCorta
-      descripcionCompleta
-      video
-      estado
-      destacado
-      fotoPrincipal {
-        id
-        descripcion
-        url
-      }
-      fotoSecundaria {
-        id
-        descripcion
-        url
-      }
-      galeria {
-        id
-        descripcion
-        url
-      }
-      lat
-      log
-      cuartos
-      banios
-      pisos
-      dimensiones
-      antiguedad
-      areaConstruida
-      ambientes
-      direccion
-      Departamento {
-        DeparCodi
-        DeparNom
-      }
-      Provincia {
-        ProvCodi
-        ProvNom
-        DeparCodi
-      }
-      Distrito {
-        DistCodi
-        DistNom
-        ProvCodi
-        destacado
-        estado
-      }
-      Asesor {
-        userId
-        alias
-        tipoUsuario
-        nombres
-        apellidos
-        tipoDocumento
-        nroDocumento
-        fechaNacimiento
-        email
-        estado
-        apiToken
-      }
-    }
-    Cliente {
-      clienteId
-      nombresCliente
-      apellidosCliente
-      celularCliente
-      correoCliente
-    }
+    descripcion
+    formContactoId
   }
 }
     `;
-export type CrearFormularioMutationFn = Apollo.MutationFunction<CrearFormularioMutation, CrearFormularioMutationVariables>;
+export type CrearFormularioContactoMutationFn = Apollo.MutationFunction<CrearFormularioContactoMutation, CrearFormularioContactoMutationVariables>;
 
 /**
- * __useCrearFormularioMutation__
+ * __useCrearFormularioContactoMutation__
  *
- * To run a mutation, you first call `useCrearFormularioMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCrearFormularioMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCrearFormularioContactoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCrearFormularioContactoMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [crearFormularioMutation, { data, loading, error }] = useCrearFormularioMutation({
+ * const [crearFormularioContactoMutation, { data, loading, error }] = useCrearFormularioContactoMutation({
  *   variables: {
  *      input1: // value for 'input1'
- *      input: // value for 'input'
  *   },
  * });
  */
-export function useCrearFormularioMutation(baseOptions?: Apollo.MutationHookOptions<CrearFormularioMutation, CrearFormularioMutationVariables>) {
+export function useCrearFormularioContactoMutation(baseOptions?: Apollo.MutationHookOptions<CrearFormularioContactoMutation, CrearFormularioContactoMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CrearFormularioMutation, CrearFormularioMutationVariables>(CrearFormularioDocument, options);
+        return Apollo.useMutation<CrearFormularioContactoMutation, CrearFormularioContactoMutationVariables>(CrearFormularioContactoDocument, options);
       }
-export type CrearFormularioMutationHookResult = ReturnType<typeof useCrearFormularioMutation>;
-export type CrearFormularioMutationResult = Apollo.MutationResult<CrearFormularioMutation>;
-export type CrearFormularioMutationOptions = Apollo.BaseMutationOptions<CrearFormularioMutation, CrearFormularioMutationVariables>;
+export type CrearFormularioContactoMutationHookResult = ReturnType<typeof useCrearFormularioContactoMutation>;
+export type CrearFormularioContactoMutationResult = Apollo.MutationResult<CrearFormularioContactoMutation>;
+export type CrearFormularioContactoMutationOptions = Apollo.BaseMutationOptions<CrearFormularioContactoMutation, CrearFormularioContactoMutationVariables>;
 export const CreateImageDocument = gql`
     mutation CreateImage($input: ImagenesInput, $imagen: Upload!) {
   CreateImage(input: $input, imagen: $imagen) {
@@ -2265,6 +2295,47 @@ export function useUpdatePlanosMutation(baseOptions?: Apollo.MutationHookOptions
 export type UpdatePlanosMutationHookResult = ReturnType<typeof useUpdatePlanosMutation>;
 export type UpdatePlanosMutationResult = Apollo.MutationResult<UpdatePlanosMutation>;
 export type UpdatePlanosMutationOptions = Apollo.BaseMutationOptions<UpdatePlanosMutation, UpdatePlanosMutationVariables>;
+export const CrearPostulanteDocument = gql`
+    mutation CrearPostulante($input1: PostulantesInput!) {
+  CrearPostulante(input1: $input1) {
+    postulanteId
+    nombre
+    apellidos
+    direccion
+    ciudad
+    email
+    celular
+    descripcion
+    estado
+  }
+}
+    `;
+export type CrearPostulanteMutationFn = Apollo.MutationFunction<CrearPostulanteMutation, CrearPostulanteMutationVariables>;
+
+/**
+ * __useCrearPostulanteMutation__
+ *
+ * To run a mutation, you first call `useCrearPostulanteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCrearPostulanteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [crearPostulanteMutation, { data, loading, error }] = useCrearPostulanteMutation({
+ *   variables: {
+ *      input1: // value for 'input1'
+ *   },
+ * });
+ */
+export function useCrearPostulanteMutation(baseOptions?: Apollo.MutationHookOptions<CrearPostulanteMutation, CrearPostulanteMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CrearPostulanteMutation, CrearPostulanteMutationVariables>(CrearPostulanteDocument, options);
+      }
+export type CrearPostulanteMutationHookResult = ReturnType<typeof useCrearPostulanteMutation>;
+export type CrearPostulanteMutationResult = Apollo.MutationResult<CrearPostulanteMutation>;
+export type CrearPostulanteMutationOptions = Apollo.BaseMutationOptions<CrearPostulanteMutation, CrearPostulanteMutationVariables>;
 export const CrearPropiedadesDocument = gql`
     mutation CrearPropiedades($input: PropiedadesInput!) {
   CrearPropiedades(input: $input) {

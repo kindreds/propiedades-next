@@ -1,0 +1,10 @@
+mutation CrearFormularioContacto($input1: FormularioContactoInput!) {
+  CrearFormularioContacto(input1: $input1) {
+    nombre
+    correo
+    asunto
+    estado
+    descripcion
+    formContactoId
+  }
+}
