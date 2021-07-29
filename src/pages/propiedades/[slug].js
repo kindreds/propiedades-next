@@ -89,7 +89,7 @@ const Propiedad = ({ propiedad }) => {
 
   const ScrollToContact = () => {
     const el = document.getElementById('asesor_msg')
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
   return (

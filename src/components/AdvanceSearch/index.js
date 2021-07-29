@@ -14,7 +14,7 @@ import searchPropis from '../../types/searchPropis'
 import { useGetSearchQuery } from '../../generated/graphql'
 
 const initialState = {
-  tipoContrato: '1',
+  tipoContrato: '',
   slugCategoria: '',
   DeparCodi: 0,
   ProvCodi: 0,
