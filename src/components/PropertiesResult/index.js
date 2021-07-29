@@ -11,7 +11,7 @@ import { fadeInUp } from '../../motions/fadeInUp'
 
 const PropertyCard = dynamic(() => import('../PropertyCard'))
 
-const PropertiesResult = ({ columns = 2, propiedades = [] }) => {
+const PropertiesResult = ({ columns = 2, propiedades = [], NroItems }) => {
   return (
     <Box flex={1} d="flex" flexDir="column" justifyContent="flex-start">
       <motion.div variants={fadeInUp}>
@@ -32,7 +32,7 @@ const PropertiesResult = ({ columns = 2, propiedades = [] }) => {
             fontSize={{ base: 'small' }}
             textAlign={{ base: 'center' }}
           >
-            10 RESULTADOS
+            {NroItems} RESULTADOS
           </Text>
           <Menu>
             <MenuButton

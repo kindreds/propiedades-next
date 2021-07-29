@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import Image from "next/image";
 import Icon from '@chakra-ui/icon'
 import ReactSlider from 'react-slidy'
@@ -18,14 +18,20 @@ const initialState = {
 }
 
 const DetailSlider = ({ galeria }) => {
+  const [slides, setSlides] = useState(1)
   const [actualSlide, setActualSlide] = useState(0)
-  const numOfSlidesRaw = useBreakpointValue(initialState)
+  const numOfSlides = useBreakpointValue(initialState)
 
   const updateSlide = ({ currentSlide }) => {
     setActualSlide(currentSlide)
   }
 
-  const numOfSlides = numOfSlidesRaw ?? 3
+  useEffect(() => {
+    if (numOfSlides) {
+      setSlides(numOfSlides)
+      updateSlide({ currentSlide: 0 })
+    }
+  }, [numOfSlides])
 
   // const imagesList = [
   //   '/inhouse_1_cp.webp',
@@ -44,7 +50,7 @@ const DetailSlider = ({ galeria }) => {
         keyboardNavigation
         slide={actualSlide}
         lazyLoadSlider={!!0}
-        numOfSlides={numOfSlides}
+        numOfSlides={slides}
         doAfterSlide={updateSlide}
       >
         {galeria.map(({ id, url, descripcion }) => (

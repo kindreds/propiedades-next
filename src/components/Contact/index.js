@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Drawer,
   Button,
@@ -7,15 +7,15 @@ import {
   IconButton,
   DrawerFooter,
   DrawerOverlay,
-  DrawerContent,
-} from '@chakra-ui/react';
-import AsesorCard from '../AsesorCard';
-import { Input } from '@chakra-ui/input';
-import { CloseIcon } from '@chakra-ui/icons';
-import { Textarea } from '@chakra-ui/textarea';
-import { Heading, Stack } from '@chakra-ui/layout';
+  DrawerContent
+} from '@chakra-ui/react'
+import AsesorCard from '../AsesorCard'
+import { Input } from '@chakra-ui/input'
+import { CloseIcon } from '@chakra-ui/icons'
+import { Textarea } from '@chakra-ui/textarea'
+import { Heading, Stack } from '@chakra-ui/layout'
 
-const Contact = ({ isOpen, onClose }) => {
+const Contact = ({ isOpen, onClose, asesor }) => {
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
@@ -28,7 +28,7 @@ const Contact = ({ isOpen, onClose }) => {
             onClick={onClose}
             icon={<CloseIcon />}
           />
-          <AsesorCard simple drawer />
+          <AsesorCard asesor={asesor} simple drawer />
           <Stack spacing={4} pb={4} px={4}>
             <Heading as="h2" fontSize="md" fontWeight="medium">
               Enviar mensaje a Victoria
@@ -59,13 +59,13 @@ const Contact = ({ isOpen, onClose }) => {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  );
-};
+  )
+}
 
 Contact.propTypes = {
   ref: PropTypes.node,
   isOpen: PropTypes.bool,
-  onClose: PropTypes.func,
-};
+  onClose: PropTypes.func
+}
 
-export default Contact;
+export default Contact

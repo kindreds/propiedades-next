@@ -73,7 +73,7 @@ const Propiedades = () => {
     <LazyMotion features={domAnimation}>
       <Box w="full" bg="gray.200">
         <Head>
-          <title>Propiedades</title>
+          <title>Categorias | </title>
         </Head>
         <Box
           pos="relative"
@@ -178,7 +178,10 @@ const Propiedades = () => {
               </Box>
             )}
             <PropertiesResult
-              {...{ propiedades: data.GetBusquedaAvanzada.data }}
+              {...{
+                propiedades: data.GetBusquedaAvanzada.data,
+                NroItems: data.GetBusquedaAvanzada.NroItems
+              }}
             />
           </Flex>
         </Container>

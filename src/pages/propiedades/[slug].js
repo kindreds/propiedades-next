@@ -226,7 +226,13 @@ const Propiedad = ({ propiedad }) => {
           </SimpleGrid>
         </Container>
 
-        {isOpen && <Contact isOpen={isOpen} onClose={onClose} />}
+        {isOpen && (
+          <Contact
+            isOpen={isOpen}
+            onClose={onClose}
+            asesor={propiedad.Asesor}
+          />
+        )}
 
         {!is1024px && (
           <Stack right={4} bottom={4} pos="fixed" style={{ zIndex: 2 }}>
