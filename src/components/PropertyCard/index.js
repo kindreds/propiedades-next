@@ -25,6 +25,9 @@ import { fadeInUp } from '../../motions/fadeInUp'
 const PropertyCard = ({ i, p }) => {
   const [isLike, setIsLike] = useState(false)
 
+  const isVenta = p.tipoContrato === 1
+  console.log(p)
+
   return (
     <motion.div initial="initial" animate="animate" variants={fadeInUp}>
       <Box
@@ -56,8 +59,13 @@ const PropertyCard = ({ i, p }) => {
             <Badge colorScheme="green" rounded="lg" py={0.5} px={1.5}>
               Nueva
             </Badge>
-            <Badge colorScheme="blue" rounded="lg" py={0.5} px={1.5}>
-              Venta
+            <Badge
+              py={0.5}
+              px={1.5}
+              rounded="lg"
+              colorScheme={isVenta ? 'blue' : 'purple'}
+            >
+              {isVenta ? 'Venta' : 'Alquiler'}
             </Badge>
           </HStack>
           <Tooltip hasArrow label="Dar me gusta" placement="bottom">
@@ -154,7 +162,7 @@ const PropertyCard = ({ i, p }) => {
               <Avatar
                 width={50}
                 height={50}
-                alt="Dan Abrahmov"
+                alt={p.Asesor.alias}
                 src="https://bit.ly/dan-abramov"
               />
             </Box>

@@ -1,17 +1,39 @@
-import React from 'react'
-import NextLink from 'next/link'
-import { Input } from '@chakra-ui/input'
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+
+// terceros
 import { Select } from '@chakra-ui/select'
-import { Stack, Flex, Link } from '@chakra-ui/layout'
 import { Button } from '@chakra-ui/button'
-import { useGetCategoriaQuery } from '../../generated/graphql'
+import { Stack, Flex } from '@chakra-ui/layout'
+
+// components
 import Suggestions from '../Suggestions'
-// import PropTypes from 'prop-types'
+
+// utils
+import { useGetCategoriaQuery } from '../../generated/graphql'
 
 const BasicSearch = () => {
+  const [categoria, setCategoria] = useState('')
+  const [ubicacion, setUbicacion] = useState({})
+  const router = useRouter()
   const { data } = useGetCategoriaQuery()
-
   const categorias = data ? data.GetAllCategorias : []
+
+  const handleSearch = () => {
+    let payload = {}
+
+    if (categoria !== '') {
+      payload.slugCategoria = categoria
+    }
+    if (Object.keys(ubicacion).length !== 0) {
+      payload = { ...payload, ...ubicacion }
+    }
+
+    router.push({
+      pathname: '/propiedades',
+      query: { ...payload }
+    })
+  }
 
   return (
     <Stack
@@ -25,18 +47,24 @@ const BasicSearch = () => {
       minW={{ base: '280px', xl: '1100px' }}
       direction={{ base: 'column', xl: 'row' }}
     >
-      <Select fontSize={'15'} minH={{ base: '50px' }} placeholder="Categorias">
+      <Select
+        fontSize={'15'}
+        value={categoria}
+        minH={{ base: '50px' }}
+        placeholder="Categorias"
+        onChange={({ target: { value } }) => setCategoria(value)}
+      >
         {categorias.map((cat) => (
-          <option key={cat.categoriaId}>{cat.nombreCategoria}</option>
+          <option key={cat.categoriaId} value={cat.slugCategoria}>
+            {cat.nombreCategoria}
+          </option>
         ))}
       </Select>
-      <Suggestions />
+      <Suggestions onChange={({ data }) => setUbicacion(data)} />
       <Flex justify="center">
-        <NextLink href="/propiedades">
-          <Button as={Link} size="lg" colorScheme="red">
-            Buscar
-          </Button>
-        </NextLink>
+        <Button onClick={handleSearch} size="lg" colorScheme="red">
+          Buscar
+        </Button>
       </Flex>
     </Stack>
   )

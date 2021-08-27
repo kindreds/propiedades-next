@@ -65,7 +65,7 @@ const Suggestions = ({ onChange = () => {} }) => {
         minH={{ base: '50px' }}
         placeholder="Ubicacion"
         value={text}
-        onKeyDown={({ code }) => {
+        onKeyUp={({ code }) => {
           if (code === 'Backspace') setSelected({})
         }}
         onChange={async ({ target: { value: v } }) => {

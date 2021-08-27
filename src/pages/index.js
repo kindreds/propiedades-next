@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { Image } from '@chakra-ui/image'
 import { keyframes } from '@chakra-ui/react'
 import { useInView } from 'react-intersection-observer'
-import { m, LazyMotion } from 'framer-motion'
+import { m, LazyMotion, domAnimation } from 'framer-motion'
 import { Container, Text, Heading, Box } from '@chakra-ui/layout'
 
 import Hero from '../components/Hero'
@@ -34,9 +34,7 @@ const Index = () => {
   const { ref: ref2, inView: inView2 } = useInView()
 
   return (
-    <LazyMotion
-      features={() => import('framer-motion').then((m) => m.domAnimation)}
-    >
+    <LazyMotion features={domAnimation}>
       <Head>
         <title>Inmobiliara</title>
       </Head>

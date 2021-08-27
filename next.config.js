@@ -29,12 +29,12 @@ module.exports = withBundleAnalyzer({
     config.resolve.alias['strip-ansi'] = path.resolve(
       __dirname,
       'node_modules',
-      'strip-ansi'
+      'next/dist/compiled/strip-ansi'
     )
     config.resolve.alias['@babel/runtime'] = path.resolve(
       __dirname,
       'node_modules',
-      '@babel/runtime'
+      'next/node_modules/@babel/runtime'
     )
     return config
   }

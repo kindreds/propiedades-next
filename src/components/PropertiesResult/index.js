@@ -60,7 +60,8 @@ const PropertiesResult = ({ columns = 2, propiedades = [], NroItems }) => {
         boxSizing="border-box"
         templateColumns={{
           base: 'minmax(0, 1fr)',
-          sm: `repeat(${columns}, minmax(0, 1fr))`
+          sm: `repeat(${2}, minmax(0, 1fr))`,
+          xl: `repeat(${columns}, minmax(0, 1fr))`
         }}
       >
         {propiedades.map((p, i) => (

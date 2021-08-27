@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -30,6 +30,7 @@ import {
   GetAllPropiedadesDocument as GET_ALL_PROPIEDADES,
   useGetBusquedaAvanzadaQuery
 } from '../../generated/graphql'
+import useParams from '../../hooks/useParams'
 
 const BusquedaAvanzada = {
   GetBusquedaAvanzada: {
@@ -59,9 +60,22 @@ const initialState = {
 }
 
 const Propiedades = () => {
+  const [title, setTitle] = useState('')
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [is1024px] = useMediaQuery('(min-width: 1024px)')
   const [variables, setVariables] = useState(initialState)
+  const { params } = useParams()
+
+  useEffect(() => {
+    const payload = {}
+    if (params.ProvCodi) payload.ProvCodi = parseInt(params.ProvCodi)
+    if (params.DistCode) payload.DistCodi = parseInt(params.DistCode)
+    if (params.DeparCodi) payload.DeparCodi = parseInt(params.DeparCodi)
+    if (params.slugCategoria) payload.slugCategoria = params.slugCategoria
+    setVariables(v => ({ ...v, ...payload }))
+
+    setTitle(`| ${Object.keys(params).join(',')}`)
+  }, [params])
 
   const { data = BusquedaAvanzada } = useGetBusquedaAvanzadaQuery({
     variables: { input: variables }
@@ -73,7 +87,7 @@ const Propiedades = () => {
     <LazyMotion features={domAnimation}>
       <Box w="full" bg="gray.200">
         <Head>
-          <title>Categorias | </title>
+          <title>Propiedades {title}</title>
         </Head>
         <Box
           pos="relative"
@@ -100,7 +114,7 @@ const Propiedades = () => {
             sm: 'container.sm',
             md: 'container.md',
             lg: 'container.lg',
-            xl: 'container.xl'
+            xl: '1400px'
           }}
         >
           {is1024px && (
@@ -179,6 +193,7 @@ const Propiedades = () => {
             )}
             <PropertiesResult
               {...{
+                columns: 3,
                 propiedades: data.GetBusquedaAvanzada.data,
                 NroItems: data.GetBusquedaAvanzada.NroItems
               }}
