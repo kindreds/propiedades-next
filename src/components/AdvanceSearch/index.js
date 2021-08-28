@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // Terceros
+import { Input } from '@chakra-ui/input'
 import { Select } from '@chakra-ui/select'
 import { Button } from '@chakra-ui/button'
 import { FormLabel } from '@chakra-ui/form-control'
@@ -52,8 +53,8 @@ const AdvanceSearch = ({
 
   useEffect(() => {
     if (data.GetAreaMinimo && data.GetAreaMaximo) {
-      const { GetAreaMinimo: min, GetAreaMaximo: max } = data
-      setForm((f) => ({ ...f, areaMinima: min, areaMaxima: max }))
+      // const { GetAreaMinimo: min, GetAreaMaximo: max } = data
+      setForm((f) => ({ ...f, areaMinima: '', areaMaxima: '' }))
     }
   }, [data.GetAreaMinimo, data.GetAreaMaximo])
 
@@ -244,50 +245,91 @@ const AdvanceSearch = ({
       <Flex justify="space-between">
         <Box w="40%">
           <FormLabel fontSize="sm">Area min.</FormLabel>
-          <NumberInput
+          {/* <NumberInput
             variant="flushed"
             min={parseInt(data.GetAreaMinimo)}
             value={parseInt(form.areaMinima)}
             onChange={(v) => handleChange(v, 'areaMinima')}
           >
             <NumberInputField pl={2} />
-          </NumberInput>
+          </NumberInput> */}
+
+          <Input
+            type="number"
+            name="areaMinima"
+            variant="flushed"
+            placeholder={data.GetAreaMinimo}
+            value={parseInt(form.areaMinima)}
+            onChange={({ target: { name, value } }) =>
+              handleChange(value, name)
+            }
+          />
         </Box>
 
         <Box w="40%">
           <FormLabel fontSize="sm">Area max.</FormLabel>
-          <NumberInput
+          {/* <NumberInput
             variant="flushed"
             max={parseInt(data.GetAreaMaximo)}
             value={parseInt(form.areaMaxima)}
             onChange={(v) => handleChange(v, 'areaMaxima')}
           >
             <NumberInputField pl={2} />
-          </NumberInput>
+          </NumberInput> */}
+          <Input
+            type="number"
+            name="areaMaxima"
+            variant="flushed"
+            placeholder={data.GetAreaMaximo}
+            value={parseInt(form.areaMaxima)}
+            onChange={({ target: { name, value } }) =>
+              handleChange(value, name)
+            }
+          />
         </Box>
       </Flex>
 
       <Flex justify="space-between">
         <Box w="40%">
           <FormLabel fontSize="sm">Monto min.</FormLabel>
-          <NumberInput
+          {/* <NumberInput
             variant="flushed"
             value={format(form.montoMinimo)}
             onChange={(v) => handleChange(parse(v), 'montoMinimo')}
           >
             <NumberInputField pl={2} />
-          </NumberInput>
+          </NumberInput> */}
+          <Input
+            type="number"
+            placeholder={0}
+            variant="flushed"
+            name="montoMinimo"
+            value={format(form.montoMinimo)}
+            onChange={({ target: { name, value } }) =>
+              handleChange(value, name)
+            }
+          />
         </Box>
 
         <Box w="40%">
           <FormLabel fontSize="sm">Monto max.</FormLabel>
-          <NumberInput
+          {/* <NumberInput
             variant="flushed"
             value={format(form.montoMaximo)}
             onChange={(v) => handleChange(parse(v), 'montoMaximo')}
           >
             <NumberInputField pl={2} />
-          </NumberInput>
+          </NumberInput> */}
+          <Input
+            type="number"
+            variant="flushed"
+            name="montoMaximo"
+            placeholder="$200"
+            value={format(form.montoMaximo)}
+            onChange={({ target: { name, value } }) =>
+              handleChange(value, name)
+            }
+          />
         </Box>
       </Flex>
       <FormLabel fontSize="sm">Nro. Cuartos</FormLabel>
