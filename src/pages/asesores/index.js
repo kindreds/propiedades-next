@@ -74,7 +74,7 @@ const SearchAsesores = () => {
             sm: 'container.sm',
             md: 'container.md',
             lg: 'container.lg',
-            xl: 'container.xl'
+            xl: '1400px'
           }}
           transform={{ base: 'translateY(-100px)', lg: 'translateY(-150px)' }}
         >

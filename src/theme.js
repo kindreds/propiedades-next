@@ -8,7 +8,7 @@ const config = {
 }
 
 const fonts = {
-  mono: `'Menlo', monospace`,
+  mono: '"Menlo", monospace',
   body: 'Poppins',
   heading: 'Poppins'
 }

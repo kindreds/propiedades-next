@@ -26,7 +26,6 @@ const PropertyCard = ({ i, p }) => {
   const [isLike, setIsLike] = useState(false)
 
   const isVenta = p.tipoContrato === 1
-  console.log(p)
 
   return (
     <motion.div initial="initial" animate="animate" variants={fadeInUp}>
@@ -44,8 +43,11 @@ const PropertyCard = ({ i, p }) => {
         maxW={{ base: '90%', ms: '370px' }}
       >
         <Box w="full" pos="relative">
+          <NextLink href={`/propiedades/${p.slug}`}>
           <Box
+            as="a"
             w="full"
+            cursor="pointer"
             overflow="hidden"
             borderTopEndRadius="lg"
             borderTopStartRadius="lg"
@@ -55,6 +57,7 @@ const PropertyCard = ({ i, p }) => {
               alt={p.fotoPrincipal.descripcion}
             />
           </Box>
+          </NextLink>
           <HStack pos="absolute" top={2} left={2} w="100%">
             <Badge colorScheme="green" rounded="lg" py={0.5} px={1.5}>
               Nueva
@@ -135,7 +138,7 @@ const PropertyCard = ({ i, p }) => {
             {p.cuartos} Cuartos &bull; {p.banios} Baños
           </Box>
 
-          <Box d="flex" alignItems="center" mb={2}>
+          {/* <Box d="flex" alignItems="center" mb={2}>
             {Array(5)
               .fill('')
               .map((_, i) => (
@@ -148,7 +151,7 @@ const PropertyCard = ({ i, p }) => {
             <Box as="span" ml="2" color="gray.600" fontSize="sm">
               {33} Opiniones
             </Box>
-          </Box>
+          </Box> */}
           <NextLink href={`/propiedades/${p.slug}`}>
             <Link fontSize="sm" color="blue.500" textDecorationLine="underline">
               Ver mas

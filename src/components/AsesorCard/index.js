@@ -54,7 +54,7 @@ const AsesorCard = ({ simple, drawer, asesor, ...props }) => {
               {asesor.nombres} {asesor.apellidos} (Asesor)
             </Heading>
             <Text>13 Propiedades</Text>
-            <Box d="flex" alignItems="center">
+            {/* <Box d="flex" alignItems="center">
               {Array(5)
                 .fill('')
                 .map((_, i) => (
@@ -63,7 +63,7 @@ const AsesorCard = ({ simple, drawer, asesor, ...props }) => {
               <Box as="span" ml="2" color="gray.600">
                 {12} Opiniones
               </Box>
-            </Box>
+            </Box> */}
             <NextLink href={`/asesores/${asesor.alias}`}>
               <Link
                 mt={2}
